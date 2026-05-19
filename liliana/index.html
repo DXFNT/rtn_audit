@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liliana.sk — Leadhub audit | Dexfinity</title>
+<meta name="description" content="Audit emailingu Liliana.sk v Leadhube — performance, RFM, retencia, databáza, web traffic. Pripravil Dexfinity. Go Beyond.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Questrial&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dex-blue: #0065F7;
+  --dex-navy: #05024E;
+  --dex-white: #ffffff;
+  --dex-light-bg: #F4F6FC;
+  --dex-blue-light: #E8F0FE;
+  --dex-blue-10: rgba(0, 101, 247, 0.1);
+  --dex-blue-20: rgba(0, 101, 247, 0.2);
+  --dex-navy-light: #0A0A6E;
+  --dex-text: #1A1A2E;
+  --dex-muted: #6B7280;
+  --dex-border: #E5E7EB;
+  --dex-teal: #16AB8B;
+  --dex-orange: #ff7f00;
+  --font-primary: 'Questrial', Arial, sans-serif;
+  --font-secondary: 'Poppins', Arial, sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow: 0 2px 8px rgba(0, 101, 247, 0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-secondary);
+  color: var(--dex-text);
+  line-height: 1.6;
+  background: var(--dex-white);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-family: var(--font-primary); }
+
+.urgency {
+  background: var(--dex-blue);
+  color: var(--dex-white);
+  text-align: center;
+  padding: 12px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-secondary);
+  letter-spacing: 0.5px;
+}
+
+/* Nav */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--dex-border);
+  padding: 10px 0;
+}
+.nav .container { display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { height: 48px; }
+.nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+.nav-links a {
+  color: var(--dex-muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-secondary);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--dex-blue); }
+.nav-links .cta { color: var(--dex-blue); font-weight: 600; }
+
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1000; position: relative; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--dex-navy); margin: 5px 0; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Hero */
+.hero { background: var(--dex-navy); color: var(--dex-white); padding: 80px 40px 100px; position: relative; overflow: hidden; }
+.hero .container { position: relative; z-index: 2; }
+.hero .circle-1 { position: absolute; width: 500px; height: 500px; border: 2px solid var(--dex-blue); border-radius: 50%; opacity: 0.12; top: -200px; right: -100px; }
+.hero .circle-2 { position: absolute; width: 300px; height: 300px; border: 2px solid var(--dex-blue); border-radius: 50%; opacity: 0.08; bottom: -100px; left: -80px; }
+.hero .circle-3 { position: absolute; width: 180px; height: 180px; background: var(--dex-blue); border-radius: 50%; opacity: 0.06; top: 60px; right: 200px; }
+.hero-badge { display: inline-block; background: var(--dex-blue-20); border: 1px solid rgba(0,101,247,0.3); border-radius: 50px; padding: 6px 18px; font-size: 12px; font-weight: 500; font-family: var(--font-secondary); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 24px; }
+.hero .tagline { font-family: var(--font-secondary); font-size: 14px; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--dex-blue); margin-bottom: 16px; }
+.hero h1 { font-size: 44px; font-weight: 400; line-height: 1.15; max-width: 880px; }
+.hero h1 span { color: var(--dex-blue); }
+.hero .sub { font-size: 16px; opacity: 0.7; margin-top: 20px; max-width: 720px; font-weight: 300; }
+.hero-stats { display: flex; gap: 48px; flex-wrap: wrap; margin-top: 48px; }
+.hero-stat .num { font-size: 36px; font-weight: 700; font-family: var(--font-secondary); color: var(--dex-white); }
+.hero-stat .num .unit { font-size: 18px; opacity: 0.6; margin-left: 4px; }
+.hero-stat .label { font-size: 11px; font-weight: 500; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+section { padding: 56px 0; }
+section.alt { background: var(--dex-light-bg); }
+section h2 { font-size: 28px; font-weight: 400; color: var(--dex-navy); margin-bottom: 6px; }
+section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: var(--font-secondary); margin-bottom: 32px; }
+
+/* Exec card */
+.exec-card { background: var(--dex-white); border-radius: var(--radius-lg); box-shadow: 0 20px 60px rgba(5, 2, 78, 0.14); padding: 40px 44px; margin: -48px auto 48px; max-width: 1060px; position: relative; z-index: 5; border: 1px solid var(--dex-border); }
+.exec-card h2 { font-size: 22px; color: var(--dex-navy); margin-bottom: 8px; }
+.exec-card p.exec-sub { color: var(--dex-muted); font-size: 13px; margin-bottom: 24px; }
+
+.opp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 8px; }
+.opp-card { position: relative; padding: 26px 26px 22px 26px; background: var(--dex-light-bg); border-radius: var(--radius-md); border-top: 4px solid var(--dex-blue); display: flex; flex-direction: column; }
+.opp-card:nth-child(1) { border-top-color: var(--dex-orange); }
+.opp-card:nth-child(2) { border-top-color: var(--dex-teal); }
+.opp-card:nth-child(3) { border-top-color: var(--dex-blue); }
+.opp-card:nth-child(4) { border-top-color: var(--dex-navy); }
+.opp-num { position: absolute; top: 14px; right: 18px; font-size: 40px; font-weight: 700; color: var(--dex-navy); opacity: 0.10; letter-spacing: -1px; font-family: 'Questrial', sans-serif; }
+.opp-tag { display: inline-block; font-size: 11px; font-weight: 600; color: var(--dex-blue); text-transform: uppercase; letter-spacing: 0.9px; margin-bottom: 10px; }
+.opp-card h3 { font-size: 17px; font-weight: 700; color: var(--dex-navy); margin: 0 0 14px 0; padding-right: 56px; line-height: 1.35; }
+.opp-metric { font-size: 34px; font-weight: 700; color: var(--dex-navy); line-height: 1; margin-bottom: 12px; font-family: 'Questrial', sans-serif; }
+.opp-metric .opp-unit { font-size: 13px; font-weight: 500; color: var(--dex-muted); letter-spacing: 0; }
+.opp-card p.opp-desc { font-size: 13px; color: var(--dex-muted); line-height: 1.55; margin: 0 0 14px 0; flex: 1; }
+.opp-action { font-size: 13px; font-weight: 600; color: var(--dex-blue); padding-top: 12px; border-top: 1px solid var(--dex-border); }
+.opp-meta { font-size: 12px; color: var(--dex-muted); text-align: center; margin-top: 24px; font-style: italic; }
+
+.quick-wins { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 24px; }
+.qwin { display: flex; gap: 16px; align-items: flex-start; padding: 14px 18px; background: var(--dex-light-bg); border-radius: var(--radius-md); border-left: 4px solid var(--dex-blue); }
+.qwin .qnum { width: 32px; height: 32px; border-radius: 50%; background: var(--dex-blue); color: var(--dex-white); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+.qwin.warn { border-left-color: var(--dex-orange); }
+.qwin.warn .qnum { background: var(--dex-orange); }
+.qwin.pos { border-left-color: var(--dex-teal); }
+.qwin.pos .qnum { background: var(--dex-teal); }
+.qwin h4 { font-size: 14px; font-weight: 600; color: var(--dex-navy); margin-bottom: 4px; }
+.qwin p { font-size: 13px; color: var(--dex-muted); line-height: 1.5; }
+
+/* Highlight box */
+.highlight-box { background: var(--dex-navy); color: var(--dex-white); border-radius: var(--radius-lg); padding: 48px; margin: 40px 0; position: relative; overflow: hidden; }
+.highlight-box .h-circle { position: absolute; border: 2px solid var(--dex-blue); border-radius: 50%; opacity: 0.1; }
+.highlight-box .h-c1 { width: 260px; height: 260px; top: -100px; right: -60px; }
+.highlight-box .h-c2 { width: 180px; height: 180px; bottom: -80px; left: 20%; }
+.highlight-box h3 { font-size: 22px; color: var(--dex-white); margin-bottom: 12px; position: relative; z-index: 2; }
+.highlight-box .formula { font-size: 20px; font-weight: 500; color: var(--dex-blue); letter-spacing: 1.2px; margin: 20px 0 28px; font-family: var(--font-primary); position: relative; z-index: 2; }
+.highlight-box > p { position: relative; z-index: 2; }
+.highlight-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; position: relative; z-index: 2; }
+.highlight-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); padding: 18px; }
+.highlight-card .hv { font-size: 22px; font-weight: 700; color: var(--dex-blue); font-family: var(--font-secondary); }
+.highlight-card .hl { font-size: 12px; opacity: 0.7; margin-top: 4px; }
+
+/* Metric cards */
+.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.metric-card { background: var(--dex-white); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow); border-left: 4px solid var(--dex-blue); }
+.metric-card h3 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--dex-muted); margin-bottom: 8px; }
+.metric-card .value { font-size: 28px; font-weight: 700; color: var(--dex-navy); font-family: var(--font-secondary); }
+.metric-card .desc { font-size: 13px; color: var(--dex-muted); margin-top: 4px; }
+.metric-card.pos { border-left-color: var(--dex-teal); }
+.metric-card.warn { border-left-color: var(--dex-orange); }
+.metric-card.pos .value { color: var(--dex-teal); }
+.metric-card.warn .value { color: var(--dex-orange); }
+.metric-card.pain { border-left-color: var(--dex-navy); background: var(--dex-navy); color: var(--dex-white); }
+.metric-card.pain h3 { color: rgba(255,255,255,0.7); }
+.metric-card.pain .value { font-size: 15px; font-weight: 500; font-style: italic; color: var(--dex-white); line-height: 1.4; }
+.metric-card.pain .desc { color: rgba(255,255,255,0.6); }
+.metric-card .trend { font-size: 12px; font-weight: 600; margin-top: 6px; }
+.metric-card .trend.up { color: var(--dex-teal); }
+.metric-card .trend.down { color: var(--dex-orange); }
+.metric-card .trend.flat { color: var(--dex-muted); }
+
+/* Audit table */
+.audit-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--dex-border); margin-top: 16px; }
+.audit-table th { background: var(--dex-navy); color: var(--dex-white); padding: 14px 18px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; text-align: left; }
+.audit-table td { padding: 14px 18px; font-size: 14px; border-bottom: 1px solid var(--dex-border); background: var(--dex-white); color: var(--dex-text); }
+.audit-table tr:last-child td { border-bottom: none; }
+.audit-table tr:hover td { background: var(--dex-light-bg); }
+.audit-table td strong { color: var(--dex-navy); }
+.table-scroll { overflow-x: auto; }
+.audit-table td.num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+.audit-table td.pos { color: var(--dex-teal); font-weight: 600; }
+.audit-table td.neg { color: var(--dex-orange); font-weight: 600; }
+.audit-table tr.warn-row td { background: rgba(255, 127, 0, 0.04); }
+.audit-table tr.crit-row td { background: rgba(5, 2, 78, 0.04); }
+
+/* Bar */
+.bar-wrap { display: flex; align-items: center; gap: 10px; }
+.bar-bg { flex: 1; height: 10px; background: var(--dex-blue-10); border-radius: 20px; overflow: hidden; position: relative; min-width: 120px; }
+.bar-fill { height: 100%; background: linear-gradient(90deg, var(--dex-blue), var(--dex-navy)); border-radius: 20px; }
+.bar-fill.teal { background: linear-gradient(90deg, var(--dex-teal), #0a7a64); }
+.bar-fill.orange { background: linear-gradient(90deg, var(--dex-orange), #e06600); }
+.bar-val { font-size: 12px; color: var(--dex-navy); font-weight: 600; min-width: 60px; text-align: right; }
+
+/* Badges */
+.badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.3px; }
+.badge-critical { background: var(--dex-navy); color: var(--dex-white); }
+.badge-warning { background: rgba(255, 127, 0, 0.12); color: var(--dex-orange); }
+.badge-info { background: var(--dex-blue-light); color: var(--dex-blue); }
+.badge-ok { background: var(--dex-light-bg); color: var(--dex-navy); }
+.badge-positive { background: var(--dex-teal); color: var(--dex-white); }
+
+/* Findings */
+.finding { display: grid; grid-template-columns: 4px 1fr; margin-bottom: 14px; border-radius: var(--radius-md); overflow: hidden; background: var(--dex-white); box-shadow: var(--shadow); border: 1px solid var(--dex-border); }
+.finding .bar { min-height: 100%; }
+.finding .bar.high { background: var(--dex-navy); }
+.finding .bar.med { background: var(--dex-blue); }
+.finding .bar.low { background: rgba(0,101,247,0.3); }
+.finding .bar.pos { background: var(--dex-teal); }
+.finding .bar.warn { background: var(--dex-orange); }
+.finding .content { padding: 20px 24px; }
+.finding .content h4 { font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 10px; color: var(--dex-navy); margin-bottom: 8px; flex-wrap: wrap; }
+.finding .content p { font-size: 13px; color: var(--dex-muted); line-height: 1.7; }
+.finding .content .rec { margin-top: 12px; padding: 12px 16px; background: var(--dex-blue-10); border-radius: var(--radius-sm); font-size: 13px; color: var(--dex-navy); border-left: 3px solid var(--dex-blue); }
+.finding .content .rec strong { color: var(--dex-blue); }
+.finding .content .data { margin-top: 10px; padding: 10px 14px; background: var(--dex-light-bg); border-radius: var(--radius-sm); font-size: 12px; color: var(--dex-muted); font-family: 'Poppins', monospace; }
+.finding .content .data strong { color: var(--dex-navy); }
+
+/* RFM segment block */
+.rfm-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 16px; }
+.rfm-card { padding: 18px; background: var(--dex-white); border-radius: var(--radius-md); border: 1px solid var(--dex-border); border-left: 4px solid var(--dex-muted); }
+.rfm-card .seg-name { font-size: 12px; font-weight: 700; color: var(--dex-muted); text-transform: uppercase; letter-spacing: 0.6px; }
+.rfm-card .seg-val { font-size: 28px; font-weight: 700; color: var(--dex-navy); font-family: var(--font-secondary); margin-top: 4px; }
+.rfm-card .seg-pct { font-size: 13px; color: var(--dex-muted); margin-top: 2px; }
+.rfm-card .seg-rev { font-size: 12px; color: var(--dex-blue); font-weight: 600; margin-top: 8px; }
+.rfm-card .seg-trend { font-size: 11px; font-weight: 600; margin-top: 4px; }
+.rfm-card.zero { border-left-color: var(--dex-orange); background: rgba(255, 127, 0, 0.03); }
+.rfm-card.zero .seg-val { color: var(--dex-orange); }
+.rfm-card.large { border-left-color: var(--dex-navy); }
+.rfm-card.large .seg-val { color: var(--dex-navy); }
+.rfm-card.hib { border-left-color: var(--dex-orange); background: rgba(255, 127, 0, 0.03); }
+.rfm-card.hib .seg-val { color: var(--dex-orange); }
+.rfm-card.pos { border-left-color: var(--dex-teal); }
+
+/* Summary box */
+.summary-box { background: var(--dex-navy); color: var(--dex-white); border-radius: var(--radius-lg); padding: 48px; margin: 48px 0; position: relative; overflow: hidden; }
+.summary-box .circle-dec { position: absolute; border: 2px solid var(--dex-blue); border-radius: 50%; opacity: 0.1; }
+.summary-box .circle-dec.c1 { width: 300px; height: 300px; top: -120px; right: -60px; }
+.summary-box .circle-dec.c2 { width: 200px; height: 200px; bottom: -80px; left: -40px; }
+.summary-box h2 { color: var(--dex-white) !important; margin-bottom: 24px; position: relative; z-index: 2; }
+.summary-box > p { opacity: 0.7; margin-bottom: 24px; font-size: 14px; position: relative; z-index: 2; }
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; position: relative; z-index: 2; }
+.summary-item { text-align: center; padding: 24px 16px; background: rgba(255,255,255,0.06); border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.1); }
+.summary-item .val { font-size: 32px; font-weight: 700; color: var(--dex-blue); font-family: var(--font-secondary); }
+.summary-item .label-title { font-size: 14px; font-weight: 600; margin-top: 4px; }
+.summary-item .desc { font-size: 12px; opacity: 0.6; margin-top: 4px; line-height: 1.5; }
+
+/* Rec timeline */
+.rec-timeline { position: relative; padding-left: 36px; margin-top: 16px; }
+.rec-timeline::before { content: ''; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--dex-blue), var(--dex-navy)); }
+.rec-step { position: relative; margin-bottom: 36px; }
+.rec-step::before { content: ''; position: absolute; left: -36px; top: 4px; width: 24px; height: 24px; border-radius: 50%; background: var(--dex-blue); border: 3px solid var(--dex-white); box-shadow: 0 0 0 2px var(--dex-blue); }
+.rec-step .step-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--dex-blue); margin-bottom: 6px; }
+.rec-step h3 { font-size: 18px; color: var(--dex-navy); margin-bottom: 8px; }
+.rec-step > p { font-size: 14px; color: var(--dex-muted); margin-bottom: 10px; }
+.rec-step ul { list-style: none; padding-left: 0; margin-top: 8px; }
+.rec-step ul li { font-size: 14px; color: var(--dex-text); margin-bottom: 8px; padding-left: 20px; position: relative; }
+.rec-step ul li::before { content: '→'; position: absolute; left: 0; color: var(--dex-blue); font-weight: 700; }
+.rec-step .step-impact { font-size: 12px; color: var(--dex-teal); font-weight: 600; margin-top: 10px; padding: 6px 12px; background: rgba(22, 171, 139, 0.08); border-radius: var(--radius-sm); display: inline-block; }
+
+/* Flow audit table */
+.flow-status { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+.flow-status.missing { background: rgba(255, 127, 0, 0.12); color: var(--dex-orange); }
+.flow-status.exists { background: rgba(22, 171, 139, 0.12); color: var(--dex-teal); }
+.flow-status.partial { background: rgba(0, 101, 247, 0.12); color: var(--dex-blue); }
+
+/* Methodology */
+.methodology-box { background: var(--dex-blue-10); border-radius: var(--radius-md); padding: 16px 20px; margin-bottom: 24px; border-left: 3px solid var(--dex-blue); }
+.methodology-box p { font-size: 12px; color: var(--dex-muted); line-height: 1.7; margin: 0; }
+.methodology-box strong { color: var(--dex-navy); }
+
+/* Footer */
+.footer { background: var(--dex-navy); color: var(--dex-white); padding: 56px 40px; text-align: center; position: relative; overflow: hidden; }
+.footer .circle-f { position: absolute; border: 1px solid var(--dex-blue); border-radius: 50%; opacity: 0.08; }
+.footer .circle-f.f1 { width: 260px; height: 260px; top: -80px; left: -40px; }
+.footer .circle-f.f2 { width: 180px; height: 180px; bottom: -60px; right: -40px; }
+.footer-logo { height: 64px; margin-bottom: 20px; position: relative; z-index: 2; }
+.footer p { opacity: 0.5; font-size: 13px; position: relative; z-index: 2; }
+.footer .footer-links { margin-top: 16px; opacity: 0.7; font-size: 13px; position: relative; z-index: 2; }
+.footer .footer-links a { color: var(--dex-blue); text-decoration: none; }
+.footer .go-beyond { font-size: 12px; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--dex-blue); margin-top: 20px; position: relative; z-index: 2; }
+
+@media (max-width: 860px) {
+  .quick-wins, .opp-grid, .highlight-grid, .rfm-grid { grid-template-columns: 1fr; }
+  .highlight-box, .summary-box { padding: 32px 24px; }
+  .hero h1 { font-size: 32px; }
+  .exec-card { padding: 28px 24px; }
+}
+@media (max-width: 768px) {
+  .hamburger { display: block; }
+  .nav-links { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--dex-white); flex-direction: column; align-items: center; justify-content: center; gap: 0; z-index: 999; padding: 80px 40px 40px; }
+  .nav-links.open { display: flex !important; }
+  .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid var(--dex-border); list-style: none; }
+  .nav-links li a { display: block; padding: 18px 0; font-size: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="urgency">Interný audit emailingu · zber dát 21. 5. 2026 · zdroj: Leadhub (Dashboard, Analytika, Audience, Web Provoz)</div>
+
+<nav class="nav">
+  <div class="container">
+    <a href="#top"><img src="https://www.dexfinity.com/wp-content/uploads/2021/03/Logo-Small-Light-Landscape@2x.png" alt="Dexfinity" class="nav-logo"></a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#performance">Performance</a></li>
+      <li><a href="#rfm">RFM</a></li>
+      <li><a href="#retention">Retencia</a></li>
+      <li><a href="#database">Databáza</a></li>
+      <li><a href="#traffic">Traffic</a></li>
+      <li><a href="#flows">Flows</a></li>
+      <li><a href="#recs" class="cta">Odporúčania</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="circle-1"></div>
+  <div class="circle-2"></div>
+  <div class="circle-3"></div>
+  <div class="container">
+    <div class="hero-badge">Leadhub audit · interný</div>
+    <div class="tagline">Go Beyond</div>
+    <h1>Liliana.sk — emailing nesie 35 % obratu, ale <span>loyalty vrstva neexistuje</span> a 56 % bázy nikdy nenakúpilo druhýkrát.</h1>
+    <p class="sub">Hĺbkový audit Leadhub účtu pre Liliana.sk (spodná bielizeň a plavky, SK trh). Pokrýva performance attribution, RFM segmenty, retenčné kohorty, databázu, web traffic a chýbajúce automatizácie. Dáta zbierané 21. 5. 2026 priamo z Leadhub UI.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">35,1<span class="unit">%</span></div><div class="label">Obj. attributed Leadhubom (7d)</div></div>
+      <div class="hero-stat"><div class="num">55<span class="unit">k</span></div><div class="label">Známych e-mailov</div></div>
+      <div class="hero-stat"><div class="num">19,1<span class="unit">%</span></div><div class="label">Overall miera návratu</div></div>
+      <div class="hero-stat"><div class="num">-19,3<span class="unit">%</span></div><div class="label">Tržby YoY (12 mes.)</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="exec-card">
+    <h2>4 hlavné príležitosti — kde dnes emailing necháva peniaze na stole</h2>
+    <p class="exec-sub">Zhrnutie z analýzy Dashboardu, RFM, retencie a databázy v Leadhube. Každá príležitosť je naviazaná na konkrétny segment alebo metriku, ktorú vie tím nasadiť bez dodatočných nákladov za externé nástroje.</p>
+
+    <div class="opp-grid">
+      <div class="opp-card">
+        <div class="opp-num">01</div>
+        <div class="opp-tag">Priorita · 0–2 týždne</div>
+        <h3>Reaktivácia Hibernating segmentu</h3>
+        <div class="opp-metric">1 514<span class="opp-unit"> ľudí · 103 k Kč/rok</span></div>
+        <p class="opp-desc">33 % celej bázy už dlho nenakúpilo, ale stále z nich príde 103 k Kč ročne aj bez aktívnej reaktivácie. Win-back flow so 2–3 mailmi a personalizovanou zľavou má v segmente potenciál +30–50 % uplift, čo je 30–50 k Kč navyše.</p>
+        <div class="opp-action">→ 3-mail win-back sekvencia s incentívom + opt-out</div>
+      </div>
+
+      <div class="opp-card">
+        <div class="opp-num">02</div>
+        <div class="opp-tag">Priorita · 0–4 týždne</div>
+        <h3>Loyalty vrstva chýba</h3>
+        <div class="opp-metric">1<span class="opp-unit"> Champion + 0 Loyal</span></div>
+        <p class="opp-desc">Z 4 538 zákazníkov za 12 mesiacov je 1 Champion a 0 Loyal. 80,9 % zákazníkov nakúpi raz a nikdy sa nevráti. VIP nominačný flow + loyalty program môžu posunúť 159 Potential Loyalists do segmentu, ktorý sa vracia opakovane.</p>
+        <div class="opp-action">→ VIP nominačný flow + tier program (2–3–6 nákupov)</div>
+      </div>
+
+      <div class="opp-card">
+        <div class="opp-num">03</div>
+        <div class="opp-tag">Priorita · 2–6 týždňov</div>
+        <h3>Post-purchase replenishment</h3>
+        <div class="opp-metric">18<span class="opp-unit"> dní · priemerný cyklus</span></div>
+        <p class="opp-desc">Doba medzi objednávkami u opakovaných zákazníkov je len 18 dní — keď sa zákazník vráti, robí to rýchlo. Problém nie je dĺžka cyklu, ale objem ľudí, ktorí sa do druhého nákupu vôbec dostanú. Post-purchase sekvencia (review, size guide, cross-sell) má potenciál stlačiť 80 % one-time bázy.</p>
+        <div class="opp-action">→ 4-fázový post-purchase: D+3, D+10, D+21, D+45</div>
+      </div>
+
+      <div class="opp-card">
+        <div class="opp-num">04</div>
+        <div class="opp-tag">Tech · vyžaduje audit</div>
+        <h3>Attribution paradox</h3>
+        <div class="opp-metric">35 % vs ~4 %<span class="opp-unit"> attribution gap</span></div>
+        <p class="opp-desc">Dashboard tvrdí Leadhub = 35,1 % obratu, ale Webový provoz cez UTM atribuuje len 11 objednávok / 30 dní z emailu (~3,7 %). Buď je dashboard attribution príliš široká, alebo UTM nie sú správne nastavené. Bez vyriešenia tohto sa nedá merať ROI ďalších investícií do emailu.</p>
+        <div class="opp-action">→ Audit attribution modelu + UTM mappingu</div>
+      </div>
+    </div>
+
+    <div class="quick-wins">
+      <div class="qwin pos"><div class="qnum">✓</div><div><h4>Database conversion 54 % je výborná</h4><p>Z 101 299 návštevníkov v Leadhube má klient e-mail u 55 054 — to je 54 %, takmer 2× nad sektorovým priemerom (~28 %).</p></div></div>
+      <div class="qwin warn"><div class="qnum">!</div><div><h4>56 % bázy = New Customers</h4><p>Z 4 538 zákazníkov za 12 mesiacov je 2 532 v segmente New Customers — nakúpili raz a nevrátili sa do segmentu Loyal/Champions.</p></div></div>
+      <div class="qwin"><div class="qnum">i</div><div><h4>Leadhub attribution 33–35 % (7d)</h4><p>Cieľová méta dobre nastaveného e-shopu je 20–30 %. Liliana je nad benchmarkom — základná infraštruktúra emailu funguje dobre.</p></div></div>
+      <div class="qwin warn"><div class="qnum">!</div><div><h4>YoY pokles -19 % naprieč metrikami</h4><p>Tržby -19,3 %, objednávky -19,2 %, zákazníci -18,7 %. Akvizícia drhne, retencia neexistuje — emailing môže pomôcť oboje stabilizovať.</p></div></div>
+      <div class="qwin pos"><div class="qnum">✓</div><div><h4>AOV YoY +15 %</h4><p>Priemerná hodnota objednávky rastie +15 % YoY na 74 €. Cross-sell/up-sell na webe funguje. Email môže túto dynamiku ďalej posilniť.</p></div></div>
+      <div class="qwin warn"><div class="qnum">!</div><div><h4>Time on site -22 % YoY</h4><p>Priemerná dĺžka relácie klesá z ~2m25s na 1m53s. Web priťahuje viac návštevníkov (+20 % YoY), ale menej kvalifikovaných — email môže pomôcť kvalifikovať lead pred prvým nákupom.</p></div></div>
+    </div>
+
+    <div class="opp-meta">Nižšie všetkých 6 dátových oblastí, z ktorých tieto príležitosti vychádzajú — vrátane konkrétnych čísel zo screenshotov Leadhubu.</div>
+  </div>
+</div>
+
+<!-- PERFORMANCE -->
+<section id="performance">
+  <div class="container">
+    <h2>1. Performance attribution</h2>
+    <p class="section-sub">Koľko obratu Leadhub reálne nesie + porovnanie posledných 7 a 30 dní + YoY trend</p>
+
+    <div class="metrics-grid" style="margin-bottom: 24px;">
+      <div class="metric-card pos">
+        <h3>Leadhub attribution (7d)</h3>
+        <div class="value">35,1 %</div>
+        <div class="desc">26 z 74 objednávok prinieslo Leadhub. 2 399 € z 5 738 € obratu (33,1 %).</div>
+        <div class="trend up">Nad benchmark (20–30 %)</div>
+      </div>
+      <div class="metric-card">
+        <h3>Tržby celkom (7d)</h3>
+        <div class="value">5 738 €</div>
+        <div class="desc">74 objednávok, AOV 77,54 €.</div>
+        <div class="trend flat">Stabilný týždeň</div>
+      </div>
+      <div class="metric-card">
+        <h3>Tržby (30d)</h3>
+        <div class="value">21 839 €</div>
+        <div class="desc">295 objednávok, AOV 74 €.</div>
+        <div class="trend up">+12,7 % vs predch. obdobie · +2,8 % YoY</div>
+      </div>
+      <div class="metric-card warn">
+        <h3>Objednávky YoY (30d)</h3>
+        <div class="value">-10,6 %</div>
+        <div class="desc">295 vs 330 minulý rok. Akvizícia klesá napriek rastúcemu trafficu.</div>
+        <div class="trend down">Štruktúrny pokles</div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 17px; color: var(--dex-navy); margin: 32px 0 12px;">Nové vs vracajúce sa zákazníci (30 dní)</h3>
+    <div class="table-scroll">
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>Typ zákazníka</th>
+            <th>Objednávky</th>
+            <th>Tržby</th>
+            <th>AOV</th>
+            <th>Podiel objednávok</th>
+            <th>Podiel tržieb</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Noví zákazníci</strong></td>
+            <td class="num">194</td>
+            <td class="num">13 720 €</td>
+            <td class="num">71 €</td>
+            <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width: 66%;"></div></div><div class="bar-val">66 %</div></div></td>
+            <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width: 63%;"></div></div><div class="bar-val">63 %</div></div></td>
+          </tr>
+          <tr>
+            <td><strong>Vracajúci sa</strong></td>
+            <td class="num">101</td>
+            <td class="num">8 119 €</td>
+            <td class="num pos">80 €</td>
+            <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill teal" style="width: 34%;"></div></div><div class="bar-val">34 %</div></div></td>
+            <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill teal" style="width: 37%;"></div></div><div class="bar-val">37 %</div></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size: 13px; color: var(--dex-muted); margin-top: 12px; font-style: italic;">Pattern: vracajúci sa zákazníci majú AOV +13 % vyšší ako noví (80 € vs 71 €). Keď zákazník nakúpi druhýkrát, utráca viac — pravdepodobne pridáva príslušenstvo alebo kupuje viacero kusov. Tento pattern podporuje investíciu do post-purchase a replenishment flows.</p>
+
+    <div class="highlight-box" style="margin: 40px 0 0;">
+      <div class="h-circle h-c1"></div>
+      <div class="h-circle h-c2"></div>
+      <h3>Hlavná téza performance vrstvy</h3>
+      <div class="formula">Akvizícia klesá × emailing je nad benchmark × loyalty neexistuje</div>
+      <p style="opacity: 0.75; font-size: 14px; max-width: 700px;">Liliana má funkčný Leadhub setup, ktorý prináša 33–35 % obratu — to je výborný východiskový stav. Problém nie je v ad-hoc kampaniach, problém je v tom, že 80 % zákazníkov sa nevráti druhýkrát. Stratu z akvizície (-10,6 % objednávok YoY) sa dá kompenzovať len cez retenciu, a tá vyžaduje flows, ktoré dnes neexistujú.</p>
+      <div class="highlight-grid">
+        <div class="highlight-card"><div class="hv">33–35 %</div><div class="hl">Leadhub attribution dnes</div></div>
+        <div class="highlight-card"><div class="hv">19,1 %</div><div class="hl">Overall retencia</div></div>
+        <div class="highlight-card"><div class="hv">+15 %</div><div class="hl">AOV YoY rast</div></div>
+        <div class="highlight-card"><div class="hv">-10,6 %</div><div class="hl">Objednávky YoY</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RFM -->
+<section class="alt" id="rfm">
+  <div class="container">
+    <h2>2. RFM segmentácia (12 mesiacov)</h2>
+    <p class="section-sub">Najsilnejšie zistenie auditu — distribúcia 4 538 zákazníkov podľa Recency / Frequency / Monetary. Trh: SK. Obdobie: 19. 5. 2025 — 19. 5. 2026 vs 19. 5. 2024 — 19. 5. 2025.</p>
+
+    <div class="methodology-box">
+      <p><strong>RFM model:</strong> štandardná Leadhub segmentácia rozdeľuje zákazníkov do 11 segmentov na základe toho, ako nedávno nakúpili (Recency), ako často (Frequency) a koľko utratili (Monetary). „Nový RFM profil" v Leadhube používa default thresholds — pre detailnejšiu analýzu konkrétneho segmentu sa odporúča custom profile s upravenými hranicami.</p>
+    </div>
+
+    <div class="rfm-grid">
+      <div class="rfm-card zero">
+        <div class="seg-name">Champions</div>
+        <div class="seg-val">1</div>
+        <div class="seg-pct">0,02 % bázy · 9 objednávok</div>
+        <div class="seg-rev">2 090 Kč revenue</div>
+        <div class="seg-trend pos" style="color: var(--dex-teal);">+1 vs minulý rok (z 0)</div>
+      </div>
+      <div class="rfm-card zero">
+        <div class="seg-name">Loyal</div>
+        <div class="seg-val">0</div>
+        <div class="seg-pct">0 % bázy · 0 objednávok</div>
+        <div class="seg-rev">0 Kč revenue</div>
+        <div class="seg-trend" style="color: var(--dex-orange);">Žiadny zákazník — kritické</div>
+      </div>
+      <div class="rfm-card">
+        <div class="seg-name">Potential Loyalists</div>
+        <div class="seg-val">48</div>
+        <div class="seg-pct">1,06 % bázy · 191 objednávok</div>
+        <div class="seg-rev">14 134 Kč revenue (294 Kč/zákazník)</div>
+        <div class="seg-trend" style="color: var(--dex-orange);">-34,2 % YoY</div>
+      </div>
+      <div class="rfm-card large">
+        <div class="seg-name">New Customers</div>
+        <div class="seg-val">2 532</div>
+        <div class="seg-pct">55,8 % bázy · 2 610 objednávok</div>
+        <div class="seg-rev">179 002 Kč revenue (71 Kč/zákazník)</div>
+        <div class="seg-trend" style="color: var(--dex-orange);">-25,7 % YoY</div>
+      </div>
+      <div class="rfm-card pos">
+        <div class="seg-name">Promising</div>
+        <div class="seg-val">36</div>
+        <div class="seg-pct">0,79 % bázy · 72 objednávok</div>
+        <div class="seg-rev">5 087 Kč revenue (141 Kč/zákazník)</div>
+        <div class="seg-trend" style="color: var(--dex-teal);">+5,9 % YoY · +24 % revenue</div>
+      </div>
+      <div class="rfm-card zero">
+        <div class="seg-name">Need Attention</div>
+        <div class="seg-val">0</div>
+        <div class="seg-pct">0 % bázy</div>
+        <div class="seg-rev">0 Kč revenue</div>
+        <div class="seg-trend" style="color: var(--dex-muted);">Prázdny segment</div>
+      </div>
+      <div class="rfm-card">
+        <div class="seg-name">About to Sleep</div>
+        <div class="seg-val">398</div>
+        <div class="seg-pct">8,77 % bázy · 872 objednávok</div>
+        <div class="seg-rev">63 688 Kč revenue (160 Kč/zákazník)</div>
+        <div class="seg-trend" style="color: var(--dex-orange);">-21,7 % YoY</div>
+      </div>
+      <div class="rfm-card zero">
+        <div class="seg-name">Can't Lose Them</div>
+        <div class="seg-val">0</div>
+        <div class="seg-pct">0 % bázy</div>
+        <div class="seg-rev">0 Kč revenue</div>
+        <div class="seg-trend" style="color: var(--dex-orange);">Žiadny "VIP at risk"</div>
+      </div>
+      <div class="rfm-card zero">
+        <div class="seg-name">At Risk</div>
+        <div class="seg-val">0</div>
+        <div class="seg-pct">0 % bázy</div>
+        <div class="seg-rev">0 Kč revenue</div>
+        <div class="seg-trend" style="color: var(--dex-muted);">Prázdny segment</div>
+      </div>
+      <div class="rfm-card hib">
+        <div class="seg-name">Hibernating</div>
+        <div class="seg-val">1 514</div>
+        <div class="seg-pct">33,4 % bázy · 1 520 objednávok</div>
+        <div class="seg-rev">103 406 Kč revenue (68 Kč/zákazník)</div>
+        <div class="seg-trend" style="color: var(--dex-orange);">-2,8 % YoY · stabilný</div>
+      </div>
+      <div class="rfm-card">
+        <div class="seg-name">Lost</div>
+        <div class="seg-val">9</div>
+        <div class="seg-pct">0,20 % bázy · 9 objednávok</div>
+        <div class="seg-rev">533 Kč revenue</div>
+        <div class="seg-trend" style="color: var(--dex-muted);">+50 % YoY (drobný segment)</div>
+      </div>
+    </div>
+
+    <div class="finding" style="margin-top: 32px;">
+      <div class="bar high"></div>
+      <div class="content">
+        <h4>Hlavné zistenie RFM: chýba celá loyalty vrstva <span class="badge badge-critical">KRITICKÉ</span></h4>
+        <p>4 segmenty s 0 zákazníkmi (Loyal, Need Attention, Can't Lose Them, At Risk) znamenajú, že Leadhub nevie odlíšiť „verného opakovaného nakupujúceho" od „nového jednorázového". Champions má 1 osobu — pravdepodobne outlier, nie reprezentatívny segment. Distribúcia je extrémne dvojvrcholová: 56 % New Customers + 33 % Hibernating = 89 % bázy. Stredná vrstva neexistuje.</p>
+        <div class="data"><strong>Dáta:</strong> 4 538 unikátnych zákazníkov / 5 283 objednávok = 1,16 obj. na zákazníka. Z toho 86,3 % má presne 1 objednávku.</div>
+        <div class="rec"><strong>Odporúčanie:</strong> Vytvoriť custom RFM profil so znížením frequency threshold pre Loyal (napr. 2+ nákupy za 6 mesiacov namiesto 4+). Paralelne nasadiť VIP nominačný flow, ktorý posúva Potential Loyalists (48 ľudí) do Loyal cez incentivovaný tretí nákup do 60 dní.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar warn"></div>
+      <div class="content">
+        <h4>Hibernating segment je najväčší untapped pool <span class="badge badge-warning">PRÍLEŽITOSŤ</span></h4>
+        <p>1 514 ľudí (33 % bázy) je v Hibernating segmente — dlhšie nenakúpili, ale ešte sú v databáze. Aj bez aktívnej reaktivácie z nich príde 103 406 Kč ročne (68 Kč na zákazníka). Win-back flow s 3 mailmi a personalizovanou zľavou typicky dosahuje 5–10 % reactivation rate, čo by znamenalo 75–150 dodatočných objednávok ročne.</p>
+        <div class="data"><strong>Dáta:</strong> 1 514 ľudí × 5–10 % reaktivácia × priemerný AOV 68 Kč = 5 100–10 300 Kč jednorázovo. Reálny upside vyšší, pretože reaktivovaní zákazníci často nakúpia 2–3× počas roka.</div>
+        <div class="rec"><strong>Odporúčanie:</strong> 3-mail win-back sekvencia: (1) emocionálny pull "chýbate nám" + 10% kód, (2) social proof + bestsellery, (3) last-chance + 15 % kód s deadline. Po 14 dňoch bez odpovede automaticky presunúť do "Lost" segmentu, aby sa nemíňala frekvencia na nereaktívnu bázu.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar med"></div>
+      <div class="content">
+        <h4>About to Sleep (398 ľudí) — prevention flow chýba <span class="badge badge-warning">PRÍLEŽITOSŤ</span></h4>
+        <p>398 zákazníkov v segmente About to Sleep generuje 63 688 Kč ročne (160 Kč na zákazníka — 2× viac ako Hibernating). To sú ľudia, ktorí ešte nie sú stratení, ale začínajú vychladnúť. Prevention flow má vyšší ROI ako win-back, lebo udržuje zákazníkov v aktívnom móde, namiesto toho aby ich zachraňoval z hlbokej pasivity.</p>
+        <div class="data"><strong>Dáta:</strong> 398 zákazníkov × 872 objednávok = 2,19 obj. na zákazníka (najvyššie zo všetkých segmentov okrem Champions). Toto sú reálne opakovaní nakupujúci, ktorých len treba udržať.</div>
+        <div class="rec"><strong>Odporúčanie:</strong> Trigger: 60 dní od posledného nákupu. 2-mail prevention flow: (1) personalized "ako sa máte?" + new arrivals z poslednej kategórie, (2) -10 % loyalty kód s 7-dňovou platnosťou. Cieľ: udržať segment About to Sleep stabilný, aby nepadal do Hibernating.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar pos"></div>
+      <div class="content">
+        <h4>Promising rastie (+5,9 % zákazníkov, +24 % revenue) <span class="badge badge-positive">POSITIVE</span></h4>
+        <p>Promising segment (36 ľudí, 141 Kč/zákazník) je jediný rastúci segment z hľadiska revenue. To znamená, že akvizícia generuje kvalitnejších zákazníkov než minulý rok — keď nakúpia, utratia viac. Tento trend sa dá využiť — keďže idú správnym smerom, treba ich systematicky nominovať do Potential Loyalists a ďalej.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Špeciálny flow pre Promising segment: privítací mail po 2. nákupe s ponukou loyalty programu, prístup k novinkám pred verejnosťou, exkluzívne kódy. Tento mikro-segment je možné využiť ako testovacie pole pre VIP program.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RETENTION -->
+<section id="retention">
+  <div class="container">
+    <h2>3. Retenčné kohorty a LTV</h2>
+    <p class="section-sub">Mesačné kohorty prvého nákupu za posledných 24 mesiacov. Ukazuje, koľko % zákazníkov z každej kohorty sa vráti do 30, 60, 90, 180 dní a celkovo.</p>
+
+    <div class="metrics-grid" style="margin-bottom: 32px;">
+      <div class="metric-card warn">
+        <h3>Overall miera návratu</h3>
+        <div class="value">19,1 %</div>
+        <div class="desc">7 352 z 38 387 zákazníkov nakúpilo aspoň 2×. 80,9 % je one-and-done.</div>
+      </div>
+      <div class="metric-card">
+        <h3>30-d retencia (priemer)</h3>
+        <div class="value">7,8 %</div>
+        <div class="desc">Priemer cez 12 mesačných kohort 2024–2025.</div>
+      </div>
+      <div class="metric-card">
+        <h3>180-d retencia (priemer)</h3>
+        <div class="value">12,4 %</div>
+        <div class="desc">Krivka sa po 90. dni veľmi rýchlo splošťuje.</div>
+      </div>
+      <div class="metric-card pos">
+        <h3>Priemerný LTV</h3>
+        <div class="value">75 €</div>
+        <div class="desc">Naprieč všetkými kohortami posledných 24 mesiacov.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 17px; color: var(--dex-navy); margin: 24px 0 12px;">Top 6 najväčších kohort</h3>
+    <div class="table-scroll">
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>Mesiac kohorty</th>
+            <th>Objednávky</th>
+            <th>30d retencia</th>
+            <th>90d retencia</th>
+            <th>Celková retencia</th>
+            <th>Priem. LTV</th>
+            <th>Pozn.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="warn-row">
+            <td><strong>Prosinec 2024</strong></td>
+            <td class="num">1 286</td>
+            <td class="num">6,6 %</td>
+            <td class="num">8,6 %</td>
+            <td class="num">14,0 %</td>
+            <td class="num">84,5 €</td>
+            <td>Vianočný peak — najnižšia retencia (darčekoví kupci)</td>
+          </tr>
+          <tr class="warn-row">
+            <td><strong>Prosinec 2025</strong></td>
+            <td class="num">864</td>
+            <td class="num">7,6 %</td>
+            <td class="num">9,4 %</td>
+            <td class="num">9,8 %</td>
+            <td class="num">72,2 €</td>
+            <td>Vianoce 2025 — ešte horšie ako 2024</td>
+          </tr>
+          <tr>
+            <td><strong>Listopad 2024</strong></td>
+            <td class="num">620</td>
+            <td class="num">7,9 %</td>
+            <td class="num">10,8 %</td>
+            <td class="num">17,7 %</td>
+            <td class="num">95,7 €</td>
+            <td>Black Friday peak — vyšší LTV ako december</td>
+          </tr>
+          <tr>
+            <td><strong>Leden 2025</strong></td>
+            <td class="num">453</td>
+            <td class="num">7,5 %</td>
+            <td class="num">9,7 %</td>
+            <td class="num">16,6 %</td>
+            <td class="num">83,3 €</td>
+            <td>Post-Christmas vlna</td>
+          </tr>
+          <tr>
+            <td><strong>Listopad 2025</strong></td>
+            <td class="num">433</td>
+            <td class="num">9,9 %</td>
+            <td class="num">11,1 %</td>
+            <td class="num">12,0 %</td>
+            <td class="num">84,9 €</td>
+            <td>Black Friday 2025 — slabší ako 2024</td>
+          </tr>
+          <tr class="crit-row">
+            <td><strong>Říjen 2024</strong></td>
+            <td class="num">248</td>
+            <td class="num pos">12,9 %</td>
+            <td class="num pos">14,9 %</td>
+            <td class="num pos">21,8 %</td>
+            <td class="num pos">92,0 €</td>
+            <td>Najlepšia retencia z top 6 — kvalitnejší kohort</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="finding" style="margin-top: 32px;">
+      <div class="bar warn"></div>
+      <div class="content">
+        <h4>Vianočné kohorty majú najnižšiu retenciu <span class="badge badge-warning">PATTERN</span></h4>
+        <p>Decembrové kohorty 2024 (1 286 obj.) aj 2025 (864 obj.) majú zhodne 30-d retenciu pod 8 % a celkovú retenciu len 10–14 %. To znamená, že väčšina vianočných zákazníkov nakupuje darček a nikdy sa nevráti. Tento pattern je u spodnej bielizne typický — nákupca a nositeľ je často odlišný človek.</p>
+        <div class="data"><strong>Dáta:</strong> Vianoce 2024–2025 priniesli 2 150 unikátnych zákazníkov, ale len ~250 z nich (≈12 %) sa vrátilo do druhého nákupu.</div>
+        <div class="rec"><strong>Odporúčanie:</strong> Po vianočnom nákupe nasadiť špeciálny "darčekový" post-purchase flow s mailom "Pre koho ste kúpili?" — separácia darčekových vs vlastných nákupcov. Pre darčekových nasadiť odlišnú komunikáciu (zľava na vlastný prvý nákup, gift card pripomienka). Cieľová meta: zvýšiť 90-d retenciu vianočných kohort z 9 % na 13 % = ~80 dodatočných objednávok ročne.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar high"></div>
+      <div class="content">
+        <h4>Akvizícia od decembra 2025 výrazne klesá <span class="badge badge-critical">TREND</span></h4>
+        <p>Mesačné kohorty od decembra 2025 ukazujú strmý pokles: Dec 2025 = 864 → Jan 2026 = 303 → Feb 2026 = 195 → Mar 2026 = 205 → Apr 2026 = 163 → May 2026 (running) = 116. Sezónne to nie je celé — porovnanie YoY: Jan 2025 mal 453 vs Jan 2026 len 303 (-33 %). Akvizícia drhne.</p>
+        <div class="data"><strong>Dáta:</strong> Q1 2026 (Jan–Mar): 703 nových zákazníkov vs Q1 2025: 1 019 = -31 % YoY pokles akvizície.</div>
+        <div class="rec"><strong>Odporúčanie:</strong> Audit nie je primárne email, ale email môže pomôcť: (1) zvýšiť kvalitu existujúceho trafficu cez popup signup, (2) zlepšiť konverziu prvého nákupu cez welcome flow, (3) zvýšiť LTV existujúcich, aby kompenzovali nižšiu akvizíciu. Paralelne treba pozrieť PPC a Meta akvizíciu — to nie je v scope tohto auditu.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar med"></div>
+      <div class="content">
+        <h4>Stredné mesiace majú lepšiu retenciu ako Black Friday/Vianoce <span class="badge badge-info">INSIGHT</span></h4>
+        <p>Október 2024 kohorta (248 obj.) má celkovú retenciu 21,8 % — to je vyššie ako veľké sezónne kohorty. Podobne Marec 2025 = 21,2 %. Ľudia, ktorí nakupujú mimo veľkých zľavových udalostí, sú lojálnejší — nekupujú impulz a nie darček.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Investovať do akvizície mimo Black Friday/Vianoc cez evergreen content, SEO a remarketing — tento traffic má 2× lepšiu retenciu. Email-wise: nový welcome flow viac investovať do edukácie (size guide, fit advice) než do zľavového incentívu, aby nepritiahol zľavovo-orientovaný kupec.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATABASE -->
+<section class="alt" id="database">
+  <div class="container">
+    <h2>4. Databáza a audience segmenty</h2>
+    <p class="section-sub">Veľkosť databázy, konverzia návštevník → e-mail, existujúce segmenty v Leadhube.</p>
+
+    <div class="metrics-grid" style="margin-bottom: 24px;">
+      <div class="metric-card pos">
+        <h3>Známi kontakti</h3>
+        <div class="value">55 054</div>
+        <div class="desc">Známych e-mailov v Leadhube celkom.</div>
+      </div>
+      <div class="metric-card">
+        <h3>Neznámi návštevníci</h3>
+        <div class="value">46 245</div>
+        <div class="desc">Tracknutí, ale bez e-mailu.</div>
+      </div>
+      <div class="metric-card pos">
+        <h3>Conversion visitor → e-mail</h3>
+        <div class="value">54,3 %</div>
+        <div class="desc">Excelentné — nad sektorovým priemerom (~28 %).</div>
+      </div>
+      <div class="metric-card">
+        <h3>Aktívni používatelia (30d)</h3>
+        <div class="value">1 048</div>
+        <div class="desc">Otvorili e-mail alebo navštívili web za posledných 30 dní.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 17px; color: var(--dex-navy); margin: 32px 0 12px;">Existujúce audience segmenty</h3>
+    <div class="table-scroll">
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>Segment</th>
+            <th>Stav</th>
+            <th>Použitie pre flows</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Unactive</strong></td><td><span class="flow-status partial">Definovaný</span></td><td>Potenciál pre re-engagement / sunset policy</td></tr>
+          <tr><td><strong>Odoslali popup</strong></td><td><span class="flow-status partial">Definovaný</span></td><td>Welcome séria, ak ešte nenakúpili</td></tr>
+          <tr><td><strong>Známe kontakty</strong></td><td><span class="flow-status exists">Aktívny</span></td><td>Default broadcast list</td></tr>
+          <tr><td><strong>Všetci zákazníci</strong></td><td><span class="flow-status exists">Aktívny</span></td><td>Master list pre kampane</td></tr>
+          <tr><td><strong>Vracajúci sa zákazníci</strong></td><td><span class="flow-status exists">Aktívny</span></td><td>Loyalty komunikácia (chýba flow)</td></tr>
+          <tr><td><strong>Aktívni zákazníci -3m</strong></td><td><span class="flow-status exists">Aktívny</span></td><td>Cross-sell / replenishment trigger (chýba flow)</td></tr>
+          <tr><td><strong>Posledný nákup -6-18m</strong></td><td><span class="flow-status partial">Definovaný</span></td><td>Win-back trigger (chýba flow)</td></tr>
+          <tr><td><strong>VIP zákazníci</strong></td><td><span class="flow-status partial">Definovaný</span></td><td>RFM ukazuje 0 Loyal — segment je prázdny alebo nesprávne nastavený</td></tr>
+          <tr><td><strong>Noví zákazníci -1-12m</strong></td><td><span class="flow-status exists">Aktívny</span></td><td>Onboarding / loyalty nominácia (chýba flow)</td></tr>
+          <tr><td><strong>Posledný nákup 3m+</strong></td><td><span class="flow-status partial">Definovaný</span></td><td>About to Sleep prevention (chýba flow)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="finding" style="margin-top: 24px;">
+      <div class="bar pos"></div>
+      <div class="content">
+        <h4>Conversion visitor → e-mail 54 % je excelentná <span class="badge badge-positive">SILNÁ STRÁNKA</span></h4>
+        <p>Z 101 299 návštevníkov tracknutých Leadhubom má klient e-mail u 55 054 (54,3 %). Sektorový priemer e-shopov so spodným prádlom / módou je okolo 25–30 %. To znamená, že popup, signup formuláre a/alebo checkout flow zberajú e-maily veľmi efektívne. Túto silnú stránku treba chrániť — neexperimentovať s agresívnejšími popupmi, ktoré by mohli pomer pokaziť.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Audit konkrétneho popup mechanizmu (frekvencia, exit-intent vs scroll, copy, ponuka) — keď niečo funguje, dokumentovať a chrániť. Paralelne otestovať len drobné inkrementálne zlepšenia, napr. dynamickú ponuku podľa kategórie navštívenej stránky.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar warn"></div>
+      <div class="content">
+        <h4>VIP segment je „definovaný", ale prázdny <span class="badge badge-warning">TECH DLH</span></h4>
+        <p>Audience má segment "VIP zákazníci", ale RFM analýza ukazuje 0 Loyal a 1 Champion. To znamená, že buď je segment nastavený so zle nakalibrovanými thresholdami (napr. vyžaduje 10+ nákupov za rok, čo pri AOV 74 € reálne nikto neurobí), alebo nie je správne pripojený na RFM výsledok.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Otvoriť VIP segment v Leadhube, skontrolovať filter podmienky, znížiť thresholdy na realistickú úroveň (napr. ≥ 3 nákupy za 12 mesiacov + Monetary ≥ 200 €). Po recalibrácii by mal segment obsahovať 50–150 ľudí, ktorí sa dajú aktívne osloviť.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar med"></div>
+      <div class="content">
+        <h4>Segmenty existujú, flows nad nimi nie <span class="badge badge-warning">UNTAPPED</span></h4>
+        <p>Liliana má 10 audience segmentov pripravených v Leadhube — Vracajúci sa, Aktívni -3m, Noví -1-12m, Posledný nákup 3m+ a -6-18m, VIP, Unactive. Toto je infraštruktúrne všetko, čo treba na full lifecycle marketing. Chýba len 6–8 automatizácií, ktoré tieto segmenty využijú ako trigger.</p>
+        <div class="data"><strong>Dáta:</strong> 10 segmentov × průměrne 200–1 500 ľudí = celková addressable base ≈ 5 000–10 000 ľudí v aktívnom lifecycle marketingu.</div>
+        <div class="rec"><strong>Odporúčanie:</strong> Mapping cvičenie: každý existujúci segment → 1–2 konkrétne flows. Plus jeden master plán, ktorý zabezpečí, že každý zákazník dostane mailing s frekvenciou max 2–3 týždenne (aby nedošlo k oversend a fatigue).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAFFIC -->
+<section id="traffic">
+  <div class="container">
+    <h2>5. Web traffic v Leadhube (30 dní)</h2>
+    <p class="section-sub">Aké zdroje privádzajú návštevníkov, ako konvertujú a kde si Leadhub stojí oproti ostatným kanálom.</p>
+
+    <div class="metrics-grid" style="margin-bottom: 24px;">
+      <div class="metric-card pos">
+        <h3>Relácie (30d)</h3>
+        <div class="value">27,9k</div>
+        <div class="desc">+9,4 % vs predch. obdobie · +20,7 % YoY.</div>
+      </div>
+      <div class="metric-card pos">
+        <h3>Unikátnych návštevníkov</h3>
+        <div class="value">19,5k</div>
+        <div class="desc">+6,8 % vs predch. · +18,4 % YoY.</div>
+      </div>
+      <div class="metric-card">
+        <h3>Zobrazenia stránok</h3>
+        <div class="value">82,0k</div>
+        <div class="desc">+8,2 % vs predch. · -4,0 % YoY (kvalita klesá).</div>
+      </div>
+      <div class="metric-card warn">
+        <h3>Priemerná dĺžka relácie</h3>
+        <div class="value">1m 53s</div>
+        <div class="desc">-22,0 % YoY · users sa menej zdržujú.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 17px; color: var(--dex-navy); margin: 32px 0 12px;">Top zdroje návštevnosti</h3>
+    <div class="table-scroll">
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Zdroj</th>
+            <th>Médium</th>
+            <th>Relácie</th>
+            <th>Tržby</th>
+            <th>Obj.</th>
+            <th>AOV</th>
+            <th>Konv. (obj/rel)</th>
+            <th>Avg. session</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><strong>facebook</strong></td><td>cpc</td><td class="num">10 795</td><td class="num">5 227 €</td><td class="num">68</td><td class="num">77 €</td><td class="num">0,63 %</td><td class="num">1m 6s</td></tr>
+          <tr><td>2</td><td><strong>google</strong></td><td>cpc</td><td class="num">7 940</td><td class="num">4 450 €</td><td class="num">59</td><td class="num">75 €</td><td class="num">0,74 %</td><td class="num">1m 36s</td></tr>
+          <tr><td>3</td><td><strong>internal</strong></td><td>(přímý/žádný)</td><td class="num">3 781</td><td class="num pos">6 293 €</td><td class="num pos">85</td><td class="num">74 €</td><td class="num pos">2,25 %</td><td class="num">2m 41s</td></tr>
+          <tr><td>4</td><td>glami.sk</td><td>cpc</td><td class="num">1 973</td><td class="num">398 €</td><td class="num">7</td><td class="num neg">57 €</td><td class="num">0,35 %</td><td class="num">1m 24s</td></tr>
+          <tr class="crit-row"><td>5</td><td><strong>leadhub</strong></td><td>email</td><td class="num">1 442</td><td class="num">929 €</td><td class="num">11</td><td class="num pos">84 €</td><td class="num pos">0,76 %</td><td class="num pos">2m 20s</td></tr>
+          <tr><td>6</td><td>google</td><td>search</td><td class="num">692</td><td class="num">282 €</td><td class="num">5</td><td class="num">56 €</td><td class="num">0,72 %</td><td class="num pos">3m 11s</td></tr>
+          <tr><td>7</td><td>direct</td><td>(přímý/žádný)</td><td class="num">528</td><td class="num">177 €</td><td class="num">4</td><td class="num">44 €</td><td class="num">0,76 %</td><td class="num">6m 8s</td></tr>
+          <tr><td>8</td><td>fb</td><td>paid</td><td class="num">193</td><td class="num">62 €</td><td class="num">1</td><td class="num">62 €</td><td class="num">0,52 %</td><td class="num">1m 45s</td></tr>
+          <tr><td>11</td><td>ig</td><td>social</td><td class="num">29</td><td class="num">0 €</td><td class="num">0</td><td class="num">—</td><td class="num">0 %</td><td class="num">0m 45s</td></tr>
+          <tr><td>12</td><td>chatgpt.com</td><td>(přímý/žádný)</td><td class="num">11</td><td class="num">0 €</td><td class="num">0</td><td class="num">—</td><td class="num">0 %</td><td class="num">0m 38s</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="finding" style="margin-top: 32px;">
+      <div class="bar high"></div>
+      <div class="content">
+        <h4>Attribution paradox: Dashboard vs UTM <span class="badge badge-critical">KRITICKÉ</span></h4>
+        <p>Dashboard tvrdí, že Leadhub má 33–35 % obratu attribution. Webový provoz cez UTM ukazuje len 11 objednávok / 30 dní = ~3,7 % obratu. Tieto dve čísla sa nedajú zladiť. Buď je Leadhub dashboard attribution príliš široká (last-touch view-through s 30+ denným oknom), alebo UTM v emailoch nie sú správne nastavené a väčšina kliknutí padá do "direct" alebo "internal". Bez vyriešenia tohto sa nedá merať ROI ďalších investícií do emailu.</p>
+        <div class="data"><strong>Dáta:</strong> Dashboard "Tržby s pomocí Leadhubu" (7d) = 2 399 € z 5 738 € (35 %). UTM atribuovaných z Leadhub email zdroja (30d) = 929 € z 21 839 € (~4 %). Násobenie/normalizácia neprejde — gap je 9×.</div>
+        <div class="rec"><strong>Odporúčanie:</strong> (1) Otvoriť v Leadhube nastavenie attribution okna pre dashboard, (2) skontrolovať UTM tagy vo všetkých aktívnych šablónach (každý link by mal mať utm_source=leadhub, utm_medium=email, utm_campaign={nazov}), (3) prerobiť reporting nad jednotnou attribution metódou (preferovať UTM-based, lebo je porovnateľná s GA4 a Google Ads).</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar pos"></div>
+      <div class="content">
+        <h4>Leadhub má najvyšší AOV (84 €) zo všetkých kanálov <span class="badge badge-positive">POSITIVE</span></h4>
+        <p>Z UTM atribúcie: Leadhub email = 84 € AOV, vs FB CPC 77 €, Google CPC 75 €, Internal 74 €, Glami len 57 €. Zákazníci prichádzajúci z e-mailu kupujú drahšie produkty / viac kusov. To je konzistentné s general patternom — email cieli existujúcich zákazníkov, ktorí už vedia, čo chcú.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Pri ROI kalkuláciách pre Leadhub treba zohľadniť, že každá obj. = vyšší AOV. CPA cieľ pre nový flow nasadenie môže byť o 13 % vyšší než pre Facebook CPC.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar warn"></div>
+      <div class="content">
+        <h4>Internal traffic (return visitors) je top kanal <span class="badge badge-info">INSIGHT</span></h4>
+        <p>Internal (návštevníci, čo prišli z bookmarku, predchádzajúcich relácií alebo priameho navigačného flow) = 3 781 relácií, 6 293 € obratu, 85 objednávok. Konverzia 2,25 % — 3× vyššia ako akýkoľvek iný kanal. To znamená, že najvýnosnejší segment je return audience, ktorý prichádza priamo. Akvizícia pre nich nestojí nič, ale ich engagement je email-driven.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Cieliť emailom práve tých návštevníkov, ktorí už raz nakúpili — replenishment a cross-sell flow má potenciál posunúť tento internal traffic z 3 781 na 5 000+ relácií, čo by znamenalo +2 000 € obratu mesačne (+24 000 € ročne).</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar low"></div>
+      <div class="content">
+        <h4>FB CPC má najnižšiu kvalitu z platených kanálov <span class="badge badge-info">INSIGHT</span></h4>
+        <p>Facebook CPC: 10 795 relácií, 1m 6s priemerná dĺžka, konverzia 0,63 %. Google CPC: 7 940 relácií, 1m 36s, konverzia 0,74 %. Facebook nesie najviac trafficu, ale najmenej kvalitného. To má dopad aj na email — keď ľudia z FB neostávajú dlho, neregistrujú sa, nepridávajú do košíka, čím nevstupujú do flows.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Mimo scope tohto emailing auditu, ale spomenuteľné: skontrolovať FB cieľovky a creative, redukovať traffic do high-bounce segmentu. Email-wise: priorizovať popup na stránkach, ktoré majú vysoký bounce z FB, aby aspoň 5 % týchto návštevníkov zostalo v databáze pre budúce kampane.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOWS -->
+<section class="alt" id="flows">
+  <div class="container">
+    <h2>6. Audit automatizácií (flows)</h2>
+    <p class="section-sub">Aké automatizácie sú/nie sú nasadené a aký majú potenciál.</p>
+
+    <div class="methodology-box">
+      <p><strong>Pozn.:</strong> Detail aktívnych flows nebol cez Chrome MCP plne dostupný (jednotlivé položky v Leadhube /automations route vyžadujú click-through, ktorý vracal 404). Tabuľka nižšie vychádza z toho, čo je v audience segmentoch pripravené a aké flows by sa nad nimi mali realisticky odohrávať. Pre 100% potvrdenie odporúčam manuálnu kontrolu v Leadhub UI.</p>
+    </div>
+
+    <div class="table-scroll">
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>Flow</th>
+            <th>Stav</th>
+            <th>Trigger</th>
+            <th>Cieľový segment</th>
+            <th>Odhadovaný upside</th>
+            <th>Priorita</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Welcome séria (3 maily)</strong></td>
+            <td><span class="flow-status partial">Pravdepodobne 1 mail</span></td>
+            <td>Po prihlásení do NL</td>
+            <td>Noví odberatelia (popup, footer)</td>
+            <td>+5–10 % conv. na prvý nákup</td>
+            <td><span class="badge badge-critical">VYSOKÁ</span></td>
+          </tr>
+          <tr>
+            <td><strong>Abandoned cart</strong></td>
+            <td><span class="flow-status missing">Chýba/neoverené</span></td>
+            <td>Opustený košík</td>
+            <td>Návštevníci s addToCart event</td>
+            <td>10–15 % revenue z emailingu</td>
+            <td><span class="badge badge-critical">VYSOKÁ</span></td>
+          </tr>
+          <tr>
+            <td><strong>Win-back Hibernating</strong></td>
+            <td><span class="flow-status missing">Chýba</span></td>
+            <td>90+ dní od posledného nákupu</td>
+            <td>Hibernating (1 514 ľudí)</td>
+            <td>30–50 k Kč ročne</td>
+            <td><span class="badge badge-critical">VYSOKÁ</span></td>
+          </tr>
+          <tr>
+            <td><strong>About to Sleep prevention</strong></td>
+            <td><span class="flow-status missing">Chýba</span></td>
+            <td>60 dní od posledného nákupu</td>
+            <td>About to Sleep (398 ľudí)</td>
+            <td>Udržanie 63 k Kč/rok segmentu</td>
+            <td><span class="badge badge-critical">VYSOKÁ</span></td>
+          </tr>
+          <tr>
+            <td><strong>Post-purchase (4 maily)</strong></td>
+            <td><span class="flow-status missing">Chýba/čiastočne</span></td>
+            <td>D+3, D+10, D+21, D+45 po nákupe</td>
+            <td>Všetci po objednávke</td>
+            <td>+5–8 % AOV vracejúcich</td>
+            <td><span class="badge badge-warning">STREDNÁ</span></td>
+          </tr>
+          <tr>
+            <td><strong>VIP / Loyal nominácia</strong></td>
+            <td><span class="flow-status missing">Chýba</span></td>
+            <td>2. nákup do 60 dní</td>
+            <td>Potential Loyalists (48 → growing)</td>
+            <td>Budovanie loyalty vrstvy</td>
+            <td><span class="badge badge-warning">STREDNÁ</span></td>
+          </tr>
+          <tr>
+            <td><strong>Replenishment / cross-sell</strong></td>
+            <td><span class="flow-status missing">Chýba</span></td>
+            <td>D+30 po nákupe + relevant kategória</td>
+            <td>Aktívni zákazníci -3m</td>
+            <td>+2 000 €/mes internal traffic</td>
+            <td><span class="badge badge-warning">STREDNÁ</span></td>
+          </tr>
+          <tr>
+            <td><strong>Browse abandonment</strong></td>
+            <td><span class="flow-status missing">Chýba</span></td>
+            <td>Pozrel produkt 3+, neaddToCart</td>
+            <td>Známi návštevníci bez nákupu</td>
+            <td>Doplnková konverzia</td>
+            <td><span class="badge badge-info">NÍZKA-STREDNÁ</span></td>
+          </tr>
+          <tr>
+            <td><strong>Darčekový post-purchase (split)</strong></td>
+            <td><span class="flow-status missing">Chýba</span></td>
+            <td>Po nákupe v Dec/Feb</td>
+            <td>Vianoční + Valentínski kupci</td>
+            <td>+4 % retencia sezónnych kohort</td>
+            <td><span class="badge badge-info">SEZÓNNA</span></td>
+          </tr>
+          <tr>
+            <td><strong>Birthday / anniversary</strong></td>
+            <td><span class="flow-status missing">Chýba</span></td>
+            <td>Narodeniny / 1. rok od reg.</td>
+            <td>Celá báza s vyplneným dátumom</td>
+            <td>Branding + drobný revenue</td>
+            <td><span class="badge badge-info">NÍZKA</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sezónne playbooky</strong></td>
+            <td><span class="flow-status missing">Chýba</span></td>
+            <td>Plavková sezóna (Apr-Jul), Vianoce, Valentín</td>
+            <td>Master list</td>
+            <td>Vyrovnanie sezónnych prepadov</td>
+            <td><span class="badge badge-info">NÍZKA-STREDNÁ</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sunset / list hygiene</strong></td>
+            <td><span class="flow-status missing">Chýba</span></td>
+            <td>180+ dní bez open + click</td>
+            <td>Unactive segment</td>
+            <td>Zlepšenie deliverability</td>
+            <td><span class="badge badge-info">NÍZKA</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size: 13px; color: var(--dex-muted); margin-top: 16px; font-style: italic;">Celkový odhad upside zo všetkých flows: <strong style="color: var(--dex-navy);">+150–250 k Kč ročne</strong>, pri investícii ~40–60 hodín setupu + 8–12 hodín mesačnej údržby. Detail kvantifikácie nižšie v sekcii odporúčania.</p>
+  </div>
+</section>
+
+<!-- SUMMARY -->
+<div class="container">
+  <div class="summary-box">
+    <div class="circle-dec c1"></div>
+    <div class="circle-dec c2"></div>
+    <h2>Zhrnutie: čo funguje, čo zlepšiť</h2>
+    <p>6 kľúčových čísel, ktoré rozhodnú o tom, či sa Liliana z aktuálneho YoY poklesu odrazí cez retenciu, alebo si stratu budú musieť kompenzovať dražšou akvizíciou.</p>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="val">35 %</div>
+        <div class="label-title">Leadhub attribution</div>
+        <div class="desc">Nad benchmark — silná infraštruktúra</div>
+      </div>
+      <div class="summary-item">
+        <div class="val">54 %</div>
+        <div class="label-title">Visitor → email</div>
+        <div class="desc">Excelentná konverzia popupu</div>
+      </div>
+      <div class="summary-item">
+        <div class="val">+15 %</div>
+        <div class="label-title">AOV YoY rast</div>
+        <div class="desc">Cross-sell funguje, treba ho posilniť</div>
+      </div>
+      <div class="summary-item">
+        <div class="val">1 514</div>
+        <div class="label-title">Hibernating ľudí</div>
+        <div class="desc">Win-back má potenciál 30–50 k Kč/rok</div>
+      </div>
+      <div class="summary-item">
+        <div class="val">0</div>
+        <div class="label-title">Loyal zákazníci</div>
+        <div class="desc">Chýba celá loyalty vrstva</div>
+      </div>
+      <div class="summary-item">
+        <div class="val">-19 %</div>
+        <div class="label-title">YoY pokles tržieb</div>
+        <div class="desc">Akvizícia drhne — email môže pomôcť</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RECOMMENDATIONS -->
+<section id="recs">
+  <div class="container">
+    <h2>7. Odporúčania — 4-fázový plán</h2>
+    <p class="section-sub">Postupnosť nasadenia flows a opráv s konkrétnymi cieľmi a odhadovaným uplift-om. Priorita 1 a 2 zaberú spolu 4–6 týždňov a pokryjú najväčší upside.</p>
+
+    <div class="rec-timeline">
+      <div class="rec-step">
+        <div class="step-label">Fáza 1 · 0–2 týždne · Quick wins</div>
+        <h3>Reaktivácia + attribution audit</h3>
+        <p>Najlacnejšie hodiny s najvyšším upside. Hibernating segment je hotový, treba mu len poslať správu. Paralelne vyriešiť attribution paradox, aby sme vedeli, čo merať.</p>
+        <ul>
+          <li>Win-back flow pre Hibernating (1 514 ľudí): 3 maily, 10/15 % zľava, 14 dní okno</li>
+          <li>Recalibrácia VIP segmentu (znížiť thresholdy, aby obsahoval 50–150 ľudí)</li>
+          <li>UTM audit: skontrolovať všetky aktívne šablóny, doplniť utm_source/medium/campaign</li>
+          <li>Definovať jedinú attribution metódu pre reporting (preferovať UTM-based)</li>
+        </ul>
+        <div class="step-impact">Odhadovaný upside: 30–50 k Kč zo Hibernating reactivation + clear measurement framework</div>
+      </div>
+
+      <div class="rec-step">
+        <div class="step-label">Fáza 2 · 2–4 týždne · Core flows</div>
+        <h3>Welcome séria + Abandoned cart + Prevention</h3>
+        <p>Tri základné lifecycle flows, ktoré pokrývajú začiatok customer journey (welcome), kritické konverzné momenty (abandoned cart) a udržanie aktívnych (about to sleep prevention).</p>
+        <ul>
+          <li>Welcome séria redesign: z 1 mailu na 3-dielnu sériu (D0 vítam + zľava, D2 brand story + bestsellery, D5 social proof + posledná pripomienka)</li>
+          <li>Abandoned cart flow (ak neexistuje): 3 maily D+1h, D+24h, D+48h, s eskaláciou ponuky</li>
+          <li>About to Sleep prevention pre 398 ľudí: 2 maily na D+60 a D+75 od posledného nákupu</li>
+          <li>Frequency cap setup: max 3 mailingy/týždeň na osobu, aby sa flows nezdvojovali</li>
+        </ul>
+        <div class="step-impact">Odhadovaný upside: +5–10 % konv. na prvý nákup + 10–15 % revenue z abandoned cart + zachytenie 60 k Kč/rok prevention</div>
+      </div>
+
+      <div class="rec-step">
+        <div class="step-label">Fáza 3 · 4–8 týždňov · Loyalty layer</div>
+        <h3>VIP nominácia + Post-purchase + Replenishment</h3>
+        <p>Stredná vrstva flows, ktorá rieši hlavný strategický problém: 80 % zákazníkov nakúpi raz a nevráti sa. Cieľ je posunúť aspoň 10 % z nich do opakovaných nákupov.</p>
+        <ul>
+          <li>VIP / Loyal nominačný flow: po 2. nákupe do 60 dní → automatický prechod do "Loyal pipeline" s exkluzívnymi výhodami</li>
+          <li>Post-purchase séria 4-dielna: D+3 (review request), D+10 (size guide / how to wear), D+21 (cross-sell na komplementárne kategórie), D+45 (replenishment trigger)</li>
+          <li>Replenishment flow pre kategórie s logickou frekvenciou (silonky, podprsenky, plavky pred letnou sezónou)</li>
+          <li>Cross-sell email pre Aktívnych -3m: nové kúsky v kategórii, ktorú si predtým kúpili</li>
+        </ul>
+        <div class="step-impact">Odhadovaný upside: budovanie loyalty layer (cieľ 100+ Loyal do 12 mesiacov), +24 k Kč ročne z replenishment cross-sell</div>
+      </div>
+
+      <div class="rec-step">
+        <div class="step-label">Fáza 4 · 8–12 týždňov · Optimalizácia + sezónnosť</div>
+        <h3>Sezónne playbooky + Browse abandonment + Hygiene</h3>
+        <p>Posledná fáza dokončuje pokrytie celého lifecycle a pripravuje systém na predikovateľnú sezónnosť (plavky leto, Vianoce, Valentín).</p>
+        <ul>
+          <li>Darčekový post-purchase split: detekcia "kúpené pre niekoho iného" cez post-purchase prieskum, separátna komunikácia</li>
+          <li>Browse abandonment pre známych návštevníkov bez addToCart</li>
+          <li>Birthday flow (kde je dátum vyplnený)</li>
+          <li>Sezónne playbooky: plavková sezóna kick-off (apríl), Black Friday teaser (november), Vianočný guide (listopad/prosinec), Valentín (jan/feb)</li>
+          <li>Sunset policy: 180+ dní bez engagementu → opt-out reminder → odstránenie z aktívnej bázy (pre zlepšenie deliverability)</li>
+        </ul>
+        <div class="step-impact">Odhadovaný upside: vyrovnanie sezónnych prepadov + zlepšenie deliverability (open rate +3–5 %)</div>
+      </div>
+    </div>
+
+    <div class="methodology-box" style="margin-top: 32px;">
+      <p><strong>Predpoklady ROI kalkulácií:</strong> Win-back reactivation rate 5–10 %, abandoned cart recovery 8–12 %, welcome séria conv. uplift 5–10 % vs jednorázový mail, AOV 74 € (priemer Liliana 30d). Reálne čísla závisia od kvality copy, ponuky a deliverability — odporúčame všetky flows nasadiť s A/B testom subject line a CTA.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="circle-f f1"></div>
+  <div class="circle-f f2"></div>
+  <img src="https://www.dexfinity.com/wp-content/uploads/2021/03/Logo-Small-Dark-Landscape@2x.png" alt="Dexfinity" class="footer-logo">
+  <p>Leadhub audit · Liliana.sk · zber dát 21. 5. 2026 · trh SK</p>
+  <p style="margin-top: 8px; font-size: 12px; opacity: 0.4;">Zdroje: Leadhub Dashboard, Leadhub Analytika (Objednávky, Retence, RFM), Leadhub Audience, Leadhub Web Provoz, Leadhub Knihovna. Bez prístupu k aktívnym flows cez /automations route — odporúčania pre flows odvodené z RFM a audience štruktúry.</p>
+  <p class="footer-links">Otázky? <a href="mailto:hello@dexfinity.com">hello@dexfinity.com</a> · <a href="tel:+421918435105">+421 918 435 105</a></p>
+  <div class="go-beyond">Go Beyond</div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.querySelector('.hamburger').classList.toggle('active');
+  document.getElementById('navLinks').classList.toggle('open');
+}
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.querySelector('.hamburger').classList.remove('active');
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
