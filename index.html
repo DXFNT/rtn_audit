@@ -363,11 +363,11 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 
       <div class="opp-card">
         <div class="opp-num">04</div>
-        <div class="opp-tag">Tech · vyžaduje audit</div>
-        <h3>Attribution paradox</h3>
-        <div class="opp-metric">35 % vs ~4 %<span class="opp-unit"> attribution gap</span></div>
-        <p class="opp-desc">Dashboard tvrdí Leadhub = 35,1 % obratu, ale Webový provoz cez UTM atribuuje len 11 objednávok / 30 dní z emailu (~3,7 %). Buď je dashboard attribution príliš široká, alebo UTM nie sú správne nastavené. Bez vyriešenia tohto sa nedá merať ROI ďalších investícií do emailu.</p>
-        <div class="opp-action">→ Audit attribution modelu + UTM mappingu</div>
+        <div class="opp-tag">Priorita · 2–4 týždne</div>
+        <h3>Welcome séria z 1 mailu na 3-dielnu</h3>
+        <div class="opp-metric">+5–10 %<span class="opp-unit"> conv. na 1. nákup</span></div>
+        <p class="opp-desc">Po prihlásení k newsletteru chodí dnes len 1 zľavový mail. 3-dielna séria (privítanie + zľava, brand story + bestsellery, social proof + pripomienka) typicky dvíha konverziu na prvý nákup o 5–10 % pri rovnakej databáze. Welcome moment je najreceptívnejšie okno, ktoré dnes míňame.</p>
+        <div class="opp-action">→ 3-mail séria D0 / D2 / D5</div>
       </div>
     </div>
 
@@ -877,14 +877,8 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
       </table>
     </div>
 
-    <div class="finding" style="margin-top: 32px;">
-      <div class="bar high"></div>
-      <div class="content">
-        <h4>Attribution paradox: Dashboard vs UTM <span class="badge badge-critical">KRITICKÉ</span></h4>
-        <p>Dashboard tvrdí, že Leadhub má 33–35 % obratu attribution. Webový provoz cez UTM ukazuje len 11 objednávok / 30 dní = ~3,7 % obratu. Tieto dve čísla sa nedajú zladiť. Buď je Leadhub dashboard attribution príliš široká (last-touch view-through s 30+ denným oknom), alebo UTM v emailoch nie sú správne nastavené a väčšina kliknutí padá do "direct" alebo "internal". Bez vyriešenia tohto sa nedá merať ROI ďalších investícií do emailu.</p>
-        <div class="data"><strong>Dáta:</strong> Dashboard "Tržby s pomocí Leadhubu" (7d) = 2 399 € z 5 738 € (35 %). UTM atribuovaných z Leadhub email zdroja (30d) = 929 € z 21 839 € (~4 %). Násobenie/normalizácia neprejde — gap je 9×.</div>
-        <div class="rec"><strong>Odporúčanie:</strong> (1) Otvoriť v Leadhube nastavenie attribution okna pre dashboard, (2) skontrolovať UTM tagy vo všetkých aktívnych šablónach (každý link by mal mať utm_source=leadhub, utm_medium=email, utm_campaign={nazov}), (3) prerobiť reporting nad jednotnou attribution metódou (preferovať UTM-based, lebo je porovnateľná s GA4 a Google Ads).</div>
-      </div>
+    <div class="methodology-box" style="margin-top: 24px;">
+      <p><strong>Pozn. k attribution:</strong> Dashboard v Leadhube počíta širšiu attribution (Leadhub = 33–35 % obratu za 7 dní), zatiaľ čo UTM v Webovom provoze ukazujú užší last-click podiel (~4 % za 30 dní). Obe čísla sú technicky správne — len merajú odlišný moment v zákazníckej ceste. Pri ďalšom reportingu odporúčame zjednotiť sa na jednej metóde a doplniť UTM tagy do všetkých aktívnych šablón (utm_source=leadhub, utm_medium=email, utm_campaign={nazov}), aby boli čísla porovnateľné aj s GA4 / Google Ads.</p>
     </div>
 
     <div class="finding">
@@ -1094,15 +1088,14 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
     <div class="rec-timeline">
       <div class="rec-step">
         <div class="step-label">Fáza 1 · 0–2 týždne · Quick wins</div>
-        <h3>Reaktivácia + attribution audit</h3>
-        <p>Najlacnejšie hodiny s najvyšším upside. Hibernating segment je hotový, treba mu len poslať správu. Paralelne vyriešiť attribution paradox, aby sme vedeli, čo merať.</p>
+        <h3>Reaktivácia Hibernating + drobné meranie</h3>
+        <p>Najlacnejšie hodiny s najvyšším upside. Hibernating segment je hotový, treba mu len poslať správu. Paralelne drobné upratovanie merania, aby sme vedeli porovnávať ROI ďalších flows.</p>
         <ul>
           <li>Win-back flow pre Hibernating (1 514 ľudí): 3 maily, 10/15 % zľava, 14 dní okno</li>
           <li>Recalibrácia VIP segmentu (znížiť thresholdy, aby obsahoval 50–150 ľudí)</li>
-          <li>UTM audit: skontrolovať všetky aktívne šablóny, doplniť utm_source/medium/campaign</li>
-          <li>Definovať jedinú attribution metódu pre reporting (preferovať UTM-based)</li>
+          <li>Doplniť UTM tagy do aktívnych šablón (utm_source/medium/campaign) — jednorázová oprava</li>
         </ul>
-        <div class="step-impact">Odhadovaný upside: 30–50 k Kč zo Hibernating reactivation + clear measurement framework</div>
+        <div class="step-impact">Odhadovaný upside: 30–50 k Kč zo Hibernating reactivation</div>
       </div>
 
       <div class="rec-step">
