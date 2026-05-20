@@ -5,6 +5,7 @@ Live retention audits for Dexfinity clients, powered by Leadhub data.
 ## Reports
 
 - [Liliana.sk — Leadhub audit (May 2026)](./liliana/) · `liliana/index.html`
+- [SCANquilt.sk — Leadhub audit (May 2026)](./scanquilt/) · `scanquilt/index.html`
 
 ## Methodology
 
