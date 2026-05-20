@@ -254,6 +254,31 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 .rec-step ul li::before { content: '→'; position: absolute; left: 0; color: var(--dex-blue); font-weight: 700; }
 .rec-step .step-impact { font-size: 12px; color: var(--dex-teal); font-weight: 600; margin-top: 10px; padding: 6px 12px; background: rgba(22, 171, 139, 0.08); border-radius: var(--radius-sm); display: inline-block; }
 
+/* Campaign calendar */
+.cal-month { margin-bottom: 28px; }
+.cal-month-header { display: flex; align-items: baseline; gap: 12px; padding: 14px 18px; background: var(--dex-blue-10); border-radius: var(--radius-md); margin-bottom: 14px; border-left: 4px solid var(--dex-blue); font-family: var(--font-primary); }
+.cal-month-header .cal-month-name { font-size: 18px; color: var(--dex-navy); font-weight: 400; }
+.cal-month-header .cal-month-tag { font-size: 12px; color: var(--dex-muted); font-family: var(--font-secondary); font-weight: 500; }
+.cal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.cal-campaign { padding: 16px 18px; background: var(--dex-white); border-radius: var(--radius-md); border: 1px solid var(--dex-border); border-left: 4px solid var(--dex-blue); box-shadow: var(--shadow); }
+.cal-campaign.flow { border-left-color: var(--dex-teal); }
+.cal-campaign.seasonal { border-left-color: var(--dex-orange); }
+.cal-meta { display: flex; gap: 10px; font-size: 11px; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; align-items: center; flex-wrap: wrap; }
+.cal-week { color: var(--dex-blue); }
+.cal-type { padding: 2px 8px; border-radius: 10px; background: var(--dex-blue-10); color: var(--dex-blue); }
+.cal-type.flow { background: rgba(22, 171, 139, 0.12); color: var(--dex-teal); }
+.cal-type.seasonal { background: rgba(255, 127, 0, 0.12); color: var(--dex-orange); }
+.cal-campaign h4 { font-size: 14px; font-weight: 700; color: var(--dex-navy); margin-bottom: 6px; line-height: 1.3; font-family: var(--font-secondary); }
+.cal-campaign .cal-aud { font-size: 12px; color: var(--dex-muted); margin-bottom: 6px; }
+.cal-campaign .cal-aud strong { color: var(--dex-navy); font-weight: 600; }
+.cal-campaign .cal-desc { font-size: 12px; color: var(--dex-muted); line-height: 1.55; }
+.cal-legend { display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap; font-size: 12px; color: var(--dex-muted); }
+.cal-legend .lg { display: flex; align-items: center; gap: 6px; }
+.cal-legend .lg-dot { width: 10px; height: 3px; border-radius: 2px; }
+.cal-legend .lg-dot.broadcast { background: var(--dex-blue); }
+.cal-legend .lg-dot.flow { background: var(--dex-teal); }
+.cal-legend .lg-dot.seasonal { background: var(--dex-orange); }
+
 /* Flow audit table */
 .flow-status { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
 .flow-status.missing { background: rgba(255, 127, 0, 0.12); color: var(--dex-orange); }
@@ -300,12 +325,13 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#performance">Performance</a></li>
+      <li><a href="#recs" class="cta">Next steps</a></li>
+      <li><a href="#calendar" class="cta">Kalendár</a></li>
       <li><a href="#rfm">RFM</a></li>
       <li><a href="#retention">Retencia</a></li>
       <li><a href="#database">Databáza</a></li>
       <li><a href="#traffic">Traffic</a></li>
       <li><a href="#flows">Flows</a></li>
-      <li><a href="#recs" class="cta">Odporúčania</a></li>
     </ul>
   </div>
 </nav>
@@ -469,10 +495,336 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
   </div>
 </section>
 
+<!-- NEXT STEPS -->
+<section class="alt" id="recs">
+  <div class="container">
+    <h2>2. Next steps — 4-fázový plán</h2>
+    <p class="section-sub">Postupnosť nasadenia flows a opráv s konkrétnymi cieľmi a odhadovaným uplift-om. Priorita 1 a 2 zaberú spolu 4–6 týždňov a pokryjú najväčší upside.</p>
+
+    <div class="rec-timeline">
+      <div class="rec-step">
+        <div class="step-label">Fáza 1 · 0–2 týždne · Quick wins</div>
+        <h3>Reaktivácia Hibernating + drobné meranie</h3>
+        <p>Najlacnejšie hodiny s najvyšším upside. Hibernating segment je hotový, treba mu len poslať správu. Paralelne drobné upratovanie merania, aby sme vedeli porovnávať ROI ďalších flows.</p>
+        <ul>
+          <li>Win-back flow pre Hibernating (1 514 ľudí): 3 maily, 10/15 % zľava, 14 dní okno</li>
+          <li>Recalibrácia VIP segmentu (znížiť thresholdy, aby obsahoval 50–150 ľudí)</li>
+          <li>Doplniť UTM tagy do aktívnych šablón (utm_source/medium/campaign) — jednorázová oprava</li>
+        </ul>
+        <div class="step-impact">Odhadovaný upside: 30–50 k Kč zo Hibernating reactivation</div>
+      </div>
+
+      <div class="rec-step">
+        <div class="step-label">Fáza 2 · 2–4 týždne · Core flows</div>
+        <h3>Welcome séria + Abandoned cart + Prevention</h3>
+        <p>Tri základné lifecycle flows, ktoré pokrývajú začiatok customer journey (welcome), kritické konverzné momenty (abandoned cart) a udržanie aktívnych (about to sleep prevention).</p>
+        <ul>
+          <li>Welcome séria redesign: z 1 mailu na 3-dielnu sériu (D0 vítam + zľava, D2 brand story + bestsellery, D5 social proof + posledná pripomienka)</li>
+          <li>Abandoned cart flow (ak neexistuje): 3 maily D+1h, D+24h, D+48h, s eskaláciou ponuky</li>
+          <li>About to Sleep prevention pre 398 ľudí: 2 maily na D+60 a D+75 od posledného nákupu</li>
+          <li>Frequency cap setup: max 3 mailingy/týždeň na osobu, aby sa flows nezdvojovali</li>
+        </ul>
+        <div class="step-impact">Odhadovaný upside: +5–10 % konv. na prvý nákup + 10–15 % revenue z abandoned cart + zachytenie 60 k Kč/rok prevention</div>
+      </div>
+
+      <div class="rec-step">
+        <div class="step-label">Fáza 3 · 4–8 týždňov · Loyalty layer</div>
+        <h3>VIP nominácia + Post-purchase + Replenishment</h3>
+        <p>Stredná vrstva flows, ktorá rieši hlavný strategický problém: 80 % zákazníkov nakúpi raz a nevráti sa. Cieľ je posunúť aspoň 10 % z nich do opakovaných nákupov.</p>
+        <ul>
+          <li>VIP / Loyal nominačný flow: po 2. nákupe do 60 dní → automatický prechod do "Loyal pipeline" s exkluzívnymi výhodami</li>
+          <li>Post-purchase séria 4-dielna: D+3 (review request), D+10 (size guide / how to wear), D+21 (cross-sell na komplementárne kategórie), D+45 (replenishment trigger)</li>
+          <li>Replenishment flow pre kategórie s logickou frekvenciou (silonky, podprsenky, plavky pred letnou sezónou)</li>
+          <li>Cross-sell email pre Aktívnych -3m: nové kúsky v kategórii, ktorú si predtým kúpili</li>
+        </ul>
+        <div class="step-impact">Odhadovaný upside: budovanie loyalty layer (cieľ 100+ Loyal do 12 mesiacov), +24 k Kč ročne z replenishment cross-sell</div>
+      </div>
+
+      <div class="rec-step">
+        <div class="step-label">Fáza 4 · 8–12 týždňov · Optimalizácia + sezónnosť</div>
+        <h3>Sezónne playbooky + Browse abandonment + Hygiene</h3>
+        <p>Posledná fáza dokončuje pokrytie celého lifecycle a pripravuje systém na predikovateľnú sezónnosť (plavky leto, Vianoce, Valentín).</p>
+        <ul>
+          <li>Darčekový post-purchase split: detekcia "kúpené pre niekoho iného" cez post-purchase prieskum, separátna komunikácia</li>
+          <li>Browse abandonment pre známych návštevníkov bez addToCart</li>
+          <li>Birthday flow (kde je dátum vyplnený)</li>
+          <li>Sezónne playbooky: plavková sezóna kick-off (apríl), Black Friday teaser (november), Vianočný guide (listopad/prosinec), Valentín (jan/feb)</li>
+          <li>Sunset policy: 180+ dní bez engagementu → opt-out reminder → odstránenie z aktívnej bázy (pre zlepšenie deliverability)</li>
+        </ul>
+        <div class="step-impact">Odhadovaný upside: vyrovnanie sezónnych prepadov + zlepšenie deliverability (open rate +3–5 %)</div>
+      </div>
+    </div>
+
+    <div class="methodology-box" style="margin-top: 32px;">
+      <p><strong>Predpoklady ROI kalkulácií:</strong> Win-back reactivation rate 5–10 %, abandoned cart recovery 8–12 %, welcome séria conv. uplift 5–10 % vs jednorázový mail, AOV 74 € (priemer Liliana 30d). Reálne čísla závisia od kvality copy, ponuky a deliverability — odporúčame všetky flows nasadiť s A/B testom subject line a CTA.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAIGN CALENDAR -->
+<section id="calendar">
+  <div class="container">
+    <h2>3. Kalendár kampaní — Jún 2026 → Január 2027</h2>
+    <p class="section-sub">Konkrétny rozpis broadcast kampaní a flow nasadení na nasledujúcich 8 mesiacov. Štruktúra rešpektuje sezónnosť (plavky leto, Black Friday, Vianoce, Valentín) aj postupnosť nasadenia flows z fázy 1–4 vyššie.</p>
+
+    <div class="cal-legend">
+      <div class="lg"><div class="lg-dot broadcast"></div> Broadcast kampaň</div>
+      <div class="lg"><div class="lg-dot flow"></div> Flow / automatizácia</div>
+      <div class="lg"><div class="lg-dot seasonal"></div> Sezónna mega-kampaň</div>
+    </div>
+
+    <!-- JÚN 2026 -->
+    <div class="cal-month" style="margin-top: 28px;">
+      <div class="cal-month-header">
+        <div class="cal-month-name">Jún 2026</div>
+        <div class="cal-month-tag">Plavková sezóna v plnom prúde · spustenie Fázy 1 flows</div>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-campaign seasonal">
+          <div class="cal-meta"><span class="cal-week">T1–T2</span><span class="cal-type seasonal">Sezónna</span></div>
+          <h4>Bestseller plavky 2026 — hero kampaň</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Všetci aktívni odberatelia + amplify cez popup</div>
+          <div class="cal-desc">Hlavná plavková kampaň. Hero produkt + sociálny dôkaz (recenzie, fotky zákazníčok), CTA do plavkovej kategórie. Cieľ: top peak letnej akvizície.</div>
+        </div>
+        <div class="cal-campaign flow">
+          <div class="cal-meta"><span class="cal-week">T2</span><span class="cal-type flow">Flow</span></div>
+          <h4>Win-back flow pre Hibernating — nasadenie</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Hibernating (1 514 ľudí)</div>
+          <div class="cal-desc">3-mail sekvencia spúšťaná pri vstupe do segmentu. Mail 1: emocionálny pull + 10 % kód. Mail 2: bestseller showcase. Mail 3: last chance + 15 % kód.</div>
+        </div>
+        <div class="cal-campaign">
+          <div class="cal-meta"><span class="cal-week">T3</span><span class="cal-type">Broadcast</span></div>
+          <h4>Beach essentials cross-sell</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Kúpili plavky za posledných 30 dní</div>
+          <div class="cal-desc">Doplnky k plavkám — sarongy, plážové šaty, doplnky. Drobný AOV booster v okne, keď je zákazník ešte v "beach mood".</div>
+        </div>
+        <div class="cal-campaign flow">
+          <div class="cal-meta"><span class="cal-week">T4</span><span class="cal-type flow">Flow</span></div>
+          <h4>Welcome séria — redesign launch</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Noví odberatelia z popup-u</div>
+          <div class="cal-desc">3-dielna séria D0 / D2 / D5. Nahrádza dnešný jeden mail. Spúšťa sa pre všetkých nových po prihlásení do NL.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JÚL 2026 -->
+    <div class="cal-month">
+      <div class="cal-month-header">
+        <div class="cal-month-name">Júl 2026</div>
+        <div class="cal-month-tag">Letné výpredaje · Fáza 2 core flows live</div>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-campaign seasonal">
+          <div class="cal-meta"><span class="cal-week">T1</span><span class="cal-type seasonal">Sezónna</span></div>
+          <h4>Letné výpredaje launch — až -40 %</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Všetci aktívni</div>
+          <div class="cal-desc">Hlavná clearance kampaň. Sale na plavky, podprsenky, doplnky. 5-denný event s daily teaser mailmi (urgency budovaná postupne).</div>
+        </div>
+        <div class="cal-campaign flow">
+          <div class="cal-meta"><span class="cal-week">T2</span><span class="cal-type flow">Flow</span></div>
+          <h4>Abandoned cart flow — nasadenie</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Trigger z košíka bez objednávky</div>
+          <div class="cal-desc">3-mail flow D+1h, D+24h, D+48h s eskaláciou: pripomenutie → social proof → 10 % zľava. Aktivný okamžite, neviazaný na sezónu.</div>
+        </div>
+        <div class="cal-campaign">
+          <div class="cal-meta"><span class="cal-week">T3</span><span class="cal-type">Broadcast</span></div>
+          <h4>Plavky last call + replenishment</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Vracejúce sa, kúpili plavky 1×</div>
+          <div class="cal-desc">"Posledné kúsky vašej veľkosti" — urgency-driven push pred koncom plavkovej sezóny. Personalizované podľa veľkosti / kategórie.</div>
+        </div>
+        <div class="cal-campaign flow">
+          <div class="cal-meta"><span class="cal-week">T4</span><span class="cal-type flow">Flow</span></div>
+          <h4>About to Sleep prevention — nasadenie</h4>
+          <div class="cal-aud"><strong>Audience:</strong> About to Sleep (398 ľudí)</div>
+          <div class="cal-desc">2-mail prevention. D+60 personalized "ako sa máte?" + new arrivals. D+75 -10 % loyalty kód s 7-dňovou platnosťou. Cieľ: nepadnúť do Hibernating.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUGUST 2026 -->
+    <div class="cal-month">
+      <div class="cal-month-header">
+        <div class="cal-month-name">August 2026</div>
+        <div class="cal-month-tag">Záver plavkovej sezóny · príprava na jeseň</div>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-campaign">
+          <div class="cal-meta"><span class="cal-week">T1</span><span class="cal-type">Broadcast</span></div>
+          <h4>Back to work — nová bielizeň</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Vracejúce sa zákazníčky + ženy 25–45</div>
+          <div class="cal-desc">"Nový začiatok = nová bielizeň." Refresh kategórií pre denné nosenie (basic + invisible). Soft launch jesennej kolekcie.</div>
+        </div>
+        <div class="cal-campaign seasonal">
+          <div class="cal-meta"><span class="cal-week">T3</span><span class="cal-type seasonal">Sezónna</span></div>
+          <h4>Plavky end-of-season — final clearance</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Všetci aktívni</div>
+          <div class="cal-desc">-50–70 % na zostávajúce plavky. Spotreba inventára pred jesenným switchom. Posledná veľká vlna plavkovej sezóny.</div>
+        </div>
+        <div class="cal-campaign flow">
+          <div class="cal-meta"><span class="cal-week">T4</span><span class="cal-type flow">Flow</span></div>
+          <h4>Post-purchase 4-dielny — nasadenie</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Všetci po objednávke</div>
+          <div class="cal-desc">D+3 review request, D+10 size guide, D+21 cross-sell, D+45 replenishment. Pomáha posunúť New Customers do Promising / Potential Loyalists.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEPTEMBER 2026 -->
+    <div class="cal-month">
+      <div class="cal-month-header">
+        <div class="cal-month-name">September 2026</div>
+        <div class="cal-month-tag">Jesenná kolekcia · Fáza 3 loyalty layer štart</div>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-campaign seasonal">
+          <div class="cal-meta"><span class="cal-week">T1</span><span class="cal-type seasonal">Sezónna</span></div>
+          <h4>Nová jesenná kolekcia — hero launch</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Všetci aktívni</div>
+          <div class="cal-desc">Hlavný launch nových modelov pre jeseň-zimu 2026. Hero hero shots, brand story, top 5 must-have kúskov. Primárny revenue driver mesiaca.</div>
+        </div>
+        <div class="cal-campaign flow">
+          <div class="cal-meta"><span class="cal-week">T1</span><span class="cal-type flow">Flow</span></div>
+          <h4>VIP early access — nasadenie</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Potential Loyalists + Promising</div>
+          <div class="cal-desc">24 h pred verejným launchom. Exkluzívny prístup k novej kolekcii. Budovanie loyalty signálu — "ste pre nás dôležití".</div>
+        </div>
+        <div class="cal-campaign">
+          <div class="cal-meta"><span class="cal-week">T3</span><span class="cal-type">Broadcast</span></div>
+          <h4>Restock bestsellerov + fit guide</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Aktívni -3m</div>
+          <div class="cal-desc">Pripomienka navrátených bestsellerov + edukácia (size guide, ako vybrať správnu podprsenku). Lower-funnel engagement.</div>
+        </div>
+        <div class="cal-campaign flow">
+          <div class="cal-meta"><span class="cal-week">T4</span><span class="cal-type flow">Flow</span></div>
+          <h4>VIP nominačný flow — nasadenie</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Po 2. nákupe do 60 dní</div>
+          <div class="cal-desc">Auto-prechod do "Loyal pipeline" pri spustení druhého nákupu v okne. Cieľ: budovať dnes neexistujúcu Loyal vrstvu.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OKTÓBER 2026 -->
+    <div class="cal-month">
+      <div class="cal-month-header">
+        <div class="cal-month-name">Október 2026</div>
+        <div class="cal-month-tag">Pre-BF databáza build · Halloween</div>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-campaign">
+          <div class="cal-meta"><span class="cal-week">T2</span><span class="cal-type">Broadcast</span></div>
+          <h4>Halloween / Sexy lingerie edit</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Všetci aktívni 25–45</div>
+          <div class="cal-desc">Themed editorial kampaň. Sexy / kostýmová bielizeň, deeper colors, lace. Drobný revenue driver, ale veľmi dobre na social engagement.</div>
+        </div>
+        <div class="cal-campaign">
+          <div class="cal-meta"><span class="cal-week">T3</span><span class="cal-type">Broadcast</span></div>
+          <h4>BF early access waitlist</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Všetci + popup intensify</div>
+          <div class="cal-desc">"Buďte prví, kto sa dozvie o Black Friday zľavách." Cieľ: maximalizovať veľkosť bázy pred BF. Popup na webe agresívnejší — exit intent + scroll trigger.</div>
+        </div>
+        <div class="cal-campaign flow">
+          <div class="cal-meta"><span class="cal-week">T4</span><span class="cal-type flow">Flow</span></div>
+          <h4>Browse abandonment — nasadenie</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Známi návštevníci s 3+ view bez addToCart</div>
+          <div class="cal-desc">Doplnkový lifecycle flow z Fázy 4. Trigger pri opakovanom view produktu. Mail: "videli sme, že vás zaujalo..." + alternatívy.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOVEMBER 2026 -->
+    <div class="cal-month">
+      <div class="cal-month-header">
+        <div class="cal-month-name">November 2026</div>
+        <div class="cal-month-tag">Black Friday — peak revenue mesiaca</div>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-campaign">
+          <div class="cal-meta"><span class="cal-week">T1–T2</span><span class="cal-type">Broadcast</span></div>
+          <h4>BF teaser kampane (3 emaily)</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Všetci aktívni + waitlist</div>
+          <div class="cal-desc">Postupné odkrývanie ponuky: sneak peek → kategórie → exact ponuky. Builduje očakávanie, zlepšuje BF open rates o 15–20 %.</div>
+        </div>
+        <div class="cal-campaign seasonal">
+          <div class="cal-meta"><span class="cal-week">T4 (24.–30. 11.)</span><span class="cal-type seasonal">Sezónna</span></div>
+          <h4>Black Friday týždeň — hlavný revenue event</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Všetky segmenty</div>
+          <div class="cal-desc">Daily mailing počas BF týždňa. Pondelok teaser, Streda mid-week boost, Piatok BF launch, Cyber Monday final. Best practice: nie všetkým rovnaké ponuky — VIP najlepšie zľavy 24 h pred verejnosťou.</div>
+        </div>
+        <div class="cal-campaign flow">
+          <div class="cal-meta"><span class="cal-week">T4+</span><span class="cal-type flow">Flow</span></div>
+          <h4>Abandoned cart eskalácia počas BF</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Trigger z košíka</div>
+          <div class="cal-desc">Skrátiť okno z 24 h na 4 h. Pripomenutie zľavy + urgency ("zľava končí o X hodín"). Najvyšší ROI flow týždňa.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DECEMBER 2026 -->
+    <div class="cal-month">
+      <div class="cal-month-header">
+        <div class="cal-month-name">December 2026</div>
+        <div class="cal-month-tag">Vianočné kampane · darčekový segment</div>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-campaign seasonal">
+          <div class="cal-meta"><span class="cal-week">T1</span><span class="cal-type seasonal">Sezónna</span></div>
+          <h4>Vianočný gift guide</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Všetci aktívni</div>
+          <div class="cal-desc">"Darčeky pre ňu" — predpripravené balíčky podľa rozpočtu (do 30 €, do 60 €, premium 100 €+). Reduces decision paralysis u darčekových kupcov.</div>
+        </div>
+        <div class="cal-campaign">
+          <div class="cal-meta"><span class="cal-week">T2</span><span class="cal-type">Broadcast</span></div>
+          <h4>Last delivery before Christmas</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Všetci + abandoned cart amp</div>
+          <div class="cal-desc">Urgency-driven kampaň. Deadline na doručenie pred Vianocami. Pridať express delivery option ak nie je v default ponuke.</div>
+        </div>
+        <div class="cal-campaign flow">
+          <div class="cal-meta"><span class="cal-week">T3</span><span class="cal-type flow">Flow</span></div>
+          <h4>Darčekový post-purchase split — nasadenie</h4>
+          <div class="cal-aud"><strong>Audience:</strong> December 2026 buyers</div>
+          <div class="cal-desc">Mail D+2 po Vianočnom nákupe: "Kúpili ste pre seba alebo darček?" 1-klick survey. Podľa odpovede separátna komunikácia v Januári (gift recipients získajú welcome flow ako noví zákazníci).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JANUÁR 2027 -->
+    <div class="cal-month">
+      <div class="cal-month-header">
+        <div class="cal-month-name">Január 2027</div>
+        <div class="cal-month-tag">Post-Christmas clearance · príprava na Valentín</div>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-campaign seasonal">
+          <div class="cal-meta"><span class="cal-week">T1</span><span class="cal-type seasonal">Sezónna</span></div>
+          <h4>Novoročné výpredaje</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Všetci aktívni</div>
+          <div class="cal-desc">Clearance vianočných zostatkov + jesenná kolekcia -30–50 %. Robí prácu sezónnej hygieny inventára.</div>
+        </div>
+        <div class="cal-campaign">
+          <div class="cal-meta"><span class="cal-week">T2</span><span class="cal-type">Broadcast</span></div>
+          <h4>New year, new lingerie — fresh start</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Vracejúce sa + Promising</div>
+          <div class="cal-desc">"Začnite rok s niečím novým pre seba." Emocional positioning, self-care narrative. Menej zľavovo orientované, viac brand-driven.</div>
+        </div>
+        <div class="cal-campaign">
+          <div class="cal-meta"><span class="cal-week">T3</span><span class="cal-type">Broadcast</span></div>
+          <h4>Valentín teaser + gift guide</h4>
+          <div class="cal-aud"><strong>Audience:</strong> Všetci aktívni</div>
+          <div class="cal-desc">2 týždne pred Valentínom — gift guide pre páry, romantická bielizeň, doplnky. Pre lingerie shop je Valentín #2 sezóna po BF/Vianociach.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="methodology-box" style="margin-top: 32px;">
+      <p><strong>Ako čítať tento kalendár:</strong> Modré karty = jednorázové <em>broadcast</em> kampane (manuálne pripravené pred odoslaním). Zelené karty = automatizované <em>flows</em>, ktoré sa po nasadení samé spúšťajú do segmentu. Oranžové karty = <em>sezónne mega-kampane</em>, ktoré majú najvyšší revenue impact a vyžadujú prípravu už 2–3 týždne dopredu. Týždeň (T1–T4) je orientačný — presné dátumy ladíme podľa kalendára klienta a sviatkov.</p>
+    </div>
+  </div>
+</section>
+
 <!-- RFM -->
 <section class="alt" id="rfm">
   <div class="container">
-    <h2>2. RFM segmentácia (12 mesiacov)</h2>
+    <h2>4. RFM segmentácia (12 mesiacov)</h2>
     <p class="section-sub">Najsilnejšie zistenie auditu — distribúcia 4 538 zákazníkov podľa Recency / Frequency / Monetary. Trh: SK. Obdobie: 19. 5. 2025 — 19. 5. 2026 vs 19. 5. 2024 — 19. 5. 2025.</p>
 
     <div class="methodology-box">
@@ -603,7 +955,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 <!-- RETENTION -->
 <section id="retention">
   <div class="container">
-    <h2>3. Retenčné kohorty a LTV</h2>
+    <h2>5. Retenčné kohorty a LTV</h2>
     <p class="section-sub">Mesačné kohorty prvého nákupu za posledných 24 mesiacov. Ukazuje, koľko % zákazníkov z každej kohorty sa vráti do 30, 60, 90, 180 dní a celkovo.</p>
 
     <div class="metrics-grid" style="margin-bottom: 32px;">
@@ -736,7 +1088,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 <!-- DATABASE -->
 <section class="alt" id="database">
   <div class="container">
-    <h2>4. Databáza a audience segmenty</h2>
+    <h2>6. Databáza a audience segmenty</h2>
     <p class="section-sub">Veľkosť databázy, konverzia návštevník → e-mail, existujúce segmenty v Leadhube.</p>
 
     <div class="metrics-grid" style="margin-bottom: 24px;">
@@ -820,7 +1172,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 <!-- TRAFFIC -->
 <section id="traffic">
   <div class="container">
-    <h2>5. Web traffic v Leadhube (30 dní)</h2>
+    <h2>7. Web traffic v Leadhube (30 dní)</h2>
     <p class="section-sub">Aké zdroje privádzajú návštevníkov, ako konvertujú a kde si Leadhub stojí oproti ostatným kanálom.</p>
 
     <div class="metrics-grid" style="margin-bottom: 24px;">
@@ -913,7 +1265,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 <!-- FLOWS -->
 <section class="alt" id="flows">
   <div class="container">
-    <h2>6. Audit automatizácií (flows)</h2>
+    <h2>8. Audit automatizácií (flows)</h2>
     <p class="section-sub">Aké automatizácie sú/nie sú nasadené a aký majú potenciál.</p>
 
     <div class="methodology-box">
@@ -1080,71 +1432,6 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 </div>
 
 <!-- RECOMMENDATIONS -->
-<section id="recs">
-  <div class="container">
-    <h2>7. Odporúčania — 4-fázový plán</h2>
-    <p class="section-sub">Postupnosť nasadenia flows a opráv s konkrétnymi cieľmi a odhadovaným uplift-om. Priorita 1 a 2 zaberú spolu 4–6 týždňov a pokryjú najväčší upside.</p>
-
-    <div class="rec-timeline">
-      <div class="rec-step">
-        <div class="step-label">Fáza 1 · 0–2 týždne · Quick wins</div>
-        <h3>Reaktivácia Hibernating + drobné meranie</h3>
-        <p>Najlacnejšie hodiny s najvyšším upside. Hibernating segment je hotový, treba mu len poslať správu. Paralelne drobné upratovanie merania, aby sme vedeli porovnávať ROI ďalších flows.</p>
-        <ul>
-          <li>Win-back flow pre Hibernating (1 514 ľudí): 3 maily, 10/15 % zľava, 14 dní okno</li>
-          <li>Recalibrácia VIP segmentu (znížiť thresholdy, aby obsahoval 50–150 ľudí)</li>
-          <li>Doplniť UTM tagy do aktívnych šablón (utm_source/medium/campaign) — jednorázová oprava</li>
-        </ul>
-        <div class="step-impact">Odhadovaný upside: 30–50 k Kč zo Hibernating reactivation</div>
-      </div>
-
-      <div class="rec-step">
-        <div class="step-label">Fáza 2 · 2–4 týždne · Core flows</div>
-        <h3>Welcome séria + Abandoned cart + Prevention</h3>
-        <p>Tri základné lifecycle flows, ktoré pokrývajú začiatok customer journey (welcome), kritické konverzné momenty (abandoned cart) a udržanie aktívnych (about to sleep prevention).</p>
-        <ul>
-          <li>Welcome séria redesign: z 1 mailu na 3-dielnu sériu (D0 vítam + zľava, D2 brand story + bestsellery, D5 social proof + posledná pripomienka)</li>
-          <li>Abandoned cart flow (ak neexistuje): 3 maily D+1h, D+24h, D+48h, s eskaláciou ponuky</li>
-          <li>About to Sleep prevention pre 398 ľudí: 2 maily na D+60 a D+75 od posledného nákupu</li>
-          <li>Frequency cap setup: max 3 mailingy/týždeň na osobu, aby sa flows nezdvojovali</li>
-        </ul>
-        <div class="step-impact">Odhadovaný upside: +5–10 % konv. na prvý nákup + 10–15 % revenue z abandoned cart + zachytenie 60 k Kč/rok prevention</div>
-      </div>
-
-      <div class="rec-step">
-        <div class="step-label">Fáza 3 · 4–8 týždňov · Loyalty layer</div>
-        <h3>VIP nominácia + Post-purchase + Replenishment</h3>
-        <p>Stredná vrstva flows, ktorá rieši hlavný strategický problém: 80 % zákazníkov nakúpi raz a nevráti sa. Cieľ je posunúť aspoň 10 % z nich do opakovaných nákupov.</p>
-        <ul>
-          <li>VIP / Loyal nominačný flow: po 2. nákupe do 60 dní → automatický prechod do "Loyal pipeline" s exkluzívnymi výhodami</li>
-          <li>Post-purchase séria 4-dielna: D+3 (review request), D+10 (size guide / how to wear), D+21 (cross-sell na komplementárne kategórie), D+45 (replenishment trigger)</li>
-          <li>Replenishment flow pre kategórie s logickou frekvenciou (silonky, podprsenky, plavky pred letnou sezónou)</li>
-          <li>Cross-sell email pre Aktívnych -3m: nové kúsky v kategórii, ktorú si predtým kúpili</li>
-        </ul>
-        <div class="step-impact">Odhadovaný upside: budovanie loyalty layer (cieľ 100+ Loyal do 12 mesiacov), +24 k Kč ročne z replenishment cross-sell</div>
-      </div>
-
-      <div class="rec-step">
-        <div class="step-label">Fáza 4 · 8–12 týždňov · Optimalizácia + sezónnosť</div>
-        <h3>Sezónne playbooky + Browse abandonment + Hygiene</h3>
-        <p>Posledná fáza dokončuje pokrytie celého lifecycle a pripravuje systém na predikovateľnú sezónnosť (plavky leto, Vianoce, Valentín).</p>
-        <ul>
-          <li>Darčekový post-purchase split: detekcia "kúpené pre niekoho iného" cez post-purchase prieskum, separátna komunikácia</li>
-          <li>Browse abandonment pre známych návštevníkov bez addToCart</li>
-          <li>Birthday flow (kde je dátum vyplnený)</li>
-          <li>Sezónne playbooky: plavková sezóna kick-off (apríl), Black Friday teaser (november), Vianočný guide (listopad/prosinec), Valentín (jan/feb)</li>
-          <li>Sunset policy: 180+ dní bez engagementu → opt-out reminder → odstránenie z aktívnej bázy (pre zlepšenie deliverability)</li>
-        </ul>
-        <div class="step-impact">Odhadovaný upside: vyrovnanie sezónnych prepadov + zlepšenie deliverability (open rate +3–5 %)</div>
-      </div>
-    </div>
-
-    <div class="methodology-box" style="margin-top: 32px;">
-      <p><strong>Predpoklady ROI kalkulácií:</strong> Win-back reactivation rate 5–10 %, abandoned cart recovery 8–12 %, welcome séria conv. uplift 5–10 % vs jednorázový mail, AOV 74 € (priemer Liliana 30d). Reálne čísla závisia od kvality copy, ponuky a deliverability — odporúčame všetky flows nasadiť s A/B testom subject line a CTA.</p>
-    </div>
-  </div>
-</section>
-
 <footer class="footer">
   <div class="circle-f f1"></div>
   <div class="circle-f f2"></div>
