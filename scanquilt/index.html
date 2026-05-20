@@ -213,7 +213,8 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 .finding .content .data strong { color: var(--dex-navy); }
 
 /* RFM segment block */
-.rfm-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 16px; }
+.rfm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+@media (max-width: 980px) { .rfm-grid { grid-template-columns: repeat(2, 1fr); } }
 .rfm-card { padding: 18px; background: var(--dex-white); border-radius: var(--radius-md); border: 1px solid var(--dex-border); border-left: 4px solid var(--dex-muted); }
 .rfm-card .seg-name { font-size: 12px; font-weight: 700; color: var(--dex-muted); text-transform: uppercase; letter-spacing: 0.6px; }
 .rfm-card .seg-val { font-size: 28px; font-weight: 700; color: var(--dex-navy); font-family: var(--font-secondary); margin-top: 4px; }
@@ -374,7 +375,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
         <div class="opp-tag">Priorita · 0–4 týždne</div>
         <h3>5 retenčných automatizácií čaká neaktívnych</h3>
         <div class="opp-metric">5<span class="opp-unit"> flows pripravených · 0 odoslaných</span></div>
-        <p class="opp-desc">V skupine „Retence a reaktivace" je 5 vytvorených, ale neaktívnych automatizácií. Zákazníci ich nedostávajú. Hibernating segment (193 ľudí, ~31 k Kč/rok obratu aj pasívne) by mohol byť oslovený okamžite — šablóny existujú, treba len spustiť.</p>
+        <p class="opp-desc">V skupine „Retence a reaktivace" je 5 vytvorených, ale neaktívnych automatizácií. Zákazníci ich nedostávajú. Hibernating segment (193 ľudí, ~31 k €/rok obratu aj pasívne) by mohol byť oslovený okamžite — šablóny existujú, treba len spustiť.</p>
         <div class="opp-action">→ Aktivovať 5 hotových flows + overiť spúšťacie podmienky</div>
       </div>
 
@@ -525,7 +526,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
           <li>Doladenie uvítacej série: optimalizovať mail 2 a 3 (dnes 0 € z mailov #2 a #3, mail #1 generuje 1 271 € z 44 odoslaných)</li>
           <li>Nastaviť limit frekvencie: max 3–4 mailingy týždenne na osobu</li>
         </ul>
-        <div class="step-impact">Odhadovaný prínos: +500–800 € týždenne z opusteného košíka + zachytenie 22 k Kč/rok prevenciou About to Sleep</div>
+        <div class="step-impact">Odhadovaný prínos: +500–800 € týždenne z opusteného košíka + zachytenie 22 k €/rok prevenciou About to Sleep</div>
       </div>
 
       <div class="rec-step">
@@ -866,77 +867,77 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
         <div class="seg-name">Champions</div>
         <div class="seg-val">0</div>
         <div class="seg-pct">0 % bázy · 0 objednávok</div>
-        <div class="seg-rev">0 Kč revenue</div>
+        <div class="seg-rev">0 € obrat</div>
         <div class="seg-trend" style="color: var(--dex-orange);">Žiadny Champion — chýba</div>
       </div>
       <div class="rfm-card zero">
         <div class="seg-name">Loyal</div>
         <div class="seg-val">1</div>
         <div class="seg-pct">0,11 % bázy · 6 objednávok</div>
-        <div class="seg-rev">1 675 Kč revenue</div>
+        <div class="seg-rev">1 675 € obrat</div>
         <div class="seg-trend pos" style="color: var(--dex-teal);">+22 % revenue YoY</div>
       </div>
       <div class="rfm-card">
         <div class="seg-name">Potential Loyalists</div>
         <div class="seg-val">14</div>
         <div class="seg-pct">1,54 % bázy · 69 objednávok</div>
-        <div class="seg-rev">9 469 Kč revenue (676 Kč/zákazník)</div>
+        <div class="seg-rev">9 469 € obrat (676 €/zákazník)</div>
         <div class="seg-trend" style="color: var(--dex-orange);">-39,1 % YoY</div>
       </div>
       <div class="rfm-card large">
         <div class="seg-name">New Customers</div>
         <div class="seg-val">604</div>
         <div class="seg-pct">66,5 % bázy · 624 objednávok</div>
-        <div class="seg-rev">84 716 Kč revenue (140 Kč/zákazník)</div>
+        <div class="seg-rev">84 716 € obrat (140 €/zákazník)</div>
         <div class="seg-trend pos" style="color: var(--dex-teal);">+88,8 % YoY · +111 % revenue</div>
       </div>
       <div class="rfm-card pos">
         <div class="seg-name">Promising</div>
         <div class="seg-val">13</div>
         <div class="seg-pct">1,43 % bázy · 25 objednávok</div>
-        <div class="seg-rev">5 222 Kč revenue (402 Kč/zákazník)</div>
+        <div class="seg-rev">5 222 € obrat (402 €/zákazník)</div>
         <div class="seg-trend" style="color: var(--dex-teal);">+85,7 % YoY · +253 % revenue</div>
       </div>
       <div class="rfm-card">
         <div class="seg-name">Need Attention</div>
         <div class="seg-val">2</div>
         <div class="seg-pct">0,22 % bázy · 6 objednávok</div>
-        <div class="seg-rev">4 271 Kč revenue (2 136 Kč/zákazník)</div>
+        <div class="seg-rev">4 271 € obrat (2 136 €/zákazník)</div>
         <div class="seg-trend" style="color: var(--dex-teal);">+100 % YoY (drobný segment)</div>
       </div>
       <div class="rfm-card">
         <div class="seg-name">About to Sleep</div>
         <div class="seg-val">80</div>
         <div class="seg-pct">8,81 % bázy · 162 objednávok</div>
-        <div class="seg-rev">22 394 Kč revenue (280 Kč/zákazník)</div>
+        <div class="seg-rev">22 394 € obrat (280 €/zákazník)</div>
         <div class="seg-trend" style="color: var(--dex-orange);">-20,0 % YoY</div>
       </div>
       <div class="rfm-card zero">
         <div class="seg-name">Can't Lose Them</div>
         <div class="seg-val">0</div>
         <div class="seg-pct">0 % bázy</div>
-        <div class="seg-rev">0 Kč revenue</div>
+        <div class="seg-rev">0 € obrat</div>
         <div class="seg-trend" style="color: var(--dex-orange);">Žiadny „VIP at risk"</div>
       </div>
       <div class="rfm-card">
         <div class="seg-name">At Risk</div>
         <div class="seg-val">1</div>
         <div class="seg-pct">0,11 % bázy · 6 objednávok</div>
-        <div class="seg-rev">804 Kč revenue</div>
+        <div class="seg-rev">804 € obrat</div>
         <div class="seg-trend" style="color: var(--dex-orange);">-50 % YoY</div>
       </div>
       <div class="rfm-card hib">
         <div class="seg-name">Hibernating</div>
         <div class="seg-val">193</div>
         <div class="seg-pct">21,3 % bázy · 207 objednávok</div>
-        <div class="seg-rev">30 940 Kč revenue (160 Kč/zákazník)</div>
+        <div class="seg-rev">30 940 € obrat (160 €/zákazník)</div>
         <div class="seg-trend" style="color: var(--dex-teal);">-31,8 % YoY (klesá — dobré)</div>
       </div>
       <div class="rfm-card zero">
         <div class="seg-name">Lost</div>
         <div class="seg-val">0</div>
         <div class="seg-pct">0 % bázy</div>
-        <div class="seg-rev">0 Kč revenue</div>
+        <div class="seg-rev">0 € obrat</div>
         <div class="seg-trend" style="color: var(--dex-muted);">Prázdny segment</div>
       </div>
     </div>
@@ -956,7 +957,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
       <div class="content">
         <h4>Hibernating klesá -32 % YoY — pozitívny trend <span class="badge badge-positive">POSITIVE</span></h4>
         <p>193 ľudí (21 % bázy) je v Hibernating segmente, ale segment medziročne klesá z 283 na 193. Buď sa časť reaktivovala (málo pravdepodobné bez aktívnej automatizácie), alebo prešli ďalej do Lost (tiež 0 — divné). Pravdepodobne sú prekategorizovaní novou akvizíciou, ktorá ich posúva v relatívnom poradí.</p>
-        <div class="data"><strong>Dáta:</strong> Hibernating segment generuje 30 940 Kč ročne (160 Kč na zákazníka) aj bez aktívnej reaktivácie. Win-back flow s 5–10 % reaktiváciou = 10–20 dodatočných obj./rok.</div>
+        <div class="data"><strong>Dáta:</strong> Hibernating segment generuje 30 940 € ročne (160 € na zákazníka) aj bez aktívnej reaktivácie. Návratová automatizácia s 5–10 % reaktiváciou = 10–20 dodatočných objednávok ročne.</div>
         <div class="rec"><strong>Odporúčanie:</strong> Aktivovať jednu z 5 dnes neaktívnych retenčných flows v skupine „Retence a reaktivace". 3-mailová sekvencia pre Hibernating: emocionálny pull → bestsellery sezóny → posledná pripomienka so zľavou.</div>
       </div>
     </div>
@@ -965,7 +966,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
       <div class="bar med"></div>
       <div class="content">
         <h4>About to Sleep (80 ľudí) — bez prevencie chladnú <span class="badge badge-warning">PRÍLEŽITOSŤ</span></h4>
-        <p>80 zákazníkov v segmente About to Sleep generuje 22 394 Kč ročne (280 Kč na zákazníka — 1,75× viac ako Hibernating). To sú ľudia, ktorí ešte nie sú stratení, ale začínajú vychladnúť. Preventívna automatizácia má vyššiu návratnosť ako win-back, lebo udržuje zákazníkov v aktívnom móde, namiesto toho, aby ich zachraňovala z hlbokej pasivity.</p>
+        <p>80 zákazníkov v segmente About to Sleep generuje 22 394 € ročne (280 € na zákazníka — 1,75× viac ako Hibernating). To sú ľudia, ktorí ešte nie sú stratení, ale začínajú vychladnúť. Preventívna automatizácia má vyššiu návratnosť ako návratový proces, lebo udržuje zákazníkov v aktívnom móde, namiesto toho, aby ich zachraňovala z hlbokej pasivity.</p>
         <div class="data"><strong>Dáta:</strong> 80 zákazníkov × 162 objednávok = 2,03 obj. na zákazníka (najvyššie zo všetkých segmentov okrem Loyal). Toto sú reálne opakovaní nakupujúci, ktorých len treba udržať.</div>
         <div class="rec"><strong>Odporúčanie:</strong> Trigger: 90 dní od posledného nákupu (pre textil dlhší cyklus). 2-mailová preventívna sekvencia: (1) personalizované „chýbate nám?" + sezónne novinky, (2) -10 % vernostný kód s 14-dňovou platnosťou.</div>
       </div>
@@ -975,7 +976,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
       <div class="bar pos"></div>
       <div class="content">
         <h4>New Customers +88,8 % YoY, Promising +85,7 % YoY <span class="badge badge-positive">SILNÁ STRÁNKA</span></h4>
-        <p>Akvizícia letí — 604 nových zákazníkov, +88,8 % YoY, a Promising segment rastie ešte rýchlejšie v revenue (+253 % YoY). To znamená, že akvizícia generuje stále kvalitnejších zákazníkov — keď nakúpia, utrácajú viac (140 Kč/zákazník v New, 402 Kč/zákazník v Promising). Tento trend je presne to, čo treba ďalej posilniť cez VIP nominačný flow.</p>
+        <p>Akvizícia letí — 604 nových zákazníkov, +88,8 % YoY, a Promising segment rastie ešte rýchlejšie v revenue (+253 % YoY). To znamená, že akvizícia generuje stále kvalitnejších zákazníkov — keď nakúpia, utrácajú viac (140 €/zákazník v New, 402 €/zákazník v Promising). Tento trend je presne to, čo treba ďalej posilniť cez VIP nominačný flow.</p>
         <div class="rec"><strong>Odporúčanie:</strong> Pri Promising segmente (13 ľudí, rastie +85 %) treba nájsť to spoločné — odkiaľ prichádzajú, čo kupujú, akú majú frekvenciu — a tento profil aktívne replikovať. Akvizičné kanále, ktoré ich privádzajú, treba škálovať.</div>
       </div>
     </div>
@@ -1027,25 +1028,25 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
         </thead>
         <tbody>
           <tr class="warn-row">
-            <td><strong>Prosinec 2025</strong></td>
+            <td><strong>December 2025</strong></td>
             <td class="num">187</td>
             <td class="num">4,8 %</td>
             <td class="num">7,5 %</td>
             <td class="num">9,1 %</td>
-            <td class="num">160 Kč</td>
+            <td class="num">160 €</td>
             <td>Vianočný peak 2025 — najnižšia retencia (darčekoví kupci)</td>
           </tr>
           <tr>
-            <td><strong>Leden 2026</strong></td>
+            <td><strong>Január 2026</strong></td>
             <td class="num">111</td>
             <td class="num">6,3 %</td>
             <td class="num">9,0 %</td>
             <td class="num">9,0 %</td>
-            <td class="num">168 Kč</td>
+            <td class="num">168 €</td>
             <td>Povianočný kohort, ešte chladnúci</td>
           </tr>
           <tr class="warn-row">
-            <td><strong>Prosinec 2024</strong></td>
+            <td><strong>December 2024</strong></td>
             <td class="num">73</td>
             <td class="num">6,8 %</td>
             <td class="num">9,6 %</td>
@@ -1054,7 +1055,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
             <td>Vianočný peak 2024 — slušná retencia po 12+ mes.</td>
           </tr>
           <tr>
-            <td><strong>Listopad 2024</strong></td>
+            <td><strong>November 2024</strong></td>
             <td class="num">61</td>
             <td class="num">8,2 %</td>
             <td class="num">8,2 %</td>
@@ -1063,7 +1064,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
             <td>Black Friday peak — slušná retencia</td>
           </tr>
           <tr class="crit-row">
-            <td><strong>Březen 2025</strong></td>
+            <td><strong>Marec 2025</strong></td>
             <td class="num">23</td>
             <td class="num pos">17,4 %</td>
             <td class="num pos">26,1 %</td>
@@ -1072,7 +1073,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
             <td>Najlepšia retencia — jarná kohort kupujúca z vlastného záujmu</td>
           </tr>
           <tr class="crit-row">
-            <td><strong>Říjen 2024</strong></td>
+            <td><strong>Október 2024</strong></td>
             <td class="num">33</td>
             <td class="num">9,1 %</td>
             <td class="num pos">18,2 %</td>
@@ -1088,9 +1089,9 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
       <div class="bar pos"></div>
       <div class="content">
         <h4>Akvizícia výrazne rastie od decembra 2025 <span class="badge badge-positive">SILNÁ STRÁNKA</span></h4>
-        <p>Mesačné kohorty od decembra 2025 ukazujú výrazný skok: Lis 2025 = 15 → Pros 2025 = 187 → Led 2026 = 111 → Ún 2026 = 96 → Mar 2026 = 58 → Dub 2026 = 27 → Kvet 2026 = 56. Decembrový peak (187 obj.) je takmer 3× väčší ako Pros 2024 (73 obj.). YoY: Leden 2025 = 36 vs Leden 2026 = 111 = +208 % rast.</p>
-        <div class="data"><strong>Dáta:</strong> Posledných 6 mesiacov (Pros 2025 – Kvet 2026): 535 nových zákazníkov. Predchádzajúcich 6 mesiacov: ~205 → ~+161 % rast akvizície.</div>
-        <div class="rec"><strong>Odporúčanie:</strong> Identifikovať, čo sa zmenilo v Pros 2025 (PPC, sezónne kampane, nový produktový mix?) a využiť ako základ pre ďalšie kvartály. Email-wise: dramaticky rastúca báza nových zákazníkov potrebuje kvalitnú uvítaciu sériu, ktorá ich rýchlo konvertuje na druhý nákup.</div>
+        <p>Mesačné kohorty od decembra 2025 ukazujú výrazný skok: Nov 2025 = 15 → Dec 2025 = 187 → Jan 2026 = 111 → Feb 2026 = 96 → Mar 2026 = 58 → Apr 2026 = 27 → Máj 2026 = 56. Decembrový peak (187 obj.) je takmer 3× väčší ako December 2024 (73 obj.). YoY: Január 2025 = 36 vs Január 2026 = 111 = +208 % rast.</p>
+        <div class="data"><strong>Dáta:</strong> Posledných 6 mesiacov (December 2025 – Máj 2026): 535 nových zákazníkov. Predchádzajúcich 6 mesiacov: ~205 → ~+161 % rast akvizície.</div>
+        <div class="rec"><strong>Odporúčanie:</strong> Identifikovať, čo sa zmenilo v decembri 2025 (PPC, sezónne kampane, nový produktový mix?) a využiť ako základ pre ďalšie kvartály. E-mailovo: dramaticky rastúca báza nových zákazníkov potrebuje kvalitnú uvítaciu sériu, ktorá ich rýchlo konvertuje na druhý nákup.</div>
       </div>
     </div>
 
@@ -1099,7 +1100,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
       <div class="content">
         <h4>Vianočné kohorty majú najnižšiu retenciu <span class="badge badge-warning">PATTERN</span></h4>
         <p>Decembrová kohort 2025 (187 obj.) má 30-d retenciu len 4,8 % a celkovú 9,1 % — najnižšiu zo všetkých. Decembrová kohort 2024 (73 obj.) má lepšiu celkovú retenciu (16,4 %), ale to len preto, že mala 12+ mesiacov na to, aby sa časť vrátila. Vianočná zákazníčka kupuje darček a často sa nevráti.</p>
-        <div class="data"><strong>Dáta:</strong> Pros 2024 + Pros 2025 spolu 260 obj. Celková retencia ~13 %. Pri zlepšení na 18–20 % to znamená +13–18 dodatočných obj./rok.</div>
+        <div class="data"><strong>Dáta:</strong> December 2024 + December 2025 spolu 260 objednávok. Celková retencia ~13 %. Pri zlepšení na 18–20 % to znamená +13–18 dodatočných objednávok ročne.</div>
         <div class="rec"><strong>Odporúčanie:</strong> Po vianočnom nákupe nasadiť „darčekové rozdelenie" — automatizácia s otázkou „Pre koho ste kúpili?". Obdarovaní dostanú samostatnú uvítaciu sériu ako noví zákazníci. Darcovia dostanú pripomenutie pre vlastný nákup.</div>
       </div>
     </div>
@@ -1107,8 +1108,8 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
     <div class="finding">
       <div class="bar pos"></div>
       <div class="content">
-        <h4>Marec a Říjen kohorty majú 2× lepšiu retenciu <span class="badge badge-positive">INSIGHT</span></h4>
-        <p>Březen 2025 kohort (23 obj.) má celkovú retenciu 39,1 % a LTV 199 €. Říjen 2024 (33 obj.) má 30,3 % a LTV 259 € — najvyšší LTV vôbec. Ľudia, ktorí nakupujú mimo veľkých zľavových udalostí, sú vernejší — kupujú z vlastnej potreby, nie z impulzu zľavy.</p>
+        <h4>Marec a Október kohorty majú 2× lepšiu retenciu <span class="badge badge-positive">INSIGHT</span></h4>
+        <p>Marec 2025 kohort (23 obj.) má celkovú retenciu 39,1 % a LTV 199 €. Október 2024 (33 obj.) má 30,3 % a LTV 259 € — najvyšší LTV vôbec. Ľudia, ktorí nakupujú mimo veľkých zľavových udalostí, sú vernejší — kupujú z vlastnej potreby, nie z impulzu zľavy.</p>
         <div class="rec"><strong>Odporúčanie:</strong> Investovať do akvizície mimo Black Friday a Vianoc cez sezónne témy (jarné upratovanie, jesenné zútulnenie, letné chladenie) a edukačný obsah (ako vybrať paplón, ako sa starať o textílie). Tento traffic má 2× lepšiu retenciu a vyšší LTV.</div>
       </div>
     </div>
@@ -1440,7 +1441,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
             <td><strong>Aktivácia 5 retenčných šablón v Leadhube</strong></td>
             <td>Hotové, treba zapnúť</td>
             <td>Hibernating + About to Sleep + Reaktivácia</td>
-            <td>Reaktivácia 273 ľudí · 10–20 k Kč/rok</td>
+            <td>Reaktivácia 273 ľudí · 10–20 k €/rok</td>
             <td><span class="badge badge-critical">VYSOKÁ</span></td>
           </tr>
           <tr>
