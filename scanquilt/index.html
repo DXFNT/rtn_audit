@@ -364,20 +364,20 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
     <div class="opp-grid">
       <div class="opp-card">
         <div class="opp-num">01</div>
-        <div class="opp-tag">Priorita · 0–2 týždne</div>
-        <h3>Zber e-mailov z webu — najväčšia diera</h3>
-        <div class="opp-metric">3,7 %<span class="opp-unit"> visitor → e-mail (benchmark ~25 %)</span></div>
-        <p class="opp-desc">Z 135 984 návštevníkov má e-mail len 5 020. Pop-up „Záujem o zľavu -10 %" má 10 273 zobrazení, ale len 1,6 % konverzia (49 kontaktov za 7 dní). Pri 130 tisíc unknown visitors je každý 1 % posun = +1 300 odberateľov. Toto je #1 zdroj rastu Leadhub bázy.</p>
-        <div class="opp-action">→ Redizajn pop-upu (cieľ 5–8 % konverzia) + exit-intent + scroll trigger</div>
+        <div class="opp-tag">Priorita · 0–4 týždne</div>
+        <h3>Pop-up: kvízový formát namiesto „-10 %"</h3>
+        <div class="opp-metric">3,7 %<span class="opp-unit"> visitor → e-mail · cieľ 20–25 %</span></div>
+        <p class="opp-desc">Z 135 984 návštevníkov má e-mail len 5 020. Pop-up „-10 %" konvertuje pod 10 %. Klient výslovne chce kvízový formát: 1 otázka („Čo vás pri spaní najviac trápi?") so 4 vizuálnymi odpoveďami → e-mail → zľava + odporúčaný produkt → uvítací mail s pozvánkou na plný Spánkový kvíz.</p>
+        <div class="opp-action">→ A/B test kvízový pop-up vs súčasný „-10 %" + súhlas s NL oddelene</div>
       </div>
 
       <div class="opp-card">
         <div class="opp-num">02</div>
-        <div class="opp-tag">Priorita · 0–4 týždne</div>
-        <h3>5 retenčných automatizácií čaká neaktívnych</h3>
-        <div class="opp-metric">5<span class="opp-unit"> flows pripravených · 0 odoslaných</span></div>
-        <p class="opp-desc">V skupine „Retence a reaktivace" je 5 vytvorených, ale neaktívnych automatizácií. Zákazníci ich nedostávajú. Hibernating segment (193 ľudí, ~31 k €/rok obratu aj pasívne) by mohol byť oslovený okamžite — šablóny existujú, treba len spustiť.</p>
-        <div class="opp-action">→ Aktivovať 5 hotových flows + overiť spúšťacie podmienky</div>
+        <div class="opp-tag">Priorita · 4–8 týždňov</div>
+        <h3>Historickí zákazníci: spätná väzba, nie win-back</h3>
+        <div class="opp-metric">SAP<span class="opp-unit"> segmentácia · kategória + rok nákupu</span></div>
+        <p class="opp-desc">Klasické „chýbate nám" reaktivácie sú vylúčené. Logika je opačná — Mail 1 žiada o spätnú väzbu k produktu (bez zľavy, bez nákupného CTA, klikateľné hodnotenie v maile). Iba pre tých, čo kliknú, ide Mail 2 s pozvaním do newslettera cez prístup k novinkám. Vyrieši aj právny rozmer kontaktov starších ako 3 roky.</p>
+        <div class="opp-action">→ Export zo SAP-u + Mail 1 (feedback) → Mail 2 (NL) → Mail 3 (životnosť)</div>
       </div>
 
       <div class="opp-card">
@@ -392,10 +392,10 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
       <div class="opp-card">
         <div class="opp-num">04</div>
         <div class="opp-tag">Priorita · 0–2 týždne</div>
-        <h3>Spánkový kvíz pauznutý a nevyužitý</h3>
+        <h3>Spánkový kvíz: spustiť ako follow-up po pop-upe</h3>
         <div class="opp-metric">0<span class="opp-unit"> odoslaných za 7 d · kvíz pauznutý</span></div>
-        <p class="opp-desc">Skupina „Spánkový kvíz" má 4 zložky — popup kvízu (pauznutý) a 3 e-mailové vetvy podľa spánkového typu (Radiátor / Prípecník / Cukrík). Žiadna nemá doručené e-maily. Spustený kvíz typicky funguje ako lead magnet pri zbere e-mailov a segmentácia uľahčuje neskoršiu personalizáciu.</p>
-        <div class="opp-action">→ Spustiť pop-up kvízu + otestovať vetvy odpovedí</div>
+        <p class="opp-desc">Skupina „Spánkový kvíz" má 4 zložky — popup kvízu (pauznutý) a 3 e-mailové vetvy podľa spánkového typu (Radiátor / Prípecník / Cukrík). Spánkový kvíz sa stane <strong>plnou verziou</strong>, na ktorú odkazuje nový kvízový pop-up (príležitosť 01) — krátky pop-up zachytí e-mail + jednu odpoveď, plný kvíz potom doplní segmentáciu.</p>
+        <div class="opp-action">→ Spustiť pop-up kvízu + naviazať uvítací mail z nového pop-upu</div>
       </div>
     </div>
 
@@ -501,56 +501,61 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 <section class="alt" id="recs">
   <div class="container">
     <h2>2. Next steps — 4-fázový plán</h2>
-    <p class="section-sub">Postupnosť nasadenia flows a opráv s konkrétnymi cieľmi a odhadovaným uplift-om. Priorita 1 a 2 zaberú spolu 4–6 týždňov a pokryjú najväčší upside.</p>
+    <p class="section-sub">Postupnosť nasadenia automatizácií a opráv s konkrétnymi cieľmi a odhadovaným prínosom. Plán je upravený podľa diskusie s klientom — pop-up ide do kvízového formátu, historická kampaň pre starých zákazníkov je feedback-first (nie klasický win-back). Priorita 1 a 2 zaberú spolu 4–6 týždňov a pokryjú najväčší prínos.</p>
 
     <div class="rec-timeline">
       <div class="rec-step">
         <div class="step-label">Fáza 1 · 0–2 týždne · Rýchle zisky</div>
-        <h3>Spustenie čakajúcich flows + redizajn pop-upu</h3>
-        <p>Najlacnejšie hodiny s najvyšším prínosom. V Leadhube je už pripravených 21 automatizácií, ale veľká časť z nich má 0 odoslaných za 7 dní. Pop-up má 10 273 zobrazení, ale len 1,6 % konverzia.</p>
+        <h3>Aktivácia hotových flows + príprava kvízového pop-upu</h3>
+        <p>Najlacnejšie hodiny s najvyšším prínosom. V Leadhube je už pripravených 21 automatizácií, ale veľká časť z nich má 0 odoslaných za 7 dní. Paralelne pripravujeme kvízový pop-up (klient výslovne nechce ďalší „-10 % na prvý nákup" formát).</p>
         <ul>
-          <li>Aktivovať 5 retenčných flows v skupine „Retence a reaktivace" (šablóny existujú, treba len zapnúť)</li>
-          <li>Spustiť pop-up Spánkového kvízu (dnes pauznutý) + otestovať 3 vetvy odpovedí</li>
-          <li>Redizajn hlavného pop-upu „Záujem o zľavu -10 %" — cieľ z 1,6 % na 5–8 % konverziu (exit-intent + scroll trigger, lepší copy/hook)</li>
+          <li>Aktivovať 5 hotových retenčných šablón v skupine „Retence a reaktivace" (šablóny existujú, treba len zapnúť)</li>
+          <li>Spustiť pauznutý pop-up Spánkového kvízu „Aký ste spánkový typ?" (3 vetvy odpovedí už existujú)</li>
+          <li>Pripraviť nový kvízový pop-up s 1 otázkou (príprava kreatívy a 4 vizuálnych odpovedí — bolesti, prehrievanie, alergény, chrápanie). Detail v sekcii 3 nižšie</li>
           <li>Doplniť UTM tagy do všetkých šablón — jednorázová oprava merania atribúcie</li>
         </ul>
-        <div class="step-impact">Odhadovaný prínos: +1 000–3 000 nových odberateľov mesačne + aktivácia 5 doteraz nevyužitých flows</div>
+        <div class="step-impact">Odhadovaný prínos: aktivácia 5 nevyužitých flows + kvízový pop-up pripravený na A/B test</div>
       </div>
 
       <div class="rec-step">
-        <div class="step-label">Fáza 2 · 2–4 týždne · Doplnenie chýbajúcich vrstiev</div>
-        <h3>Uvítacia séria upgrade + prevencia About to Sleep + audit opusteného košíka</h3>
-        <p>SCANquilt má dnes 3-mailovú uvítaciu sériu — to je nadpriemerné. Treba ju len doladiť na max výkon. Plus opustený košík vyzerá dobre (vysoký open rate), ale negeneruje obrat — treba zistiť prečo.</p>
+        <div class="step-label">Fáza 2 · 2–4 týždne · Kvízový pop-up live + uvítacia séria</div>
+        <h3>A/B test kvízového pop-upu + uvítacia séria + audit opusteného košíka</h3>
+        <p>Po príprave v Fáze 1 spúšťame kvízový pop-up live v A/B teste oproti súčasnému „-10 %". Cieľ je dostať konverziu visitor → e-mail z dnešných <10 % na 20–25 %. Paralelne dolaďujeme uvítaciu sériu a riešime záhadu opusteného košíka (43–68 % open rate, ale 0 € obrat).</p>
         <ul>
-          <li>Audit opusteného košíka: 65 odoslaných za 7 dní s 43–68 % open rate, ale 0 € obrat. Skontrolovať atribúciu + copy + CTA + cieľovú stránku</li>
+          <li>Live nasadenie kvízového pop-upu v A/B teste (50/50 split počas 3 týždňov) — newsletter súhlas oddelený od zľavy, samostatný nepredvyplnený checkbox</li>
+          <li>Audit opusteného košíka: 65 odoslaných za 7 dní pri 43–68 % open rate, ale 0 € obrat. Skontrolovať atribúciu + copy + CTA + cieľovú stránku</li>
+          <li>Doladenie 3-mailovej uvítacej série: mail #1 generuje 1 271 € z 44 odoslaných (top performer), mail #2 a #3 majú 0 €. Optimalizovať mail #2 a #3</li>
           <li>Prevencia About to Sleep pre 80 ľudí: 2 maily na D+60 a D+75 od posledného nákupu</li>
-          <li>Doladenie uvítacej série: optimalizovať mail 2 a 3 (dnes 0 € z mailov #2 a #3, mail #1 generuje 1 271 € z 44 odoslaných)</li>
           <li>Nastaviť limit frekvencie: max 3–4 mailingy týždenne na osobu</li>
         </ul>
-        <div class="step-impact">Odhadovaný prínos: +500–800 € týždenne z opusteného košíka + zachytenie 22 k €/rok prevenciou About to Sleep</div>
+        <div class="step-impact">Odhadovaný prínos: +1 000–3 000 nových odberateľov mesačne (kvízový pop-up) + 500–800 €/týždeň z opusteného košíka + 22 k €/rok prevenciou</div>
       </div>
 
       <div class="rec-step">
-        <div class="step-label">Fáza 3 · 4–8 týždňov · Vrstva vernosti</div>
-        <h3>VIP nominácia + Ponákupná + Replenishment</h3>
-        <p>Vrstva vernosti, ktorá rieši strategický problém: 66 % bázy je v New Customers a Champions = 0. Cieľ je vybudovať systematický posun z New → Promising → Potential Loyalists → Loyal.</p>
+        <div class="step-label">Fáza 3 · 4–8 týždňov · Historickí zákazníci (feedback-first) + Vrstva vernosti</div>
+        <h3>Spätná väzba od starých zákazníkov + VIP nominácia + Ponákupná séria</h3>
+        <p>Spustenie kampane pre historických zákazníkov v <strong>feedback-first</strong> formáte (nie klasický „chýbate nám" win-back — klient výslovne nechce). Hlavná hodnota je spätná väzba o produkte po rokoch používania, e-mail do newslettera je vedľajší výstup. Detail v sekcii 3 vyššie. Paralelne nasadzujeme vrstvu vernosti.</p>
         <ul>
+          <li><strong>Príprava segmentácie zo SAP-u:</strong> export zákazníkov podľa kategórie zakúpeného produktu (paplón / vankúš / obliečka / plachta) a roku nákupu. Cieľ: zákazníci s nákupom 1–4 roky späť, dnes neaktívni v newsletteri</li>
+          <li><strong>Mail 1 (spätná väzba):</strong> Klikateľné hodnotenie v maile (3 smajlíky / hviezdičky), bez zľavy, bez nákupného CTA. Pozicionované ako starostlivosť o zákazníka, nie ako marketing (kvôli súhlasom starším ako 3 roky)</li>
+          <li><strong>Mail 2 (iba pre tých, čo klikli):</strong> Pozvanie do newslettera cez prístup k novinkám / testovaniu nových produktov — nie cez zľavu. Súhlas s newsletterom oddelene</li>
+          <li><strong>Mail 3 (po prihlásení):</strong> Jemná pripomienka životnosti produktu — „paplón po X rokoch už nie je to, čo býval"</li>
           <li>Nominácia do VIP / Loyal: po 2. nákupe do 90 dní → automatický prechod do úrovne Loyal s exkluzívnymi výhodami</li>
           <li>Ponákupná séria 4-dielna: D+3 (žiadosť o hodnotenie), D+14 (sprievodca starostlivosťou textílie), D+30 (krížový predaj komplementárnych kategórií), D+90 (pripomenutie sezónnej obnovy)</li>
-          <li>Replenishment trigger podľa kategórie: paplóny, posteľné súpravy a obliečky majú ročný cyklus — pripomenutie pred sezónou</li>
-          <li>Krížový predaj pre Aktívnych -3 m: doplnkové kategórie podľa toho, čo si predtým kúpili (obliečky → paplón, paplón → vankúš)</li>
         </ul>
-        <div class="step-impact">Odhadovaný prínos: budovanie vrstvy vernosti (cieľ 30+ Loyal do 12 mesiacov), +1 500 €/mes z replenishment a krížového predaja</div>
+        <div class="step-impact">Odhadovaný prínos: kvalitné kontakty zo starej bázy + budovanie vrstvy vernosti (cieľ 30+ Loyal do 12 mesiacov) + +1 500 €/mes z ponákupnej série a krížového predaja</div>
       </div>
 
       <div class="rec-step">
         <div class="step-label">Fáza 4 · 8–12 týždňov · Optimalizácia + sezónnosť</div>
-        <h3>Sezónne playbooky + Opustenie prehliadania + Hygiena databázy</h3>
+        <h3>Replenishment + Sezónne playbooky + Hygiena databázy</h3>
         <p>Posledná fáza dokončuje pokrytie celého životného cyklu a pripravuje systém na predikovateľnú sezónnosť (jarný refresh, letné chladenie, jesenné zútulnenie, Black Friday, Vianoce).</p>
         <ul>
+          <li>Replenishment trigger podľa kategórie: paplóny, posteľné súpravy a obliečky majú ročný cyklus — pripomenutie pred sezónou</li>
+          <li>Krížový predaj pre Aktívnych -3 m: doplnkové kategórie podľa toho, čo si zákazník predtým kúpil (obliečky → paplón, paplón → vankúš)</li>
           <li>Doladenie opustenia prehliadania: dnes 4 h a 24 h triggery majú 40–50 % open rate, ale 0 € obrat — optimalizovať copy a CTA</li>
           <li>Narodeninový e-mail s 10–15 % zľavou (kde je vyplnený dátum)</li>
-          <li>Sezónne playbooky: jarné upratovanie (marec), letné chladenie (jún), jesenné zútulnenie (september), pred-vianočný gift guide (november)</li>
+          <li>Sezónne playbooky: jarné upratovanie (marec), letné chladenie (jún), jesenné zútulnenie (september), pred-vianočný darčekový sprievodca (november)</li>
           <li>Hygiena databázy: 365+ dní bez otvorenia → potvrdzovací e-mail → odstránenie z aktívnej bázy (zlepšenie doručiteľnosti)</li>
         </ul>
         <div class="step-impact">Odhadovaný prínos: vyrovnanie sezónnych prepadov + zlepšenie doručiteľnosti (open rate +3–5 %)</div>
@@ -558,7 +563,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
     </div>
 
     <div class="methodology-box" style="margin-top: 32px;">
-      <p><strong>Predpoklady ROI kalkulácií:</strong> Win-back reactivation rate 5–10 %, opustený košík recovery 8–12 %, uvítacia séria konv. uplift 5–10 % vs jednorázový mail, AOV 157 € (priemer SCANquilt 30 d). Reálne čísla závisia od kvality copy, ponuky a doručiteľnosti — odporúčame všetky flows nasadiť s A/B testom predmetu a CTA.</p>
+      <p><strong>Predpoklady ROI kalkulácií:</strong> kvízový pop-up cieľ 20–25 % konverzia (vs súčasných <10 %), opustený košík recovery 8–12 %, uvítacia séria konv. uplift 5–10 % vs jednorázový mail, AOV 157 € (priemer SCANquilt 30 d). Historická feedback-first kampaň meraná inak — primárna metrika je <em>počet kliknutí na hodnotenie</em> a <em>kvalita opt-in pri Mail 2</em>, nie obratový uplift. Všetky flows nasadiť s A/B testom predmetu a CTA.</p>
     </div>
   </div>
 </section>
