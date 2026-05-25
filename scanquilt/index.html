@@ -327,6 +327,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
     <ul class="nav-links" id="navLinks">
       <li><a href="#performance">Performance</a></li>
       <li><a href="#recs" class="cta">Next steps</a></li>
+      <li><a href="#feedback" class="cta">Koncepty</a></li>
       <li><a href="#calendar" class="cta">Kalendár</a></li>
       <li><a href="#rfm">RFM</a></li>
       <li><a href="#retention">Retencia</a></li>
@@ -562,10 +563,48 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
   </div>
 </section>
 
+<!-- CLIENT FEEDBACK CONCEPTS -->
+<section id="feedback">
+  <div class="container">
+    <h2>3. Spresnené koncepty (klientsky feedback)</h2>
+    <p class="section-sub">Dva kľúčové koncepty z diskusie s klientom — historickí zákazníci s feedback-first prístupom a upgrade pop-upu na kvízový formát. Detailne rozpracované, aby išli priamo do implementácie.</p>
+
+    <div class="finding" style="margin-top: 16px;">
+      <div class="bar high"></div>
+      <div class="content">
+        <h4>1) Kampaň pre historických zákazníkov — feedback ako primárna hodnota <span class="badge badge-critical">KLIENT</span></h4>
+        <p>Klasické „chýbate nám" reaktivácie sú zo strany SCANquiltu vylúčené. Logika je <strong>opačná</strong>: hlavná hodnota je <em>spätná väzba o produkte po rokoch používania</em>, získanie kontaktu do newslettera je vedľajší výstup. Toto je čistejšie aj právne (kontakty staršie ako ~3 roky vyžadujú nový súhlas), aj z pohľadu kvality kontaktov.</p>
+        <div class="data"><strong>Segmentácia:</strong> Podľa kategórie zakúpeného produktu (paplón / vankúš / obliečka / plachta) a roku nákupu zo SAP-u. Cieľová báza: zákazníci s nákupom 1–4 roky späť, ktorí dnes nie sú aktívni v newsletteri.</div>
+        <div class="rec" style="background: rgba(255,127,0,0.08); border-left-color: var(--dex-orange);"><strong>Mail 1 · Spätná väzba (bez zľavy, bez nákupného CTA):</strong> Klikateľné hodnotenie priamo v maile (3 smajlíky alebo hviezdičky). Rámcovanie: „pomôžete ľuďom, ktorí teraz vyberajú [paplón/vankúš/…]". Pozicionované ako starostlivosť o zákazníka, nie ako marketing.</div>
+        <div class="rec" style="background: rgba(0,101,247,0.08);"><strong>Mail 2 · Iba pre tých, čo v Mail 1 klikli:</strong> Pozvanie do newslettera cez prístup k novinkám a testovaniu (napr. chladivý matracový chránič) — <strong>nie cez zľavu</strong>. Súhlas s newsletterom je samostatný krok, oddelený od žiadosti o hodnotenie.</div>
+        <div class="rec" style="background: rgba(22,171,139,0.08); border-left-color: var(--dex-teal);"><strong>Mail 3 · Iba po prihlásení do newslettera:</strong> Jemné pripomenutie životnosti produktu (napr. „paplón po 5 rokoch už nie je to, čo býval — kedy ste sa naposledy poriadne vyspali?"). Tu už môžeme cieliť na opätovný nákup.</div>
+        <div class="data"><strong>Právna poznámka:</strong> Pri kontaktoch starších ako ~3 roky je marketingová komunikácia bez nového súhlasu sporná. Preto je Mail 1 pozicionovaný ako spätná väzba / starostlivosť o zákazníka. Súhlas s newsletterom riešime až v Mail 2 → opt-in cez akciu zákazníka, nie automaticky.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar high"></div>
+      <div class="content">
+        <h4>2) Upgrade welcome pop-upu na kvízový formát <span class="badge badge-critical">KLIENT</span></h4>
+        <p>Aktuálny pop-up s odmenou „-10 % na prvý nákup" robí pod 10 % konverziu návštevníkov na e-maily. <strong>Cieľ: 20–25 %</strong> a zároveň získať informácie o zákazníkovi pre personalizovanú komunikáciu. Formát: <em>pop-up kvíz s jednou otázkou → e-mail → okamžitá odmena (zľava + odporúčaný produkt podľa odpovede) → uvítací mail s pozvánkou na plný Spánkový kvíz „Aký ste spánkový typ?"</em> (ktorý je už v Leadhube pripravený, len pauznutý).</p>
+        <div class="data"><strong>Konkrétna mechanika otázky:</strong> „Čo vás pri spaní najviac trápi?" — 4 vizuálne možnosti s ikonami, mobile-first: <strong>(1)</strong> bolesti krku / chrbta, <strong>(2)</strong> prehrievanie, <strong>(3)</strong> alergény, <strong>(4)</strong> chrápanie. Žiadny text na úvod — len otázka a 4 obrázkové tlačidlá.</div>
+        <div class="rec" style="background: rgba(0,101,247,0.08);"><strong>Triggering:</strong> Pop-up sa zobrazí po 15–20 sekundách na stránke alebo pri pokuse o odchod (exit-intent, desktop). Max raz za session. Nepretláčať na cieľových stránkach z reklamy, kde už návštevník vie, čo hľadá.</div>
+        <div class="rec" style="background: rgba(22,171,139,0.08); border-left-color: var(--dex-teal);"><strong>E-mail flow:</strong> 1) Návštevník klikne na odpoveď → 2) Zobrazí sa pole na e-mail → 3) Po zadaní e-mailu sa zľavový kód zobrazí ihneď + príde aj mailom + odporúčaný produkt podľa odpovede → 4) Uvítací mail pozve na plný Spánkový kvíz na webe.</div>
+        <div class="rec" style="background: rgba(255,127,0,0.08); border-left-color: var(--dex-orange);"><strong>Právna a UX čistota:</strong> Súhlas s newsletterom je <strong>oddelený</strong> od získania zľavy — samostatný nepredvyplnený checkbox. Zľavu dostane každý, kto zadá mail; do newslettera ide len ten, kto checkbox zaškrtne.</div>
+        <div class="data"><strong>Meranie:</strong> A/B test proti aktuálnemu „-10 %" pop-upu (50/50 split počas 3 týždňov). Sledované metriky: conversion view → e-mail, conversion e-mail → 1. nákup, AOV 1. nákupu, miera prihlásenia do newslettera (samostatne).</div>
+      </div>
+    </div>
+
+    <div class="methodology-box" style="margin-top: 24px;">
+      <p><strong>Pozn.:</strong> Oba koncepty sa prelínajú s odporúčaniami v sekciách 2 (Next steps) a 9 (Audit automatizácií), ale tu sú spresnené podľa konkrétnej diskusie s klientom. Implementácia: Fáza 1 (0–4 týždne) pre pop-up upgrade + Fáza 2–3 (4–8 týždňov) pre historickú kampaň. Pred spustením historickej kampane treba dotiahnúť segmentáciu zo SAP-u (kategória + rok nákupu).</p>
+    </div>
+  </div>
+</section>
+
 <!-- CAMPAIGN CALENDAR -->
 <section id="calendar">
   <div class="container">
-    <h2>3. Kalendár kampaní — Jún 2026 → Január 2027</h2>
+    <h2>4. Kalendár kampaní — Jún 2026 → Január 2027</h2>
     <p class="section-sub">Konkrétny rozpis na 8 mesiacov dopredu. Stavia na vašom existujúcom tempe (~1–2 broadcasty týždenne, personalizácia „Jana, …", wellness/sebavedomie pozicionovanie), nadväzuje na váš domáci textil portfólio a postupne dopĺňa chýbajúce automatizácie. Sezónne mega-kampane sú vyznačené oranžovou.</p>
 
     <div class="cal-legend">
@@ -855,7 +894,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 <!-- RFM -->
 <section class="alt" id="rfm">
   <div class="container">
-    <h2>4. RFM segmentácia (12 mesiacov)</h2>
+    <h2>5. RFM segmentácia (12 mesiacov)</h2>
     <p class="section-sub">Distribúcia 908 zákazníkov podľa Recency / Frequency / Monetary. Trh: SK. Obdobie: 20. 5. 2025 — 20. 5. 2026 vs 20. 5. 2024 — 20. 5. 2025. Báza rastie +23 % YoY, obrat +27 % YoY.</p>
 
     <div class="methodology-box">
@@ -986,7 +1025,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 <!-- RETENTION -->
 <section id="retention">
   <div class="container">
-    <h2>5. Retenčné kohorty a LTV</h2>
+    <h2>6. Retenčné kohorty a LTV</h2>
     <p class="section-sub">Mesačné kohorty prvého nákupu za posledných 24 mesiacov. Ukazuje, koľko % zákazníkov z každej kohorty sa vráti do 30, 60, 90, 180 dní a celkovo.</p>
 
     <div class="metrics-grid" style="margin-bottom: 32px;">
@@ -1119,7 +1158,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 <!-- DATABASE -->
 <section class="alt" id="database">
   <div class="container">
-    <h2>6. Databáza a audience segmenty</h2>
+    <h2>7. Databáza a audience segmenty</h2>
     <p class="section-sub">Veľkosť databázy, konverzia návštevník → e-mail, existujúce segmenty v Leadhube.</p>
 
     <div class="metrics-grid" style="margin-bottom: 24px;">
@@ -1203,7 +1242,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 <!-- TRAFFIC -->
 <section id="traffic">
   <div class="container">
-    <h2>7. Web traffic v Leadhube (30 dní)</h2>
+    <h2>8. Web traffic v Leadhube (30 dní)</h2>
     <p class="section-sub">Aké zdroje privádzajú návštevníkov, ako konvertujú a kde si Leadhub stojí oproti ostatným kanálom.</p>
 
     <div class="metrics-grid" style="margin-bottom: 24px;">
@@ -1297,7 +1336,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 <!-- FLOWS -->
 <section class="alt" id="flows">
   <div class="container">
-    <h2>8. Audit automatizácií</h2>
+    <h2>9. Audit automatizácií</h2>
     <p class="section-sub">Reálny stav 21 automatizácií v 6 logických skupinách (Spánkový kvíz, Pop-up + uvítacia séria, Opustenie prehliadania, Retencia a reaktivácia, Opustený košík) + zoznam čo dáva zmysel doplniť. Dáta zo živého Leadhub účtu k 20. 5. 2026.</p>
 
     <h3 style="font-size: 17px; color: var(--dex-navy); margin-bottom: 12px;">Nasadené automatizácie (čo už beží alebo je pripravené)</h3>
