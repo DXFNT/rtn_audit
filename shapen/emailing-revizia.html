@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shapen Barefoot — Revízia emailingu | Dexfinity</title>
+<meta name="description" content="Revízia nastavenia emailingu Shapen Barefoot — analýza frekvencie, prekryvov a konkrétny štvortýždňový plán úprav. Pripravil Dexfinity.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Questrial&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dex-blue: #0065F7;
+  --dex-navy: #05024E;
+  --dex-white: #ffffff;
+  --dex-light-bg: #F4F6FC;
+  --dex-blue-light: #E8F0FE;
+  --dex-blue-10: rgba(0, 101, 247, 0.1);
+  --dex-blue-20: rgba(0, 101, 247, 0.2);
+  --dex-navy-light: #0A0A6E;
+  --dex-text: #1A1A2E;
+  --dex-muted: #6B7280;
+  --dex-border: #E5E7EB;
+  --dex-teal: #16AB8B;
+  --dex-orange: #ff7f00;
+  --font-primary: 'Questrial', Arial, sans-serif;
+  --font-secondary: 'Poppins', Arial, sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow: 0 2px 8px rgba(0, 101, 247, 0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-secondary);
+  color: var(--dex-text);
+  line-height: 1.6;
+  background: var(--dex-white);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-family: var(--font-primary); }
+
+.urgency {
+  background: var(--dex-blue);
+  color: var(--dex-white);
+  text-align: center;
+  padding: 12px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-secondary);
+  letter-spacing: 0.5px;
+}
+
+/* Nav */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--dex-border);
+  padding: 10px 0;
+}
+.nav .container { display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { height: 48px; }
+.nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+.nav-links a {
+  color: var(--dex-muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-secondary);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--dex-blue); }
+.nav-links .cta { color: var(--dex-blue); font-weight: 600; }
+
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1000; position: relative; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--dex-navy); margin: 5px 0; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Hero */
+.hero { background: var(--dex-navy); color: var(--dex-white); padding: 80px 40px 100px; position: relative; overflow: hidden; }
+.hero .container { position: relative; z-index: 2; }
+.hero .circle-1 { position: absolute; width: 500px; height: 500px; border: 2px solid var(--dex-blue); border-radius: 50%; opacity: 0.12; top: -200px; right: -100px; }
+.hero .circle-2 { position: absolute; width: 300px; height: 300px; border: 2px solid var(--dex-blue); border-radius: 50%; opacity: 0.08; bottom: -100px; left: -80px; }
+.hero .circle-3 { position: absolute; width: 180px; height: 180px; background: var(--dex-blue); border-radius: 50%; opacity: 0.06; top: 60px; right: 200px; }
+.hero-badge { display: inline-block; background: var(--dex-blue-20); border: 1px solid rgba(0,101,247,0.3); border-radius: 50px; padding: 6px 18px; font-size: 12px; font-weight: 500; font-family: var(--font-secondary); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 24px; }
+.hero .tagline { font-family: var(--font-secondary); font-size: 14px; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--dex-blue); margin-bottom: 16px; }
+.hero h1 { font-size: 44px; font-weight: 400; line-height: 1.15; max-width: 880px; }
+.hero h1 span { color: var(--dex-blue); }
+.hero .sub { font-size: 16px; opacity: 0.7; margin-top: 20px; max-width: 720px; font-weight: 300; }
+.hero-stats { display: flex; gap: 48px; flex-wrap: wrap; margin-top: 48px; }
+.hero-stat .num { font-size: 36px; font-weight: 700; font-family: var(--font-secondary); color: var(--dex-white); }
+.hero-stat .num .unit { font-size: 18px; opacity: 0.6; margin-left: 4px; }
+.hero-stat .label { font-size: 11px; font-weight: 500; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+section { padding: 56px 0; }
+section.alt { background: var(--dex-light-bg); }
+section h2 { font-size: 28px; font-weight: 400; color: var(--dex-navy); margin-bottom: 6px; }
+section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: var(--font-secondary); margin-bottom: 32px; }
+
+/* Exec card */
+.exec-card { background: var(--dex-white); border-radius: var(--radius-lg); box-shadow: 0 20px 60px rgba(5, 2, 78, 0.14); padding: 40px 44px; margin: -48px auto 48px; max-width: 1060px; position: relative; z-index: 5; border: 1px solid var(--dex-border); }
+.exec-card h2 { font-size: 22px; color: var(--dex-navy); margin-bottom: 8px; }
+.exec-card p.exec-sub { color: var(--dex-muted); font-size: 13px; margin-bottom: 24px; }
+
+.opp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 8px; }
+.opp-card { position: relative; padding: 26px 26px 22px 26px; background: var(--dex-light-bg); border-radius: var(--radius-md); border-top: 4px solid var(--dex-blue); display: flex; flex-direction: column; }
+.opp-card:nth-child(1) { border-top-color: var(--dex-orange); }
+.opp-card:nth-child(2) { border-top-color: var(--dex-teal); }
+.opp-card:nth-child(3) { border-top-color: var(--dex-blue); }
+.opp-card:nth-child(4) { border-top-color: var(--dex-navy); }
+.opp-num { position: absolute; top: 14px; right: 18px; font-size: 40px; font-weight: 700; color: var(--dex-navy); opacity: 0.10; letter-spacing: -1px; font-family: 'Questrial', sans-serif; }
+.opp-tag { display: inline-block; font-size: 11px; font-weight: 600; color: var(--dex-blue); text-transform: uppercase; letter-spacing: 0.9px; margin-bottom: 10px; }
+.opp-card h3 { font-size: 17px; font-weight: 700; color: var(--dex-navy); margin: 0 0 14px 0; padding-right: 56px; line-height: 1.35; }
+.opp-metric { font-size: 34px; font-weight: 700; color: var(--dex-navy); line-height: 1; margin-bottom: 12px; font-family: 'Questrial', sans-serif; }
+.opp-metric .opp-unit { font-size: 13px; font-weight: 500; color: var(--dex-muted); letter-spacing: 0; }
+.opp-card p.opp-desc { font-size: 13px; color: var(--dex-muted); line-height: 1.55; margin: 0 0 14px 0; flex: 1; }
+.opp-action { font-size: 13px; font-weight: 600; color: var(--dex-blue); padding-top: 12px; border-top: 1px solid var(--dex-border); }
+.opp-meta { font-size: 12px; color: var(--dex-muted); text-align: center; margin-top: 24px; font-style: italic; }
+
+.quick-wins { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 24px; }
+.qwin { display: flex; gap: 16px; align-items: flex-start; padding: 14px 18px; background: var(--dex-light-bg); border-radius: var(--radius-md); border-left: 4px solid var(--dex-blue); }
+.qwin .qnum { width: 32px; height: 32px; border-radius: 50%; background: var(--dex-blue); color: var(--dex-white); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+.qwin.warn { border-left-color: var(--dex-orange); }
+.qwin.warn .qnum { background: var(--dex-orange); }
+.qwin.pos { border-left-color: var(--dex-teal); }
+.qwin.pos .qnum { background: var(--dex-teal); }
+.qwin h4 { font-size: 14px; font-weight: 600; color: var(--dex-navy); margin-bottom: 4px; }
+.qwin p { font-size: 13px; color: var(--dex-muted); line-height: 1.5; }
+
+/* Highlight box */
+.highlight-box { background: var(--dex-navy); color: var(--dex-white); border-radius: var(--radius-lg); padding: 48px; margin: 40px 0; position: relative; overflow: hidden; }
+.highlight-box .h-circle { position: absolute; border: 2px solid var(--dex-blue); border-radius: 50%; opacity: 0.1; }
+.highlight-box .h-c1 { width: 260px; height: 260px; top: -100px; right: -60px; }
+.highlight-box .h-c2 { width: 180px; height: 180px; bottom: -80px; left: 20%; }
+.highlight-box h3 { font-size: 22px; color: var(--dex-white); margin-bottom: 12px; position: relative; z-index: 2; }
+.highlight-box .formula { font-size: 20px; font-weight: 500; color: var(--dex-blue); letter-spacing: 1.2px; margin: 20px 0 28px; font-family: var(--font-primary); position: relative; z-index: 2; }
+.highlight-box > p { position: relative; z-index: 2; }
+.highlight-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; position: relative; z-index: 2; }
+.highlight-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); padding: 18px; }
+.highlight-card .hv { font-size: 22px; font-weight: 700; color: var(--dex-blue); font-family: var(--font-secondary); }
+.highlight-card .hl { font-size: 12px; opacity: 0.7; margin-top: 4px; }
+
+/* Metric cards */
+.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.metric-card { background: var(--dex-white); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow); border-left: 4px solid var(--dex-blue); }
+.metric-card h3 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--dex-muted); margin-bottom: 8px; }
+.metric-card .value { font-size: 28px; font-weight: 700; color: var(--dex-navy); font-family: var(--font-secondary); }
+.metric-card .desc { font-size: 13px; color: var(--dex-muted); margin-top: 4px; }
+.metric-card.pos { border-left-color: var(--dex-teal); }
+.metric-card.warn { border-left-color: var(--dex-orange); }
+.metric-card.pos .value { color: var(--dex-teal); }
+.metric-card.warn .value { color: var(--dex-orange); }
+.metric-card.pain { border-left-color: var(--dex-navy); background: var(--dex-navy); color: var(--dex-white); }
+.metric-card.pain h3 { color: rgba(255,255,255,0.7); }
+.metric-card.pain .value { font-size: 15px; font-weight: 500; font-style: italic; color: var(--dex-white); line-height: 1.4; }
+.metric-card.pain .desc { color: rgba(255,255,255,0.6); }
+.metric-card .trend { font-size: 12px; font-weight: 600; margin-top: 6px; }
+.metric-card .trend.up { color: var(--dex-teal); }
+.metric-card .trend.down { color: var(--dex-orange); }
+.metric-card .trend.flat { color: var(--dex-muted); }
+
+/* Audit table */
+.audit-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--dex-border); margin-top: 16px; }
+.audit-table th { background: var(--dex-navy); color: var(--dex-white); padding: 14px 18px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; text-align: left; }
+.audit-table td { padding: 14px 18px; font-size: 14px; border-bottom: 1px solid var(--dex-border); background: var(--dex-white); color: var(--dex-text); }
+.audit-table tr:last-child td { border-bottom: none; }
+.audit-table tr:hover td { background: var(--dex-light-bg); }
+.audit-table td strong { color: var(--dex-navy); }
+.table-scroll { overflow-x: auto; }
+.audit-table td.num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+.audit-table td.pos { color: var(--dex-teal); font-weight: 600; }
+.audit-table td.neg { color: var(--dex-orange); font-weight: 600; }
+.audit-table tr.warn-row td { background: rgba(255, 127, 0, 0.04); }
+.audit-table tr.crit-row td { background: rgba(5, 2, 78, 0.04); }
+
+/* Bar */
+.bar-wrap { display: flex; align-items: center; gap: 10px; }
+.bar-bg { flex: 1; height: 10px; background: var(--dex-blue-10); border-radius: 20px; overflow: hidden; position: relative; min-width: 120px; }
+.bar-fill { height: 100%; background: linear-gradient(90deg, var(--dex-blue), var(--dex-navy)); border-radius: 20px; }
+.bar-fill.teal { background: linear-gradient(90deg, var(--dex-teal), #0a7a64); }
+.bar-fill.orange { background: linear-gradient(90deg, var(--dex-orange), #e06600); }
+.bar-val { font-size: 12px; color: var(--dex-navy); font-weight: 600; min-width: 60px; text-align: right; }
+
+/* Badges */
+.badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.3px; }
+.badge-critical { background: var(--dex-navy); color: var(--dex-white); }
+.badge-warning { background: rgba(255, 127, 0, 0.12); color: var(--dex-orange); }
+.badge-info { background: var(--dex-blue-light); color: var(--dex-blue); }
+.badge-ok { background: var(--dex-light-bg); color: var(--dex-navy); }
+.badge-positive { background: var(--dex-teal); color: var(--dex-white); }
+
+/* Findings */
+.finding { display: grid; grid-template-columns: 4px 1fr; margin-bottom: 14px; border-radius: var(--radius-md); overflow: hidden; background: var(--dex-white); box-shadow: var(--shadow); border: 1px solid var(--dex-border); }
+.finding .bar { min-height: 100%; }
+.finding .bar.high { background: var(--dex-navy); }
+.finding .bar.med { background: var(--dex-blue); }
+.finding .bar.low { background: rgba(0,101,247,0.3); }
+.finding .bar.pos { background: var(--dex-teal); }
+.finding .bar.warn { background: var(--dex-orange); }
+.finding .content { padding: 20px 24px; }
+.finding .content h4 { font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 10px; color: var(--dex-navy); margin-bottom: 8px; flex-wrap: wrap; }
+.finding .content p { font-size: 13px; color: var(--dex-muted); line-height: 1.7; }
+.finding .content .rec { margin-top: 12px; padding: 12px 16px; background: var(--dex-blue-10); border-radius: var(--radius-sm); font-size: 13px; color: var(--dex-navy); border-left: 3px solid var(--dex-blue); }
+.finding .content .rec strong { color: var(--dex-blue); }
+.finding .content .data { margin-top: 10px; padding: 10px 14px; background: var(--dex-light-bg); border-radius: var(--radius-sm); font-size: 12px; color: var(--dex-muted); font-family: 'Poppins', monospace; }
+.finding .content .data strong { color: var(--dex-navy); }
+
+/* RFM segment block */
+.rfm-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 16px; }
+.rfm-card { padding: 18px; background: var(--dex-white); border-radius: var(--radius-md); border: 1px solid var(--dex-border); border-left: 4px solid var(--dex-muted); }
+.rfm-card .seg-name { font-size: 12px; font-weight: 700; color: var(--dex-muted); text-transform: uppercase; letter-spacing: 0.6px; }
+.rfm-card .seg-val { font-size: 28px; font-weight: 700; color: var(--dex-navy); font-family: var(--font-secondary); margin-top: 4px; }
+.rfm-card .seg-pct { font-size: 13px; color: var(--dex-muted); margin-top: 2px; }
+.rfm-card .seg-rev { font-size: 12px; color: var(--dex-blue); font-weight: 600; margin-top: 8px; }
+.rfm-card .seg-trend { font-size: 11px; font-weight: 600; margin-top: 4px; }
+.rfm-card.zero { border-left-color: var(--dex-orange); background: rgba(255, 127, 0, 0.03); }
+.rfm-card.zero .seg-val { color: var(--dex-orange); }
+.rfm-card.large { border-left-color: var(--dex-navy); }
+.rfm-card.large .seg-val { color: var(--dex-navy); }
+.rfm-card.hib { border-left-color: var(--dex-orange); background: rgba(255, 127, 0, 0.03); }
+.rfm-card.hib .seg-val { color: var(--dex-orange); }
+.rfm-card.pos { border-left-color: var(--dex-teal); }
+
+/* Summary box */
+.summary-box { background: var(--dex-navy); color: var(--dex-white); border-radius: var(--radius-lg); padding: 48px; margin: 48px 0; position: relative; overflow: hidden; }
+.summary-box .circle-dec { position: absolute; border: 2px solid var(--dex-blue); border-radius: 50%; opacity: 0.1; }
+.summary-box .circle-dec.c1 { width: 300px; height: 300px; top: -120px; right: -60px; }
+.summary-box .circle-dec.c2 { width: 200px; height: 200px; bottom: -80px; left: -40px; }
+.summary-box h2 { color: var(--dex-white) !important; margin-bottom: 24px; position: relative; z-index: 2; }
+.summary-box > p { opacity: 0.7; margin-bottom: 24px; font-size: 14px; position: relative; z-index: 2; }
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; position: relative; z-index: 2; }
+.summary-item { text-align: center; padding: 24px 16px; background: rgba(255,255,255,0.06); border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.1); }
+.summary-item .val { font-size: 32px; font-weight: 700; color: var(--dex-blue); font-family: var(--font-secondary); }
+.summary-item .label-title { font-size: 14px; font-weight: 600; margin-top: 4px; }
+.summary-item .desc { font-size: 12px; opacity: 0.6; margin-top: 4px; line-height: 1.5; }
+
+/* Rec timeline */
+.rec-timeline { position: relative; padding-left: 36px; margin-top: 16px; }
+.rec-timeline::before { content: ''; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--dex-blue), var(--dex-navy)); }
+.rec-step { position: relative; margin-bottom: 36px; }
+.rec-step::before { content: ''; position: absolute; left: -36px; top: 4px; width: 24px; height: 24px; border-radius: 50%; background: var(--dex-blue); border: 3px solid var(--dex-white); box-shadow: 0 0 0 2px var(--dex-blue); }
+.rec-step .step-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--dex-blue); margin-bottom: 6px; }
+.rec-step h3 { font-size: 18px; color: var(--dex-navy); margin-bottom: 8px; }
+.rec-step > p { font-size: 14px; color: var(--dex-muted); margin-bottom: 10px; }
+.rec-step ul { list-style: none; padding-left: 0; margin-top: 8px; }
+.rec-step ul li { font-size: 14px; color: var(--dex-text); margin-bottom: 8px; padding-left: 20px; position: relative; }
+.rec-step ul li::before { content: '→'; position: absolute; left: 0; color: var(--dex-blue); font-weight: 700; }
+.rec-step .step-impact { font-size: 12px; color: var(--dex-teal); font-weight: 600; margin-top: 10px; padding: 6px 12px; background: rgba(22, 171, 139, 0.08); border-radius: var(--radius-sm); display: inline-block; }
+
+/* Campaign calendar */
+.cal-month { margin-bottom: 28px; }
+.cal-month-header { display: flex; align-items: baseline; gap: 12px; padding: 14px 18px; background: var(--dex-blue-10); border-radius: var(--radius-md); margin-bottom: 14px; border-left: 4px solid var(--dex-blue); font-family: var(--font-primary); }
+.cal-month-header .cal-month-name { font-size: 18px; color: var(--dex-navy); font-weight: 400; }
+.cal-month-header .cal-month-tag { font-size: 12px; color: var(--dex-muted); font-family: var(--font-secondary); font-weight: 500; }
+.cal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.cal-campaign { padding: 16px 18px; background: var(--dex-white); border-radius: var(--radius-md); border: 1px solid var(--dex-border); border-left: 4px solid var(--dex-blue); box-shadow: var(--shadow); }
+.cal-campaign.flow { border-left-color: var(--dex-teal); }
+.cal-campaign.seasonal { border-left-color: var(--dex-orange); }
+.cal-meta { display: flex; gap: 10px; font-size: 11px; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; align-items: center; flex-wrap: wrap; }
+.cal-week { color: var(--dex-blue); }
+.cal-type { padding: 2px 8px; border-radius: 10px; background: var(--dex-blue-10); color: var(--dex-blue); }
+.cal-type.flow { background: rgba(22, 171, 139, 0.12); color: var(--dex-teal); }
+.cal-type.seasonal { background: rgba(255, 127, 0, 0.12); color: var(--dex-orange); }
+.cal-campaign h4 { font-size: 14px; font-weight: 700; color: var(--dex-navy); margin-bottom: 6px; line-height: 1.3; font-family: var(--font-secondary); }
+.cal-campaign .cal-aud { font-size: 12px; color: var(--dex-muted); margin-bottom: 6px; }
+.cal-campaign .cal-aud strong { color: var(--dex-navy); font-weight: 600; }
+.cal-campaign .cal-desc { font-size: 12px; color: var(--dex-muted); line-height: 1.55; }
+.cal-legend { display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap; font-size: 12px; color: var(--dex-muted); }
+.cal-legend .lg { display: flex; align-items: center; gap: 6px; }
+.cal-legend .lg-dot { width: 10px; height: 3px; border-radius: 2px; }
+.cal-legend .lg-dot.broadcast { background: var(--dex-blue); }
+.cal-legend .lg-dot.flow { background: var(--dex-teal); }
+.cal-legend .lg-dot.seasonal { background: var(--dex-orange); }
+
+/* Flow audit table */
+.flow-status { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+.flow-status.missing { background: rgba(255, 127, 0, 0.12); color: var(--dex-orange); }
+.flow-status.exists { background: rgba(22, 171, 139, 0.12); color: var(--dex-teal); }
+.flow-status.partial { background: rgba(0, 101, 247, 0.12); color: var(--dex-blue); }
+
+/* Methodology */
+.methodology-box { background: var(--dex-blue-10); border-radius: var(--radius-md); padding: 16px 20px; margin-bottom: 24px; border-left: 3px solid var(--dex-blue); }
+.methodology-box p { font-size: 12px; color: var(--dex-muted); line-height: 1.7; margin: 0; }
+.methodology-box strong { color: var(--dex-navy); }
+
+/* Footer */
+.footer { background: var(--dex-navy); color: var(--dex-white); padding: 56px 40px; text-align: center; position: relative; overflow: hidden; }
+.footer .circle-f { position: absolute; border: 1px solid var(--dex-blue); border-radius: 50%; opacity: 0.08; }
+.footer .circle-f.f1 { width: 260px; height: 260px; top: -80px; left: -40px; }
+.footer .circle-f.f2 { width: 180px; height: 180px; bottom: -60px; right: -40px; }
+.footer-logo { height: 64px; margin-bottom: 20px; position: relative; z-index: 2; }
+.footer p { opacity: 0.5; font-size: 13px; position: relative; z-index: 2; }
+.footer .footer-links { margin-top: 16px; opacity: 0.7; font-size: 13px; position: relative; z-index: 2; }
+.footer .footer-links a { color: var(--dex-blue); text-decoration: none; }
+.footer .go-beyond { font-size: 12px; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--dex-blue); margin-top: 20px; position: relative; z-index: 2; }
+
+@media (max-width: 860px) {
+  .quick-wins, .opp-grid, .highlight-grid, .rfm-grid { grid-template-columns: 1fr; }
+  .highlight-box, .summary-box { padding: 32px 24px; }
+  .hero h1 { font-size: 32px; }
+  .exec-card { padding: 28px 24px; }
+}
+@media (max-width: 768px) {
+  .hamburger { display: block; }
+  .nav-links { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--dex-white); flex-direction: column; align-items: center; justify-content: center; gap: 0; z-index: 999; padding: 80px 40px 40px; }
+  .nav-links.open { display: flex !important; }
+  .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid var(--dex-border); list-style: none; }
+  .nav-links li a { display: block; padding: 18px 0; font-size: 16px; }
+}
+</style>
+</head><body>
+<div class="urgency">Revízia emailingu · podklad pre Shapen tím · 27. 5. 2026 · zdroj: Ecomail účet shapen.ecomailapp.cz</div>
+
+<nav class="nav">
+  <div class="container">
+    <a href="#top"><img src="https://www.dexfinity.com/wp-content/uploads/2021/03/Logo-Small-Light-Landscape@2x.png" alt="Dexfinity" class="nav-logo"></a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#plan" class="cta">Akčný plán</a></li>
+      <li><a href="#stav">Stav emailingu</a></li>
+      <li><a href="#porovnanie">Porovnanie s odvetvím</a></li>
+      <li><a href="#upravy">Konkrétne úpravy</a></li>
+      <li><a href="#harmonogram">Harmonogram</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="circle-1"></div>
+  <div class="circle-2"></div>
+  <div class="circle-3"></div>
+  <div class="container">
+    <div class="hero-badge">Revízia emailingu · jún 2026</div>
+    <div class="tagline">Go Beyond</div>
+    <h1>Shapen Barefoot — <span>revízia emailingu</span> a štvortýždňový plán úprav</h1>
+    <p class="sub">Vďaka za feedback z reportingu za apríl 2026. Prešli sme všetkých 67 aktívnych automatizácií, frekvenciu odosielania per odberateľa a prekrývanie medzi scenármi. Tu je čo plánujeme upraviť, prečo a kedy.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">67</div><div class="label">Automatizácií zrevidovaných</div></div>
+      <div class="hero-stat"><div class="num">~6<span class="unit">/mes</span></div><div class="label">Priemerná frekvencia / odberateľ</div></div>
+      <div class="hero-stat"><div class="num">~4<span class="unit">/mes</span></div><div class="label">Cieľ po úpravách</div></div>
+      <div class="hero-stat"><div class="num">4<span class="unit">týž</span></div><div class="label">Harmonogram úprav</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ACTION PLAN — TOP -->
+<section id="plan">
+  <div class="container">
+    <div class="exec-card" style="margin-top: -48px;">
+      <h2>Akčný plán — čo upravíme v júni 2026</h2>
+      <p class="exec-sub">Päť úprav reaguje priamo na zistenia z revízie. Postupne, merateľne, bez negatívneho vplyvu na obrat. Detail v sekciách nižšie.</p>
+
+      <div class="opp-grid">
+        <div class="opp-card">
+          <div class="opp-num">01</div>
+          <div class="opp-tag">Týždeň 1 · 27.–31. 5.</div>
+          <h3>Revízia všetkých 67 automatizácií + mapa prekryvov</h3>
+          <div class="opp-metric">67<span class="opp-unit"> scenárov · 5 trhov</span></div>
+          <p class="opp-desc">Manuálny prechod každého aktívneho scenára v Ecomail prostredí — počet e-mailov v sérii, časové rozostupy, ukončovacie podmienky. Vytvorenie mapy: ktoré scenáre môžu poslať e-mail tomu istému odberateľovi v krátkom okne. Návrh limitov frekvencie na schválenie.</p>
+          <div class="opp-action">→ Výstup: revízny dokument + návrh limitov</div>
+        </div>
+
+        <div class="opp-card">
+          <div class="opp-num">02</div>
+          <div class="opp-tag">Týždeň 2 · 1.–7. 6.</div>
+          <h3>Reaktivácia po nákupe — skrátenie série</h3>
+          <div class="opp-metric">5<span class="opp-unit"> trhov · najsilnejší scenár</span></div>
+          <p class="opp-desc">Reaktivačné scenáre po nákupe sú najfrekventovanejšie — naprieč 5 trhmi pošlú odberateľovi v priemere 15–22 e-mailov ročne. Skrátime sériu na maximálne 3 e-maily a sprísnime spúšťače (minimálne 14 dní od posledného nákupu) tak, aby čerstvo nakupujúci nedostávali okamžité reaktivačné výzvy.</p>
+          <div class="opp-action">→ Výstup: upravené spúšťače + kratšia séria, naprieč všetkými trhmi</div>
+        </div>
+
+        <div class="opp-card">
+          <div class="opp-num">03</div>
+          <div class="opp-tag">Týždeň 2 · 1.–7. 6.</div>
+          <h3>Pravidlá blokovania medzi scenármi</h3>
+          <div class="opp-metric">5<span class="opp-unit"> prekrývajúcich sa zón</span></div>
+          <p class="opp-desc">Nastavenie pravidiel, kedy jeden scenár blokuje druhý. Príklady: uvítacie okno (7 dní) zastaví odber bežných hromadných kampaní; po e-maile „Ďakovačka" sa Reaktivácia neaktivuje 14 dní; pri vrátení tovaru dostane odberateľ na 14 dní pauzu z ostatných scenárov.</p>
+          <div class="opp-action">→ Výstup: 3 pravidlá blokovania nastavené v Ecomaile</div>
+        </div>
+
+        <div class="opp-card">
+          <div class="opp-num">04</div>
+          <div class="opp-tag">Týždeň 2 · 1.–7. 6.</div>
+          <h3>Pre-VIP scenáre — ukončiť</h3>
+          <div class="opp-metric">5<span class="opp-unit"> scenárov · nízky prínos</span></div>
+          <p class="opp-desc">Päť pre-VIP automatizácií (SK/CZ/EN/DE/ESP) priniesli za celú dobu fungovania spolu 366 € obratu pri viac ako 4 400 odoslaných e-mailoch. Pridávajú frekvenciu bez návratnosti. Spúšťače presmerujeme priamo do hlavného VIP scenára s upraveným prahom.</p>
+          <div class="opp-action">→ Výstup: 5 scenárov vypnutých, spúšťače presmerované</div>
+        </div>
+
+        <div class="opp-card">
+          <div class="opp-num">05</div>
+          <div class="opp-tag">Týždeň 3–4 · 8.–21. 6.</div>
+          <h3>VIP segment — štvrťročný kampaňový model</h3>
+          <div class="opp-metric">4×<span class="opp-unit"> /rok · namiesto kontinuálneho scenára</span></div>
+          <p class="opp-desc">VIP segment dnes funguje ako automatický scenár, ktorý sa aktivuje pravidelne. Preklopíme ho na štvrťročný kampaňový model — štyri kuratované kampane ročne s exkluzívnym obsahom (predčasný prístup, ponuky len pre VIP). Plus blokovanie z hromadných kampaní v 7-dňovom okne okolo VIP odoslania.</p>
+          <div class="opp-action">→ Výstup: VIP kalendár 4×/rok pripravený na Q3 spustenie</div>
+        </div>
+
+        <div class="opp-card">
+          <div class="opp-num">06</div>
+          <div class="opp-tag">Týždeň 4 · 15.–21. 6.</div>
+          <h3>Meranie pred / po + nastavenie KPI</h3>
+          <div class="opp-metric">3<span class="opp-unit"> hlavné KPI</span></div>
+          <p class="opp-desc">Nastavenie sledovania: priemerná frekvencia e-mailov na odberateľa za mesiac, miera odhlásenia naprieč scenármi, sťažnosti na nevyžiadanú poštu. Cieľové hodnoty: frekvencia z ~6 na ~4/mes, miera odhlásenia z 0,46 % pod 0,30 %, sťažnosti udržať pod 0,01 %.</p>
+          <div class="opp-action">→ Výstup: prehľad pred/po na konci júna</div>
+        </div>
+      </div>
+
+      <div class="quick-wins">
+        <div class="qwin pos"><div class="qnum">✓</div><div><h4>Cieľ frekvencie: ~6 → ~4 e-mailov / odberateľ / mesiac</h4><p>Pokles o tretinu pri zachovaní revenue z najsilnejších scenárov (Browse abandonment, Welcome, VIP).</p></div></div>
+        <div class="qwin pos"><div class="qnum">✓</div><div><h4>Cieľ miery odhlásenia: 0,46 % → 0,30 %</h4><p>Návrat do pásma, ktoré odvetvové štandardy považujú za silné. Hlavná páka: úpravy Reaktivácie po nákupe (88 % všetkých odhlásení).</p></div></div>
+        <div class="qwin pos"><div class="qnum">✓</div><div><h4>Zachovať otvárateľnosť nad 40 %</h4><p>Aktuálne 40,8 % automatizácie, 43,1 % hromadné kampane — výrazne nad odvetvovým priemerom 37,9 %. Úpravy nesmú zhoršiť tento ukazovateľ.</p></div></div>
+        <div class="qwin"><div class="qnum">i</div><div><h4>Žiadny negatívny vplyv na obrat</h4><p>Cieľ je obrat z automatizácií zachovať na 95 %+ aktuálnej úrovne. Skrátenie Reaktivácie pravdepodobne stratí 5–10 % obratu z toho scenára, ale ostatné scenáre zostávajú nedotknuté.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRENT STATE -->
+<section id="stav" class="alt">
+  <div class="container">
+    <h2>Stav emailingu — kľúčové ukazovatele</h2>
+    <p class="section-sub">Zhrnutie kondície Shapen účtu na základe údajov z Ecomailu (celková životnosť scenárov + posledných 30 dní hromadných kampaní).</p>
+
+    <div class="metrics-grid" style="margin-bottom: 28px;">
+      <div class="metric-card pos">
+        <h3>Sťažnosti na nevyžiadanú poštu</h3>
+        <div class="value">0,0064 %</div>
+        <div class="desc">62 sťažností z 964 845 e-mailov</div>
+        <div class="trend up">Výborné</div>
+      </div>
+      <div class="metric-card pos">
+        <h3>Miera otvorenia (priemer)</h3>
+        <div class="value">40,8 %</div>
+        <div class="desc">automatizácie · hromadné 43,1 %</div>
+        <div class="trend up">Nad odvetvovým priemerom</div>
+      </div>
+      <div class="metric-card warn">
+        <h3>Miera odhlásenia (hromadné, 30d)</h3>
+        <div class="value">0,46 %</div>
+        <div class="desc">424 odhlásení z 93 035 e-mailov</div>
+        <div class="trend down">Mierne nad cieľom 0,30 %</div>
+      </div>
+      <div class="metric-card">
+        <h3>Frekvencia / odberateľ</h3>
+        <div class="value">~6 / mes</div>
+        <div class="desc">automatizácie ~24/rok + hromadné ~48/rok</div>
+        <div class="trend flat">Cieľ po úpravách: ~4/mes</div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 18px; color: var(--dex-navy); margin: 16px 0 12px 0; font-family: var(--font-primary); font-weight: 400;">Miera odhlásenia podľa typu scenára</h3>
+    <div class="table-scroll">
+      <table class="audit-table">
+        <thead>
+          <tr><th>Scenár</th><th class="num">Odoslaných</th><th class="num">Odhlásení</th><th class="num">Miera</th><th>Stav</th></tr>
+        </thead>
+        <tbody>
+          <tr class="crit-row"><td><strong>Reaktivácia po nákupe</strong></td><td class="num">633 085</td><td class="num">9 196</td><td class="num neg">1,45 %</td><td><span class="badge badge-critical">Skrátiť sériu</span></td></tr>
+          <tr><td>Uvítacia séria (Welcome)</td><td class="num">22 592</td><td class="num">231</td><td class="num">1,02 %</td><td><span class="badge badge-warning">Revízia textov</span></td></tr>
+          <tr><td>Po vrátení tovaru</td><td class="num">12 473</td><td class="num">101</td><td class="num">0,81 %</td><td><span class="badge badge-info">Sledovať</span></td></tr>
+          <tr><td>VIP</td><td class="num">24 719</td><td class="num">178</td><td class="num">0,72 %</td><td><span class="badge badge-info">Redesign na 4×/rok</span></td></tr>
+          <tr><td>Po nákupe (Ďakovačka)</td><td class="num">21 374</td><td class="num">80</td><td class="num pos">0,37 %</td><td><span class="badge badge-positive">V poriadku</span></td></tr>
+          <tr><td>Opustený košík</td><td class="num">41 686</td><td class="num">153</td><td class="num pos">0,37 %</td><td><span class="badge badge-positive">V poriadku</span></td></tr>
+          <tr><td>Naposledy zobrazené (browse)</td><td class="num">179 369</td><td class="num">403</td><td class="num pos">0,22 %</td><td><span class="badge badge-positive">Výborné</span></td></tr>
+          <tr class="warn-row"><td>Pre-VIP</td><td class="num">4 483</td><td class="num">9</td><td class="num pos">0,20 %</td><td><span class="badge badge-warning">Ukončiť (nízky prínos)</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="finding" style="margin-top: 24px;">
+      <div class="bar warn"></div>
+      <div class="content">
+        <h4>Hlavný zdroj odhlásení = Reaktivácia po nákupe</h4>
+        <p>Z celkových 10 458 odhlásení v automatizáciách pripadá na Reaktivačné scenáre <strong>9 196 (88 %)</strong>. Všetky ostatné scenáre majú mieru odhlásenia v pásme, ktoré odvetvové štandardy považujú za zdravé. Riešenie sa preto sústredí presne na tento jeden typ scenára — skrátenie série a sprísnenie spúšťačov — namiesto plošného znižovania frekvencie všetkých automatizácií.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRY BENCHMARKS -->
+<section id="porovnanie">
+  <div class="container">
+    <h2>Porovnanie s odvetvím</h2>
+    <p class="section-sub">Verejne dostupné údaje z odvetvových reportov za 2025–2026. Zdroje na konci dokumentu.</p>
+
+    <div class="table-scroll">
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>Ukazovateľ</th>
+            <th>Odvetvový štandard</th>
+            <th>Shapen</th>
+            <th>Hodnotenie</th>
+            <th>Zdroj</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Sťažnosti na nevyžiadanú poštu</strong></td><td>cieľ &lt; 0,1 %</td><td class="num pos">0,0064 %</td><td><span class="badge badge-positive">15× pod cieľom</span></td><td>Google bulk sender requirements</td></tr>
+          <tr><td><strong>Miera otvorenia (e-shopy)</strong></td><td>priemer 37,9 %</td><td class="num pos">40,8 %</td><td><span class="badge badge-positive">Nad priemerom</span></td><td>Klaviyo 2025</td></tr>
+          <tr><td><strong>Miera otvorenia (top v móde)</strong></td><td>54,2 %</td><td class="num pos">54,9 % uvítacie · 62,3 % VIP</td><td><span class="badge badge-positive">Špička</span></td><td>Klaviyo 2025 fashion</td></tr>
+          <tr><td><strong>Miera odhlásenia / kampaň</strong></td><td>silné &lt; 0,3 % · prijateľné &lt; 0,5 %</td><td class="num">0,46 % hromadné</td><td><span class="badge badge-warning">Mierne nad silným pásmom</span></td><td>Klaviyo 2025</td></tr>
+          <tr><td><strong>Frekvencia (e-shopy)</strong></td><td>1–3 e-maily / týždeň · optimum 2/týž</td><td class="num">~1,5 / týž</td><td><span class="badge badge-positive">V odporúčanom pásme</span></td><td>Shopify 2025, MailerLite 2026</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="finding" style="margin-top: 24px;">
+      <div class="bar pos"></div>
+      <div class="content">
+        <h4>Celkový stav emailingu je z technického pohľadu zdravý</h4>
+        <p>Sťažnosti na nevyžiadanú poštu sú výrazne pod hranicou, ktorú Google používa pre obmedzovanie doručiteľnosti. Otvárateľnosť je nad priemerom e-shopov. Frekvencia je v pásme, ktoré odvetvové štandardy odporúčajú pre online predaj. To znamená, že infraštruktúra a väčšina scenárov funguje dobre — úpravy sa preto sústredia presne na tie body, kde údaje ukazujú zlepšiteľné miesta (Reaktivácia po nákupe, prekryvy medzi scenármi, VIP model).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIFIC CHANGES -->
+<section id="upravy" class="alt">
+  <div class="container">
+    <h2>Konkrétne úpravy</h2>
+    <p class="section-sub">Štyri body, na ktoré sa zameriame, vrátane očakávaného vplyvu na obrat a frekvenciu.</p>
+
+    <div class="rec-timeline">
+      <div class="rec-step">
+        <div class="step-label">Úprava 1</div>
+        <h3>Reaktivácia po nákupe — skrátenie série a sprísnenie spúšťačov</h3>
+        <p>Tento scenár generuje 88 % všetkých odhlásení z automatizácií. Aktuálne séria pošle viac e-mailov v krátkom okne po tom, ako odberateľ nedokončí ďalší nákup. Pre čerstvo nakupujúcich je to nadmerný kontakt.</p>
+        <ul>
+          <li>Skrátenie série na maximálne 3 e-maily (z aktuálnych 4–6)</li>
+          <li>Spúšťač sa aktivuje až minimálne 14 dní od posledného nákupu</li>
+          <li>Minimálne 7-dňové rozostupy medzi e-mailmi v sérii</li>
+        </ul>
+        <div class="step-impact">Očakávaný vplyv: miera odhlásenia z 1,45 % na ~0,5 %, obrat zachovaný na ~80 %</div>
+      </div>
+
+      <div class="rec-step">
+        <div class="step-label">Úprava 2</div>
+        <h3>Pravidlá blokovania medzi scenármi</h3>
+        <p>Bez explicitných pravidiel sa môžu scenáre aktivovať v rovnakom čase — napr. odberateľ v uvítacom okne dostane bežnú hromadnú kampaň, alebo po nákupe dostane Ďakovačku a hneď aj Reaktiváciu. Nastavíme jasnú hierarchiu.</p>
+        <ul>
+          <li>Uvítacie okno (7 dní) blokuje hromadné kampane</li>
+          <li>Po Ďakovačke pauza 14 dní pred aktiváciou Reaktivácie</li>
+          <li>Po vrátení tovaru 14-dňová pauza zo všetkých ostatných scenárov</li>
+          <li>Opustený košík má prioritu pred Naposledy zobrazené</li>
+        </ul>
+        <div class="step-impact">Očakávaný vplyv: v najhoršom prípade z 8–10 e-mailov za 2 týždne na ~4–5</div>
+      </div>
+
+      <div class="rec-step">
+        <div class="step-label">Úprava 3</div>
+        <h3>VIP segment — preklopiť na štvrťročný kampaňový model</h3>
+        <p>VIP zákazníci dnes dostávajú e-maily kontinuálne ako súčasť automatizovaného scenára. Hodnota VIP statusu sa stráca pri pravidelnosti — preto preklopíme model na štyri exkluzívne kampane ročne s vyšším pocitom výnimočnosti.</p>
+        <ul>
+          <li>4 kampane ročne (kvartálne), kuratované obsahom</li>
+          <li>Exkluzívny obsah: predčasný prístup, VIP-only ponuky, osobnejší tón</li>
+          <li>Blokovanie z hromadných kampaní v 7-dňovom okne okolo VIP odoslania</li>
+        </ul>
+        <div class="step-impact">Očakávaný vplyv: vyššia otvárateľnosť VIP (z 62 % na ~70+ %), silnejšia vernosť</div>
+      </div>
+
+      <div class="rec-step">
+        <div class="step-label">Úprava 4</div>
+        <h3>Pre-VIP scenáre — ukončiť, spúšťače presmerovať</h3>
+        <p>Päť pre-VIP scenárov priniesli za celú dobu fungovania spolu 366 € obrat pri viac ako 4 400 odoslaných e-mailoch (návratnosť 0,07 %). Pridávajú frekvenciu bez merateľnej hodnoty.</p>
+        <ul>
+          <li>Vypnutie všetkých 5 pre-VIP scenárov (SK/CZ/EN/DE/ESP)</li>
+          <li>Spúšťače presmerujeme priamo do hlavného VIP scenára so sprísneným prahom</li>
+        </ul>
+        <div class="step-impact">Očakávaný vplyv: úspora ~4 500 e-mailov ročne z účtu bez straty obratu</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="harmonogram">
+  <div class="container">
+    <h2>Harmonogram — 4 týždne v júni 2026</h2>
+    <p class="section-sub">Postupný plán implementácie, vrátane termínov, výstupov a kontrolných bodov.</p>
+
+    <div class="rec-timeline">
+      <div class="rec-step">
+        <div class="step-label">Týždeň 1 · 27. – 31. mája</div>
+        <h3>Detailná revízia a návrh limitov</h3>
+        <ul>
+          <li>Manuálna revízia všetkých 67 automatizácií v Ecomaile (počet e-mailov v sérii, časové rozostupy, ukončovacie podmienky)</li>
+          <li>Mapa prekryvov medzi scenármi podľa spúšťača (návšteva produktu / pridanie do košíka / nákup / nečinnosť)</li>
+          <li>Návrh limitov frekvencie a pravidiel blokovania na schválenie</li>
+        </ul>
+        <div class="step-impact">Výstup do piatka 31. 5.: revízny dokument + návrh limitov</div>
+      </div>
+
+      <div class="rec-step">
+        <div class="step-label">Týždeň 2 · 1. – 7. júna</div>
+        <h3>Implementácia hlavných úprav</h3>
+        <ul>
+          <li>Reaktivácia po nákupe — skrátenie série na max. 3 e-maily, sprísnenie spúšťača</li>
+          <li>Vypnutie 5 pre-VIP scenárov, presmerovanie spúšťačov</li>
+          <li>Nastavenie 3 hlavných pravidiel blokovania v Ecomaile</li>
+        </ul>
+        <div class="step-impact">Výstup do piatka 5. 6.: úpravy nasadené, pravidlá živé</div>
+      </div>
+
+      <div class="rec-step">
+        <div class="step-label">Týždeň 3 – 4 · 8. – 21. júna</div>
+        <h3>VIP redesign + meranie</h3>
+        <ul>
+          <li>VIP segment preklopený na štvrťročný kampaňový model, kalendár na Q3 pripravený</li>
+          <li>Revízia textov pre uvítaciu sériu (1,02 % miera odhlásenia, mierne nad cieľom)</li>
+          <li>Nastavenie sledovania KPI: frekvencia, miera odhlásenia, sťažnosti</li>
+        </ul>
+        <div class="step-impact">Výstup do 21. 6.: VIP kalendár · sledovanie KPI · revízia textov</div>
+      </div>
+
+      <div class="rec-step">
+        <div class="step-label">Týždeň 5 · 22. – 30. júna</div>
+        <h3>Vyhodnotenie pred / po + plán na Q3</h3>
+        <ul>
+          <li>Prehľad pred / po: priemerná frekvencia, miera odhlásenia, sťažnosti</li>
+          <li>Identifikácia ďalších oblastí na zlepšenie (segmenty, A/B testy textov, lokalizácia obsahu)</li>
+          <li>Plán na Q3: hlbšia segmentácia kampaní, A/B testovanie predmetov, zjednotenie modelu vernosti</li>
+        </ul>
+        <div class="step-impact">Výstup do 30. 6.: vyhodnocujúci dokument + plán na Q3</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUMMARY -->
+<section class="alt">
+  <div class="container">
+    <div class="summary-box">
+      <div class="circle-dec c1"></div>
+      <div class="circle-dec c2"></div>
+      <h2>Zhrnutie cieľov na koniec júna 2026</h2>
+      <p>Tri merateľné ciele, ktoré vyhodnotíme na konci sprintu spolu s prehľadom pred / po.</p>
+
+      <div class="summary-grid">
+        <div class="summary-item">
+          <div class="val">~6 → ~4</div>
+          <div class="label-title">E-mailov / odberateľ / mes</div>
+          <div class="desc">pokles o tretinu, hlavne z Reaktivácie</div>
+        </div>
+        <div class="summary-item">
+          <div class="val">0,46 → 0,30 %</div>
+          <div class="label-title">Miera odhlásenia (hromadné)</div>
+          <div class="desc">návrat do silného pásma</div>
+        </div>
+        <div class="summary-item">
+          <div class="val">&lt; 0,01 %</div>
+          <div class="label-title">Sťažnosti</div>
+          <div class="desc">udržať aktuálnu úroveň 0,0064 %</div>
+        </div>
+        <div class="summary-item">
+          <div class="val">95 %+</div>
+          <div class="label-title">Zachovaný obrat</div>
+          <div class="desc">úpravy nesmú znížiť výnos viac ako o 5 %</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOURCES -->
+<section>
+  <div class="container">
+    <h2>Použité zdroje</h2>
+    <p class="section-sub">Verejné odvetvové reporty a oficiálne odporúčania, ktoré sme použili pri porovnaní.</p>
+
+    <div class="table-scroll">
+      <table class="audit-table">
+        <thead>
+          <tr><th>Téma</th><th>Zdroj</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Email marketing benchmarks 2025 (otvárateľnosť, miera odhlásenia, prekliky)</td><td>Klaviyo Benchmark Report 2025</td></tr>
+          <tr><td>Optimálna frekvencia e-mailov pre e-shopy</td><td>Shopify (2025) · MailerLite (2026)</td></tr>
+          <tr><td>Hranica sťažností na nevyžiadanú poštu (cieľ, vynucovanie)</td><td>Google bulk sender requirements (2024) · Microsoft (2025)</td></tr>
+          <tr><td>Vplyv nepravidelného odosielania na odhlásenia</td><td>MailerLite cadence study 2026</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="circle-f f1"></div>
+  <div class="circle-f f2"></div>
+  <img src="https://www.dexfinity.com/wp-content/uploads/2021/03/Logo-Small-Dark-Landscape@2x.png" alt="Dexfinity" class="footer-logo">
+  <p>Revízia pripravená pre Shapen Barefoot · Dexfinity · 27. 5. 2026</p>
+  <p class="footer-links">Údaje: Ecomail účet shapen.ecomailapp.cz</p>
+  <div class="go-beyond">Go Beyond</div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.querySelector('.hamburger').classList.toggle('active');
+  document.getElementById('navLinks').classList.toggle('open');
+}
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.hamburger').classList.remove('active');
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
