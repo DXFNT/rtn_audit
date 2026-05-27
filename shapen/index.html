@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shapen — Ecomail audit | Dexfinity</title>
-<meta name="description" content="Audit emailingu Shapen Barefoot v Ecomaile — performance, 67 automatizácií, cross-market porovnanie, databáza, segmenty. Pripravil Dexfinity. Go Beyond.">
+<title>Shapen — Ecomail audit (frequency &amp; overlap) | Dexfinity</title>
+<meta name="description" content="Revízia emailingu Shapen Barefoot — reakcia na klientsky feedback o nadmernej frekvencii. Mapuje frekvenciu per subscriber, overlap zóny, navrhuje cap pravidlá. Pripravil Dexfinity. Go Beyond.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Questrial&display=swap" rel="stylesheet">
@@ -317,13 +317,14 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 </style>
 </head>
 <body>
-<div class="urgency">Interný audit emailingu · zber dát 27. 5. 2026 · zdroj: Ecomail API (lists, pipelines, campaigns, stats)</div>
+<div class="urgency">Interný audit emailingu · zber dát 27. 5. 2026 · zdroj: Ecomail API · revízia frekvencie a overlap rizík</div>
 
 <nav class="nav">
   <div class="container">
     <a href="#top"><img src="https://www.dexfinity.com/wp-content/uploads/2021/03/Logo-Small-Light-Landscape@2x.png" alt="Dexfinity" class="nav-logo"></a>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
     <ul class="nav-links" id="navLinks">
+      <li><a href="#frequency" class="cta">Frekvencia</a></li>
       <li><a href="#performance">Performance</a></li>
       <li><a href="#flows">Automatizácie</a></li>
       <li><a href="#markets">Markety</a></li>
@@ -339,72 +340,98 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
   <div class="circle-2"></div>
   <div class="circle-3"></div>
   <div class="container">
-    <div class="hero-badge">Ecomail audit · interný</div>
+    <div class="hero-badge">Ecomail revízia · interný</div>
     <div class="tagline">Go Beyond</div>
-    <h1>Shapen — emailing beží na <span>10,5 mil. lifetime obrate z automatizácií</span>, ale 7 trhov pýta inú údržbu.</h1>
-    <p class="sub">Hĺbkový audit Ecomail účtu pre Shapen Barefoot (barefoot obuv, SK + CZ + EN + DE + ESP + SI + FR). Pokrýva výkonnosť kampaní, 67 aktívnych automatizácií, cross-market porovnanie, databázu a segmentové štruktúry. Dáta zbierané 27. 5. 2026 priamo z Ecomail REST API.</p>
+    <h1>Shapen — emailing chodí <span>~6 mailov mesačne na aktívneho odberateľa</span>. Treba frekvenčný cap a deduplikáciu automatov.</h1>
+    <p class="sub">Hĺbková revízia Ecomail účtu pre Shapen Barefoot — reaguje na klientsky feedback (Anastasia, reporting 4/2026) o priliš častých e-mailoch. Mapuje frekvenciu odosielania per subscriber, overlap riziká medzi automatmi, redundantné flows a odporúča konkrétne cap pravidlá. Dáta z Ecomail REST API, zber 27. 5. 2026.</p>
     <div class="hero-stats">
+      <div class="hero-stat"><div class="num">~6<span class="unit">/mes</span></div><div class="label">Mailov priemer / aktívny subscriber</div></div>
       <div class="hero-stat"><div class="num">67</div><div class="label">Aktívnych automatizácií</div></div>
-      <div class="hero-stat"><div class="num">18,1<span class="unit">k</span></div><div class="label">B2C odberateľov · 5 trhov</div></div>
-      <div class="hero-stat"><div class="num">35</div><div class="label">Kampaní za posledných 30 dní</div></div>
-      <div class="hero-stat"><div class="num">1,3<span class="unit">M</span></div><div class="label">Obrat z kampaní 30d (mix mien)</div></div>
+      <div class="hero-stat"><div class="num">5<span class="unit">+</span></div><div class="label">Overlap zón medzi flows</div></div>
+      <div class="hero-stat"><div class="num">21,8<span class="unit">/rok</span></div><div class="label">Reaktivácia SK na 1 subscribera</div></div>
     </div>
   </div>
 </header>
 
 <div class="container">
   <div class="exec-card">
-    <h2>4 hlavné príležitosti — kde dnes dospelý setup necháva peniaze na stole</h2>
-    <p class="exec-sub">Shapen má jeden z najdospelších e-mailových programov medzi Dexfinity klientmi — 67 aktívnych pipelines naprieč 5 trhmi, špičkové open raty (Welcome EN 54 %, VIP EN 66 %). Audit preto nie je o stavaní zo zelenej lúky, ale o optimalizácii, gap analysis a cross-market vyrovnaní.</p>
+    <h2>4 hlavné akcie — reakcia na klientsky feedback o nadmernej frekvencii</h2>
+    <p class="exec-sub">Anastasia (Shapen 112) na reportingu za 4/2026 vyčítala, že chodí príliš veľa automatov a ľudia sú spamovaní. Po analýze 67 pipelines + 30d broadcastov má pravdu — priemerný aktívny SK/CZ/EN subscriber dostane ~6 mailov mesačne (automaty + broadcasty), a u high-engagement zákazníkov to môže byť 10–12 v dvojtýždňovom okne. Audit fokus: cap frekvencie, deduplikácia overlap zón, redukcia redundantných flows.</p>
 
     <div class="opp-grid">
       <div class="opp-card">
         <div class="opp-num">01</div>
-        <div class="opp-tag">Priorita · 0–2 týždne</div>
-        <h3>SK trh výrazne underperformuje vs CZ/EN</h3>
-        <div class="opp-metric">4,7<span class="opp-unit"> tis. € · 30d kampane (SK)</span></div>
-        <p class="opp-desc">SK má 1 681 odberateľov a posledných 30 dní generoval len 4,7 k € z broadcastov — pri CZ s 2 675 odberateľmi to bolo 185 k Kč (~7,4 k €). Per-subscriber je SK na ~40 % CZ čísla. Cadence aj segmentácia sú podobné, takže problém je kvalita zoznamu alebo content fit pre SK trh.</p>
-        <div class="opp-action">→ SK list health audit + content A/B test (SK vs CZ template adaptácia)</div>
+        <div class="opp-tag">Priorita · 0–2 týždne · KRITICKÉ</div>
+        <h3>Frekvenčný cap na úrovni účtu</h3>
+        <div class="opp-metric">~6<span class="opp-unit"> mailov/mes · aktívny subscriber</span></div>
+        <p class="opp-desc">Súčet automatov + broadcastov dáva v priemere 6 mailov/mes per subscriber (CZ/EN/DE/ESP). U vysoko angažovaných (nakupcov, browse-erov) je to ešte viac — môžu dostať 10–12 mailov za 2 týždne. Bez cap pravidiel je každý nový flow ďalšia záťaž navrch.</p>
+        <div class="opp-action">→ Cap rules v Ecomaile: max 1 mail/deň, max 4 mailov/týždeň per subscriber</div>
       </div>
 
       <div class="opp-card">
         <div class="opp-num">02</div>
-        <div class="opp-tag">Priorita · 0–4 týždne</div>
-        <h3>Reaktivácia po nákupe je top revenue driver</h3>
-        <div class="opp-metric">2,48<span class="opp-unit"> M lifetime obrat</span></div>
-        <p class="opp-desc">5 reaktivačných flows (po nákupe) priniesli 2,48 M v lifetime obrate — druhá najsilnejšia kategória. EN verzia má 939 k obratu z 102 k triggerov, CZ verzia až 1,33 M z 28 k. SK verzia výrazne zaostáva. Replikovať úspešný CZ template do SK + DE + ESP.</p>
-        <div class="opp-action">→ Audit CZ Reaktivácia nákup šablóny + clone pre SK/DE/ESP</div>
+        <div class="opp-tag">Priorita · 0–3 týždne · KRITICKÉ</div>
+        <h3>Reaktivácia nákup — najsilnejší triggerový flow</h3>
+        <div class="opp-metric">21,8<span class="opp-unit"> mailov/rok · SK subscriber</span></div>
+        <p class="opp-desc">Reaktivácia nákup SK posiela každému SK subscriberovi v priemere 21,8 mailov/rok (1,8/mes) — najviac z všetkých flows. CZ 15,6/rok, EN 17,4/rok, DE 16,6/rok, ESP 16,8/rok. Pre zákazníkov ktorí nedávno nakúpili je to nadmerný push. Treba auditovať počet emailov v sérii a trigger podmienky.</p>
+        <div class="opp-action">→ Audit Reaktivácia nákup: znížiť počet mailov v sérii, sprísniť trigger</div>
       </div>
 
       <div class="opp-card">
         <div class="opp-num">03</div>
-        <div class="opp-tag">Priorita · 2–6 týždňov</div>
-        <h3>40 SK segmentov — clean-up + dokumentácia</h3>
-        <div class="opp-metric">40<span class="opp-unit"> SK segmentov (33 CZ, 48 EN)</span></div>
-        <p class="opp-desc">SK newsletter má 40 segmentov, EN dokonca 48. Veľká časť z nich sú „Segment A", „Segment A (copy)", „DEX TEST", „Test", „zdroje test", duplikáty Black Friday segmentov z 2024. Bez clean-upu hrozí, že tím cieli nesprávne audience. Treba auditovať, čo sa reálne používa, a archivovať mŕtve.</p>
-        <div class="opp-action">→ Inventarizácia segmentov + archivácia nepoužívaných (40 → ~15)</div>
+        <div class="opp-tag">Priorita · 1–4 týždne</div>
+        <h3>Overlap zóny medzi automatmi</h3>
+        <div class="opp-metric">5<span class="opp-unit"> nezávislých overlap kombinácií</span></div>
+        <p class="opp-desc">Triggers sa môžu prekrývať: (a) Site visit → Browse abandonment + Opustený košík, (b) Purchase → Ďakovačka + Reaktivácia nákup, (c) No purchase 30/60d → Reaktivácia + Pre-VIP + Odobratie štítku, (d) Anniversary → Výročie nákupu + 2./3. Výročie, (e) Nameday + Welcome window. Bez exit conditions sa môžu fire-ovať súčasne.</p>
+        <div class="opp-action">→ Suppression rules: exit conditions + priority order medzi flows</div>
       </div>
 
       <div class="opp-card">
         <div class="opp-num">04</div>
-        <div class="opp-tag">Priorita · 4–8 týždňov</div>
-        <h3>Cross-market consistency v automatizáciách</h3>
-        <div class="opp-metric">5<span class="opp-unit"> trhov · 13 flow typov · variabilita</span></div>
-        <p class="opp-desc">Niektoré flows majú silnú EN/CZ verziu, ale slabú SK/DE/ESP. Napr. Browse abandonment EN robí 1,56 M obratu, ale ESP len ~7 k. Treba spraviť cross-market benchmark per flow a doladiť tie verzie, kde výkonnosť je signifikantne pod priemerom.</p>
-        <div class="opp-action">→ Per-flow benchmark + remediate underperformerov (top 3 flows × 5 markets)</div>
+        <div class="opp-tag">Priorita · 2–6 týždňov</div>
+        <h3>VIP segment — kvartálne, nie mesačne</h3>
+        <div class="opp-metric">4×<span class="opp-unit"> /rok · namiesto current 1×/mes</span></div>
+        <p class="opp-desc">Súhlas s odporúčaním Zuzky: VIP segment by mal dostávať minimálne kvartálne (4×/rok), nie ako súčasť bežnej mesačnej cadence. Dnes VIP SK/CZ/EN/DE/ESP flow chodí kontinuálne — pre top zákazníkov je to viac dotykov ako u priemerného odberateľa. Treba prerobiť VIP ako exkluzívny, vzácny kontakt.</p>
+        <div class="opp-action">→ VIP redesign: kvartálny calendar + ne-kanibalizovať s broadcastmi</div>
       </div>
     </div>
 
     <div class="quick-wins">
-      <div class="qwin pos"><div class="qnum">✓</div><div><h4>Welcome EN: 54 % open rate, 8,5 % CR</h4><p>1 284 konverzií z 15 067 triggerov za lifetime. Toto je world-class welcome flow — replikovať jeho template a tone na ostatné trhy.</p></div></div>
-      <div class="qwin pos"><div class="qnum">✓</div><div><h4>VIP EN: 66 % open rate</h4><p>Najvyšší open rate v celom účte. 472 konverzií z 5 235 triggerov, 466 k obrat. VIP loyalty layer funguje veľmi dobre — gold standard pre ostatné trhy.</p></div></div>
-      <div class="qwin warn"><div class="qnum">!</div><div><h4>SK len 1 broadcast za 30 dní</h4><p>SK trh má 1 681 odberateľov, ale za posledných 30 dní odišla len 1 detegovaná SK-specific kampaň. CZ má 4–5/mes. Príčina pravdepodobne v SK content workflow, nie v Ecomaile.</p></div></div>
-      <div class="qwin"><div class="qnum">i</div><div><h4>EN newsletter = 47,7 % B2C bázy</h4><p>EN newsletter má 8 660 odberateľov z celkových 18 146 B2C — takmer polovica. Dáva zmysel, lebo Shapen exportuje globálne, ale aj zvyšuje váhu EN trhu na výsledky.</p></div></div>
-      <div class="qwin warn"><div class="qnum">!</div><div><h4>Pre-VIP flows generujú 366 €</h4><p>5 pre-VIP pipelines za lifetime priniesli len 366 € pri 4 493 triggeroch. Buď zlý timing, slabý copy, alebo cieľová audience. Audit alebo deprekovať.</p></div></div>
-      <div class="qwin pos"><div class="qnum">✓</div><div><h4>Browse abandonment = 3,08 M obrat</h4><p>Najsilnejšia kategória automatizácií. 5 verzií, 234 k triggerov, 3 003 konverzií. EN verzia robí 1,56 M sama.</p></div></div>
+      <div class="qwin warn"><div class="qnum">!</div><div><h4>Reaktivácia nákup SK: 21,8 mailov/rok per subscriber</h4><p>Top frekvenčný hriešnik. 36 646 sendov/rok na 1 681 SK subscriberov. Pravdepodobne 4–6 mail séria, ktorá sa triggeruje pri každom väčšom časovom okne bez nákupu.</p></div></div>
+      <div class="qwin warn"><div class="qnum">!</div><div><h4>Pre-VIP flows: 4 493 sendov, 366 € obrat</h4><p>5 pre-VIP pipelines (SK/CZ/EN/DE/ESP) vygenerovali za lifetime len 3 konverzie. CR 0,07 %. Redundantný flow, ktorý pridáva 0,2 mailov/sub/rok k frekvencii — deprekovať alebo prepojiť s VIP.</p></div></div>
+      <div class="qwin"><div class="qnum">i</div><div><h4>Welcome + Broadcasts overlap</h4><p>Subscriber v 7-dňovom Welcome okne stále môže dostať bežný broadcast. Bez suppression sa welcome séria + 2 broadcasty môžu skombinovať na 5+ mailov v prvom týždni.</p></div></div>
+      <div class="qwin warn"><div class="qnum">!</div><div><h4>Naposledy zobrazené SK: 5,4 mailov/rok per sub</h4><p>Browse abandonment chodí často (každá návšteva môže trigger-ovať). Pri SK 0,45 mailu/mes na priemerného sub-a, u vysoko angažovaných viac. Spolu s Cart abandonment ide o overlap zónu.</p></div></div>
+      <div class="qwin pos"><div class="qnum">✓</div><div><h4>Open rates 38–66 % držia sender reputation</h4><p>Aj pri vyšších frekvenciách sa Ecomail listy stále otvárajú. Doručiteľnosť nie je problém — problém je perceptual fatigue a content overlap.</p></div></div>
+      <div class="qwin pos"><div class="qnum">✓</div><div><h4>Reaktivácia EN_NEW: 17,4/rok ale 939k obrat</h4><p>Dôkaz, že vysoká frekvencia môže prinášať obrat, ak je content relevantný. Audit nie je o znížení všetkého — ale o cap-e na worst-case kombinácie a o exit conditions.</p></div></div>
     </div>
 
-    <div class="opp-meta">Nižšie 5 dátových sekcií, z ktorých tieto príležitosti vychádzajú — vrátane konkrétnych čísel priamo z Ecomail API.</div>
+    <div class="opp-meta">Nižšie nová sekcia 1 „Frekvencia &amp; overlap" s detailnou mapou per-market frekvencie, plus revidovaný flow audit s frequency stĺpcami.</div>
+  </div>
+
+  <!-- CLIENT FEEDBACK BOX -->
+  <div style="background: linear-gradient(135deg, rgba(255, 127, 0, 0.06), rgba(255, 127, 0, 0.02)); border-radius: var(--radius-lg); padding: 32px 40px; margin: 24px auto 32px; max-width: 1060px; border: 1px solid rgba(255, 127, 0, 0.3); border-left: 5px solid var(--dex-orange);">
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+      <span style="display: inline-block; padding: 5px 12px; background: var(--dex-orange); color: white; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; border-radius: 4px; font-family: var(--font-secondary);">KLIENTSKY FEEDBACK · 4/2026 REPORTING</span>
+      <span style="font-size: 12px; color: var(--dex-muted); font-family: var(--font-secondary);">Anastasia (Shapen) · Katka + Zuzana (Dexfinity)</span>
+    </div>
+    <h3 style="font-size: 18px; color: var(--dex-navy); margin-bottom: 14px; font-family: var(--font-secondary);">Čo klient hovorí — a čo Dexfinity tím sľúbil</h3>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+      <div style="background: white; padding: 18px 20px; border-radius: var(--radius-md); border: 1px solid var(--dex-border);">
+        <div style="font-size: 11px; font-weight: 700; color: var(--dex-orange); letter-spacing: 0.05em; margin-bottom: 8px; font-family: var(--font-secondary);">SŤAŽNOSŤ KLIENTA (ANASTASIA)</div>
+        <p style="font-size: 14px; color: var(--dex-text); line-height: 1.6; margin: 0;">„Chodí extrémne veľa automatov. Spamujeme tých ľudí. Potrebujeme urobiť celkovú revíziu emailingu — hlbkový audit toolu + odporúčania do budúcnosti."</p>
+      </div>
+
+      <div style="background: white; padding: 18px 20px; border-radius: var(--radius-md); border: 1px solid var(--dex-border);">
+        <div style="font-size: 11px; font-weight: 700; color: var(--dex-teal); letter-spacing: 0.05em; margin-bottom: 8px; font-family: var(--font-secondary);">REAKCIA DEXFINITY (KATKA + ZUZANA)</div>
+        <p style="font-size: 14px; color: var(--dex-text); line-height: 1.6; margin: 0 0 8px 0;">„Spravíme revíziu automatov, keďže Anastasia spomínala príliš časté e-maily. Skontrolujeme frekvenciu odosielania a to, či sa jednotlivé automaty medzi sebou neprekrývajú."</p>
+        <p style="font-size: 14px; color: var(--dex-text); line-height: 1.6; margin: 0;">„Do Zoho doplníme ďalšie dáta. Do budúcna zvážime hlbšiu segmentáciu kampaní vrátane <strong>VIP segmentu, ktorý by mal chodiť minimálne kvartálne</strong>." — Zuzana</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 18px; padding: 14px 18px; background: rgba(0, 101, 247, 0.08); border-radius: var(--radius-md); border-left: 3px solid var(--dex-blue); font-size: 13px; color: var(--dex-navy); line-height: 1.6;">
+      <strong>Tento audit reaguje priamo na tieto body:</strong> sekcia 1 mapuje frekvenciu per subscriber, sekcia 2 (Performance) ukazuje broadcasty, sekcia 3 (Automatizácie) má teraz frequency stĺpec, Next Steps box obsahuje cap pravidlá + VIP kvartálny re-design + Pre-VIP rozhodnutie ako prvé úlohy.
+    </div>
   </div>
 
   <!-- THIS WEEK & NEXT WEEK — TACTICAL BREAKDOWN -->
@@ -418,7 +445,7 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
         <span style="font-size: 12px; color: rgba(255,255,255,0.7); font-family: var(--font-secondary);">27. 5. – 7. 6. 2026 · 2 týždne dopredu</span>
       </div>
       <h2 style="font-size: 24px; color: white; margin-bottom: 8px; font-family: var(--font-secondary); font-weight: 400;">Čo robíme tento a budúci týždeň</h2>
-      <p style="color: rgba(255,255,255,0.78); font-size: 14px; margin-bottom: 28px; line-height: 1.55;">Tri paralelné prúdy práce. Bez externých nástrojov — všetko v Ecomaile + interný workflow.</p>
+      <p style="color: rgba(255,255,255,0.78); font-size: 14px; margin-bottom: 28px; line-height: 1.55;">Tri prúdy práce — reagujú priamo na Anastasiin feedback. Bez externých nástrojov, všetko v Ecomaile.</p>
 
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px;">
         <div style="background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: var(--radius-md); padding: 22px;">
@@ -426,26 +453,34 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
             <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--dex-orange);"></div>
             <span style="font-size: 11px; font-weight: 700; color: var(--dex-orange); letter-spacing: 0.08em; font-family: var(--font-secondary);">TENTO TÝŽDEŇ · 27. 5. – 31. 5.</span>
           </div>
-          <h3 style="font-size: 17px; color: white; margin-bottom: 14px; font-family: var(--font-secondary); font-weight: 500;">Diagnóza SK trhu + inventory segmentov</h3>
+          <h3 style="font-size: 17px; color: white; margin-bottom: 14px; font-family: var(--font-secondary); font-weight: 500;">Frekvenčný audit + overlap mapa</h3>
 
           <div style="margin-bottom: 14px;">
             <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 6px;">
               <span style="font-family: var(--font-secondary); font-size: 14px; font-weight: 700; color: var(--dex-orange);">①</span>
-              <strong style="font-size: 14px; color: white;">SK list health audit</strong>
+              <strong style="font-size: 14px; color: white;">Detailný frequency audit per market</strong>
             </div>
-            <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0 0 0 24px;">Otvoríme SK newsletter (1 681 odberateľov), pozrieme bounce rate, sub source distribution, engagement scoring za posledných 90 dní. Cieľ: pochopiť prečo SK robí 40 % CZ obratu pri podobnej veľkosti.</p>
+            <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0 0 0 24px;">Cez Ecomail UI prejdeme každý z 67 pipelines — počet mailov v sérii, časový rozostup, exit conditions. Spočítame worst-case mailov/2 týždne pre high-engagement subscriber-a.</p>
+          </div>
+
+          <div style="margin-bottom: 14px;">
+            <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 6px;">
+              <span style="font-family: var(--font-secondary); font-size: 14px; font-weight: 700; color: var(--dex-orange);">②</span>
+              <strong style="font-size: 14px; color: white;">Overlap mapa medzi pipelines</strong>
+            </div>
+            <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0 0 0 24px;">Mapa: pre každý trigger event (Site visit / Cart / Purchase / No-purchase) → ktoré pipelines môžu fire-ovať a v akom poradí. Identifikovať konfliktné zóny.</p>
           </div>
 
           <div>
             <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 6px;">
-              <span style="font-family: var(--font-secondary); font-size: 14px; font-weight: 700; color: var(--dex-orange);">②</span>
-              <strong style="font-size: 14px; color: white;">Inventory 40 SK + 48 EN segmentov</strong>
+              <span style="font-family: var(--font-secondary); font-size: 14px; font-weight: 700; color: var(--dex-orange);">③</span>
+              <strong style="font-size: 14px; color: white;">Návrh cap pravidiel</strong>
             </div>
-            <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0 0 0 24px;">Cez Ecomail API stiahneme všetky segmenty s last_used dátumom. Tie, čo neboli použité &gt; 6 mesiacov, ideme archivovať. Cieľ: zo 40 → ~15 SK segmentov, z 48 → ~20 EN.</p>
+            <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0 0 0 24px;">Sketch: max 1 mail/deň, max 4/týždeň. Welcome okno suppresuje broadcasty. Reaktivácia nákup nesmie fire-ovať počas Ďakovačka okna. Pripraviť na schválenie s klientom.</p>
           </div>
 
           <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.12); font-size: 12px; color: rgba(255,255,255,0.6); font-family: var(--font-secondary);">
-            <strong style="color: white;">Deliverable do piatku 31. 5.:</strong> SK diagnostický report + cleanup plán segmentov
+            <strong style="color: white;">Deliverable do piatku 31. 5.:</strong> Frequency report + overlap mapa + cap proposal
           </div>
         </div>
 
@@ -454,52 +489,52 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
             <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--dex-teal);"></div>
             <span style="font-size: 11px; font-weight: 700; color: var(--dex-teal); letter-spacing: 0.08em; font-family: var(--font-secondary);">BUDÚCI TÝŽDEŇ · 1. 6. – 7. 6.</span>
           </div>
-          <h3 style="font-size: 17px; color: white; margin-bottom: 14px; font-family: var(--font-secondary); font-weight: 500;">SK kampaň + flow optimalizácia</h3>
-
-          <div style="margin-bottom: 14px;">
-            <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 6px;">
-              <span style="font-family: var(--font-secondary); font-size: 14px; font-weight: 700; color: var(--dex-teal);">③</span>
-              <strong style="font-size: 14px; color: white;">SK broadcast: A/B test SK content adaptácie</strong>
-            </div>
-            <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0 0 0 24px;">Vezmeme top CZ kampaň (Jarní výprodej, OR 40,5 %) a urobíme dve SK verzie: A = priamy preklad, B = SK-tone adaptácia s lokálnymi referenciami. Send streda 3. 6.</p>
-          </div>
+          <h3 style="font-size: 17px; color: white; margin-bottom: 14px; font-family: var(--font-secondary); font-weight: 500;">Implementácia capov + VIP re-design</h3>
 
           <div style="margin-bottom: 14px;">
             <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 6px;">
               <span style="font-family: var(--font-secondary); font-size: 14px; font-weight: 700; color: var(--dex-teal);">④</span>
-              <strong style="font-size: 14px; color: white;">Reaktivácia nákup SK — clone CZ template</strong>
+              <strong style="font-size: 14px; color: white;">Reaktivácia nákup — znížiť počet mailov v sérii</strong>
             </div>
-            <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0 0 0 24px;">CZ verzia tohto flow robí 1,33 M obrat. Skopírujeme jej štruktúru, timing a subject patterns do SK pipeline, prepneme do live.</p>
+            <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0 0 0 24px;">Najsilnejší flow (21,8/sub/rok v SK). Sprísniť trigger (napr. min 14 dní od posledného nákupu) a znížiť mailov v sérii z X na max 3. Aplikovať na všetkých 5 markets.</p>
+          </div>
+
+          <div style="margin-bottom: 14px;">
+            <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 6px;">
+              <span style="font-family: var(--font-secondary); font-size: 14px; font-weight: 700; color: var(--dex-teal);">⑤</span>
+              <strong style="font-size: 14px; color: white;">Pre-VIP flows — deprekovať</strong>
+            </div>
+            <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0 0 0 24px;">5 pipelines, 366 € lifetime. Zastaviť všetkých 5 pre-VIP flows, triggers presmerovať priamo do VIP s upraveným prahom. Šetrí 0,2 mailov/sub/rok × 5 markets.</p>
           </div>
 
           <div>
             <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 6px;">
-              <span style="font-family: var(--font-secondary); font-size: 14px; font-weight: 700; color: var(--dex-teal);">⑤</span>
-              <strong style="font-size: 14px; color: white;">Pre-VIP flow audit (5 markets)</strong>
+              <span style="font-family: var(--font-secondary); font-size: 14px; font-weight: 700; color: var(--dex-teal);">⑥</span>
+              <strong style="font-size: 14px; color: white;">VIP redesign — kvartálne</strong>
             </div>
-            <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0 0 0 24px;">Pre-VIP flows generujú dohromady len 366 € — buď deprekovať, alebo prepojiť so silnejším VIP flow. Rozhodnutie do piatku.</p>
+            <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0 0 0 24px;">Per Zuzanin návrh: VIP segment 4×/rok (kvartálne) s exkluzívnymi ponukami. Vyjsť z evergreen pipeline modelu na kampaňový model. Suppresuje sa s broadcastmi v rovnakom okne.</p>
           </div>
 
           <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.12); font-size: 12px; color: rgba(255,255,255,0.6); font-family: var(--font-secondary);">
-            <strong style="color: white;">Deliverable do piatku 5. 6.:</strong> SK A/B kampaň poslaná · Reaktivácia nákup SK live · Pre-VIP rozhodnutie
+            <strong style="color: white;">Deliverable do piatku 5. 6.:</strong> Reaktivácia upravená · Pre-VIP off · VIP plan na Q3
           </div>
         </div>
       </div>
 
       <div style="background: rgba(0, 101, 247, 0.18); border: 1px solid rgba(0, 101, 247, 0.35); border-radius: var(--radius-md); padding: 18px 22px;">
-        <div style="font-family: var(--font-secondary); font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.85); letter-spacing: 0.06em; margin-bottom: 10px;">3 PARALELNÉ PRÚDY PRÁCE</div>
+        <div style="font-family: var(--font-secondary); font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.85); letter-spacing: 0.06em; margin-bottom: 10px;">3 PARALELNÉ PRÚDY PRÁCE (na priame Anastasiine body)</div>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; font-size: 13px; color: rgba(255,255,255,0.88); line-height: 1.5;">
           <div>
-            <strong style="display: block; color: white; font-size: 13px; margin-bottom: 4px;">1. SK trh fix</strong>
-            <span style="color: rgba(255,255,255,0.7); font-size: 12px;">Diagnóza + A/B test SK content</span>
+            <strong style="display: block; color: white; font-size: 13px; margin-bottom: 4px;">1. Frekvenčný audit + cap</strong>
+            <span style="color: rgba(255,255,255,0.7); font-size: 12px;">Per-subscriber mailov/mes znížiť pod 4–5</span>
           </div>
           <div>
-            <strong style="display: block; color: white; font-size: 13px; margin-bottom: 4px;">2. Segmenty cleanup</strong>
-            <span style="color: rgba(255,255,255,0.7); font-size: 12px;">40 SK + 48 EN → archivácia mŕtvych</span>
+            <strong style="display: block; color: white; font-size: 13px; margin-bottom: 4px;">2. Overlap deduplikácia</strong>
+            <span style="color: rgba(255,255,255,0.7); font-size: 12px;">Exit conditions + priority order medzi flows</span>
           </div>
           <div>
-            <strong style="display: block; color: white; font-size: 13px; margin-bottom: 4px;">3. Flow optimalizácia</strong>
-            <span style="color: rgba(255,255,255,0.7); font-size: 12px;">Reaktivácia SK clone + Pre-VIP rozhodnutie</span>
+            <strong style="display: block; color: white; font-size: 13px; margin-bottom: 4px;">3. VIP kvartálne + Pre-VIP off</strong>
+            <span style="color: rgba(255,255,255,0.7); font-size: 12px;">Zuzanin návrh: VIP 4×/rok, redundantné flows preč</span>
           </div>
         </div>
       </div>
@@ -512,49 +547,157 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
       <span style="display: inline-block; padding: 5px 12px; background: var(--dex-orange); color: white; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; border-radius: 4px; font-family: var(--font-secondary);">CELÝ MESIAC — ZOOM OUT</span>
       <span style="font-size: 12px; color: var(--dex-muted); font-family: var(--font-secondary);">Jún 2026 · optimalizácia dospelého setupu</span>
     </div>
-    <h2 style="font-size: 22px; color: var(--dex-navy); margin-bottom: 8px;">Plán na 4 týždne — kde majú zásahy najväčší pákový efekt</h2>
-    <p style="color: var(--dex-muted); font-size: 14px; margin-bottom: 24px; line-height: 1.55;">Pohľad na celý jún. Audit Shapen má iný charakter než greenfield setupy — fokus je na <strong style="color: var(--dex-navy);">vyrovnaní cross-market výkonnosti</strong>, čistení dlhových položiek (mŕtve segmenty, slabé flows) a <strong style="color: var(--dex-navy);">replikácii top patternov</strong> (CZ/EN) na slabšie trhy (SK, DE, ESP).</p>
+    <h2 style="font-size: 22px; color: var(--dex-navy); margin-bottom: 8px;">Plán na 4 týždne — frequency-first reštart</h2>
+    <p style="color: var(--dex-muted); font-size: 14px; margin-bottom: 24px; line-height: 1.55;">Pohľad na celý jún. Audit reaguje priamo na Anastasiin feedback — fokus je <strong style="color: var(--dex-navy);">redukcia priemerných mailov/sub/mes</strong> z ~6 na ~4, <strong style="color: var(--dex-navy);">deduplikácia overlap zón</strong> medzi pipelines a <strong style="color: var(--dex-navy);">VIP re-design na kvartálnu cadence</strong>.</p>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px;">
       <div style="background: linear-gradient(135deg, rgba(255, 127, 0, 0.06), rgba(255, 127, 0, 0.02)); border: 1px solid rgba(255, 127, 0, 0.25); border-radius: var(--radius-md); padding: 22px;">
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
           <span style="font-family: var(--font-secondary); font-size: 28px; font-weight: 700; color: var(--dex-orange); line-height: 1;">1</span>
-          <span style="font-size: 11px; font-weight: 700; color: var(--dex-orange); letter-spacing: 0.05em; font-family: var(--font-secondary);">TÝŽDEŇ 1–2 · DIAGNOSTIKA</span>
+          <span style="font-size: 11px; font-weight: 700; color: var(--dex-orange); letter-spacing: 0.05em; font-family: var(--font-secondary);">TÝŽDEŇ 1–2 · AUDIT</span>
         </div>
-        <h3 style="font-size: 16px; color: var(--dex-navy); margin-bottom: 8px; font-family: var(--font-secondary);">SK trh + segment cleanup</h3>
-        <p style="font-size: 13px; color: var(--dex-text); line-height: 1.55; margin-bottom: 0;">Pochopiť prečo SK robí 40 % CZ obratu pri rovnocenných kvantitách. Vyčistiť 40 SK + 48 EN segmentov na použiteľný set. A/B testovať SK content adaptáciu vs preklad CZ.</p>
+        <h3 style="font-size: 16px; color: var(--dex-navy); margin-bottom: 8px; font-family: var(--font-secondary);">Frekvenčný audit + overlap mapa</h3>
+        <p style="font-size: 13px; color: var(--dex-text); line-height: 1.55; margin-bottom: 0;">Manuálny prechod 67 pipelines v Ecomaile — počet mailov v sérii, časové rozostupy, exit conditions. Overlap matrix per trigger event. Cap proposal: max 1 mail/deň, max 4/týždeň per subscriber. Schválenie s klientom pred implementáciou.</p>
       </div>
 
       <div style="background: linear-gradient(135deg, rgba(0, 101, 247, 0.05), rgba(0, 101, 247, 0.01)); border: 1px solid rgba(0, 101, 247, 0.25); border-radius: var(--radius-md); padding: 22px;">
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
           <span style="font-family: var(--font-secondary); font-size: 28px; font-weight: 700; color: var(--dex-blue); line-height: 1;">2</span>
-          <span style="font-size: 11px; font-weight: 700; color: var(--dex-blue); letter-spacing: 0.05em; font-family: var(--font-secondary);">TÝŽDEŇ 2–3 · REPLIKÁCIA</span>
+          <span style="font-size: 11px; font-weight: 700; color: var(--dex-blue); letter-spacing: 0.05em; font-family: var(--font-secondary);">TÝŽDEŇ 2–3 · CUT</span>
         </div>
-        <h3 style="font-size: 16px; color: var(--dex-navy); margin-bottom: 8px; font-family: var(--font-secondary);">Top patterny do slabších trhov</h3>
-        <p style="font-size: 13px; color: var(--dex-text); line-height: 1.55; margin-bottom: 0;">Clone CZ Reaktivácia nákup template (1,33 M lifetime) do SK + DE + ESP. Welcome EN (54 % OR) ako benchmark template — porovnať s ostatnými verziami a unifikovať tone + štruktúru.</p>
+        <h3 style="font-size: 16px; color: var(--dex-navy); margin-bottom: 8px; font-family: var(--font-secondary);">Reaktivácia trim + Pre-VIP off</h3>
+        <p style="font-size: 13px; color: var(--dex-text); line-height: 1.55; margin-bottom: 0;">Reaktivácia nákup (najsilnejší flow) — znížiť počet mailov v sérii, sprísniť trigger. Pre-VIP (366 € obrat) zastaviť na všetkých 5 markets. Suppression rules medzi Welcome ↔ broadcasts, Browse ↔ Cart abandonment, Ďakovačka ↔ Reaktivácia.</p>
       </div>
 
       <div style="background: linear-gradient(135deg, rgba(22, 171, 139, 0.05), rgba(22, 171, 139, 0.01)); border: 1px solid rgba(22, 171, 139, 0.25); border-radius: var(--radius-md); padding: 22px;">
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
           <span style="font-family: var(--font-secondary); font-size: 28px; font-weight: 700; color: var(--dex-teal); line-height: 1;">3</span>
-          <span style="font-size: 11px; font-weight: 700; color: var(--dex-teal); letter-spacing: 0.05em; font-family: var(--font-secondary);">TÝŽDEŇ 3–4 · OPTIMALIZÁCIA</span>
+          <span style="font-size: 11px; font-weight: 700; color: var(--dex-teal); letter-spacing: 0.05em; font-family: var(--font-secondary);">TÝŽDEŇ 3–4 · REDESIGN</span>
         </div>
-        <h3 style="font-size: 16px; color: var(--dex-navy); margin-bottom: 8px; font-family: var(--font-secondary);">Pre-VIP + dlhodobé flows</h3>
-        <p style="font-size: 13px; color: var(--dex-text); line-height: 1.55; margin-bottom: 0;">Pre-VIP flows (366 € lifetime) deprekovať alebo prepojiť so silným VIP flow. Po vrátení tovaru a Výročie nákupu prejsť copy refresh (najslabšie OR v automatizáciách). VIP EN (66 % OR) ako gold standard.</p>
+        <h3 style="font-size: 16px; color: var(--dex-navy); margin-bottom: 8px; font-family: var(--font-secondary);">VIP kvartálny + meranie</h3>
+        <p style="font-size: 13px; color: var(--dex-text); line-height: 1.55; margin-bottom: 0;">VIP re-design na 4×/rok kampaňový model (per Zuzana). Nastaviť KPI tracking — priemer mailov/sub/mes pred a po, unsubscribe rate, spam complaints. Schválenie nového setupu s Anastasiou. Cieľ na konci juna: ~4 maily/sub/mes vs súčasných ~6.</p>
       </div>
     </div>
 
     <div style="margin-top: 22px; padding: 16px 20px; background: var(--dex-light-bg); border-radius: var(--radius-md); border-left: 3px solid var(--dex-muted);">
-      <div style="font-family: var(--font-secondary); font-size: 13px; font-weight: 600; color: var(--dex-navy); margin-bottom: 6px;">Mimo scope tohto sprintu (júl 2026 a ďalej)</div>
-      <p style="font-size: 13px; color: var(--dex-text); line-height: 1.55; margin: 0;">Per-market AB testovacia matica (subject lines, send times) · cross-market RFM unifikácia · post-purchase quiz na zber sizing preferences · win-back na hibernating segmenty v EN/DE/ESP · B2B partner flow optimalizácia (mimo tohto auditu).</p>
+      <div style="font-family: var(--font-secondary); font-size: 13px; font-weight: 600; color: var(--dex-navy); margin-bottom: 6px;">Mimo scope tohto sprintu (Q3 2026 a ďalej)</div>
+      <p style="font-size: 13px; color: var(--dex-text); line-height: 1.55; margin: 0;">Per-market AB testovacia matica (subject, send times) · cross-market RFM unifikácia · segment cleanup (40 SK + 48 EN) · SK content adaptácia · DE conversion gap audit · post-purchase quiz na zber preferences · B2B partner flow optimalizácia.</p>
     </div>
   </div>
 </div>
 
-<!-- PERFORMANCE -->
-<section id="performance">
+<!-- FREQUENCY & OVERLAP -->
+<section id="frequency">
   <div class="container">
-    <h2>1. Performance — kampane za 30 dní (cross-market)</h2>
+    <h2>1. Frekvencia &amp; overlap — koľko mailov chodí 1 zákazníkovi</h2>
+    <p class="section-sub">Detailný frequency audit per trh + mapa overlap zón medzi pipelines. Reaguje priamo na Anastasiin feedback o nadmernej cadence.</p>
+
+    <div class="methodology-box">
+      <p><strong>Metodika:</strong> Lifetime <code>send</code> počty per pipeline ÷ vek pipeline (dní od <code>created_at</code>) × 365 = priemerný počet sendov/rok. Vydelené veľkosťou cieľového listu = priemerná frekvencia per subscriber/rok. <strong>Pozn.:</strong> ide o priemer — high-engagement zákazníci dostávajú výrazne viac, low-engagement výrazne menej. Pre presnosť treba detail z Ecomail UI (počet emailov per pipeline série), ktorý API nesprístupňuje.</p>
+    </div>
+
+    <div class="highlight-box">
+      <div class="h-circle h-c1"></div>
+      <div class="h-circle h-c2"></div>
+      <h3>Priemer mailov / aktívny subscriber / mesiac</h3>
+      <div class="formula">AUTOMATY ~24–32 / ROK + BROADCASTS ~48 / ROK = ~6 MAILOV / MES</div>
+      <p>Cap proposal: <strong style="color: var(--dex-blue);">max 4 mailov/týždeň</strong>, max 1 mail/deň per subscriber. Welcome okno suppresuje broadcasty. Reaktivácia nákup nesmie fire-ovať počas Ďakovačka okna.</p>
+      <div class="highlight-grid">
+        <div class="highlight-card"><div class="hv">32,6</div><div class="hl">SK: priemerne automatov / sub / rok</div></div>
+        <div class="highlight-card"><div class="hv">26,3</div><div class="hl">EN: priemerne automatov / sub / rok</div></div>
+        <div class="highlight-card"><div class="hv">24,3</div><div class="hl">DE + ESP: priemer / sub / rok</div></div>
+        <div class="highlight-card"><div class="hv">23,6</div><div class="hl">CZ: priemerne automatov / sub / rok</div></div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 18px; color: var(--dex-navy); margin: 32px 0 16px 0; font-family: var(--font-primary); font-weight: 400;">Frekvencia per pipeline a market (sendov / 1 subscriber / rok)</h3>
+    <div class="table-scroll">
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>Pipeline</th>
+            <th class="num">SK</th>
+            <th class="num">CZ</th>
+            <th class="num">EN</th>
+            <th class="num">DE</th>
+            <th class="num">ESP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="crit-row"><td><strong>Reaktivácia nákup</strong></td><td class="num neg">21,8</td><td class="num">15,6</td><td class="num">17,4</td><td class="num">16,6</td><td class="num">16,8</td></tr>
+          <tr><td><strong>Naposledy zobrazené</strong> (Browse)</td><td class="num">5,4</td><td class="num">3,2</td><td class="num">4,4</td><td class="num">3,9</td><td class="num">4,2</td></tr>
+          <tr><td>Reaktivácia (bez nákupu)</td><td class="num">1,2</td><td class="num">1,8</td><td class="num">1,0</td><td class="num">0,8</td><td class="num">0,8</td></tr>
+          <tr><td>Opustený košík</td><td class="num">1,3</td><td class="num">0,7</td><td class="num">1,2</td><td class="num">0,4</td><td class="num">0,4</td></tr>
+          <tr><td>VIP</td><td class="num">0,5</td><td class="num">0,5</td><td class="num">0,5</td><td class="num">0,9</td><td class="num">0,8</td></tr>
+          <tr><td>Ďakovačka</td><td class="num">0,8</td><td class="num">0,5</td><td class="num">0,6</td><td class="num">0,3</td><td class="num">-</td></tr>
+          <tr><td>Welcome</td><td class="num">0,7</td><td class="num">0,3</td><td class="num">0,6</td><td class="num">0,4</td><td class="num">0,6</td></tr>
+          <tr><td>Po vrátení tovaru</td><td class="num">0,5</td><td class="num">0,6</td><td class="num">0,3</td><td class="num">0,7</td><td class="num">0,3</td></tr>
+          <tr class="warn-row"><td>Pre-VIP <em>(deprekovať)</em></td><td class="num">0,2</td><td class="num">0,2</td><td class="num">0,2</td><td class="num">0,2</td><td class="num">0,2</td></tr>
+          <tr><td>Výročie nákupu</td><td class="num">0,2</td><td class="num">0,2</td><td class="num">0,2</td><td class="num">0,2</td><td class="num">0,2</td></tr>
+          <tr style="background: var(--dex-light-bg);"><td><strong>Σ Automatizácie / sub / rok</strong></td><td class="num"><strong>~32,6</strong></td><td class="num"><strong>~23,6</strong></td><td class="num"><strong>~26,3</strong></td><td class="num"><strong>~24,3</strong></td><td class="num"><strong>~24,3</strong></td></tr>
+          <tr style="background: var(--dex-light-bg);"><td><strong>+ Broadcasts / sub / rok (5/2026)</strong></td><td class="num">~12</td><td class="num">~48</td><td class="num">~48</td><td class="num">~48</td><td class="num">~48</td></tr>
+          <tr style="background: rgba(255,127,0,0.06);"><td><strong>⌀ MAILOV / SUB / ROK</strong></td><td class="num"><strong>~45</strong></td><td class="num"><strong>~72</strong></td><td class="num"><strong>~74</strong></td><td class="num"><strong>~72</strong></td><td class="num"><strong>~72</strong></td></tr>
+          <tr style="background: rgba(255,127,0,0.06);"><td><strong>⌀ MAILOV / SUB / MES</strong></td><td class="num"><strong>~3,8</strong></td><td class="num"><strong>~6,0</strong></td><td class="num"><strong>~6,2</strong></td><td class="num"><strong>~6,0</strong></td><td class="num"><strong>~6,0</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size: 18px; color: var(--dex-navy); margin: 32px 0 16px 0; font-family: var(--font-primary); font-weight: 400;">Overlap mapa — ktoré pipelines môžu fire-ovať na rovnaký event</h3>
+    <div class="table-scroll">
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>Trigger event</th>
+            <th>Možné automaty</th>
+            <th>Riziko</th>
+            <th>Riešenie</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="crit-row"><td><strong>Návšteva produktu (browse)</strong></td><td>Naposledy zobrazené + Opustený košík (ak pridá do košíka)</td><td><span class="badge badge-critical">2 maily / 24h</span></td><td>Browse 24h delay; Cart abandonment má prioritu</td></tr>
+          <tr class="crit-row"><td><strong>Nákup spravený</strong></td><td>Ďakovačka + Reaktivácia nákup (následne)</td><td><span class="badge badge-critical">Overlap okna 7–30d</span></td><td>Reaktivácia nákup čaká 14d po Ďakovačka</td></tr>
+          <tr class="warn-row"><td><strong>Bez nákupu 30/60/90d</strong></td><td>Reaktivácia + Pre-VIP + Odobratie štítku</td><td><span class="badge badge-warning">3 paralelné série</span></td><td>Pre-VIP off; jasná hierarchia Reaktivácia vs Odobratie</td></tr>
+          <tr class="warn-row"><td><strong>Nový subscriber + broadcast</strong></td><td>Welcome (7d) + bežný broadcast (48/rok)</td><td><span class="badge badge-warning">Welcome 7d okno</span></td><td>Subscriber v Welcome okne suppresovaný z broadcastov</td></tr>
+          <tr><td><strong>Nákupné výročie</strong></td><td>Výročie nákupu + 2./3. Výročie nákupu</td><td><span class="badge badge-info">Sekvenčné</span></td><td>Skontrolovať že 2./3. trigger len ak 1. fired</td></tr>
+          <tr><td><strong>Vrátenie tovaru</strong></td><td>Po vrátení tovaru + môže overlap s Reaktivácia</td><td><span class="badge badge-info">Edge case</span></td><td>Po vrátení 14d cooldown z ostatných flows</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="finding" style="margin-top: 28px;">
+      <div class="bar high"></div>
+      <div class="content">
+        <h4>Reaktivácia nákup SK = 21,8 mailov/rok per sub — najsilnejší frekvenčný hriešnik <span class="badge badge-critical">Critical</span></h4>
+        <p>36 646 sendov/rok na 1 681 SK subscriberov. Pri jednoduchom matematickom delení každý SK zákazník dostane ~22 reaktivačných mailov ročne — to je 1,8 mailu/mes len z TOHTO jedného flow. V realite je distribúcia nerovnaká (high-purchasers viac, hibernating menej), ale výsledok je pre niektorých zákazníkov enormná záťaž.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> (1) Sprísniť trigger — minimálne 14 dní od posledného nákupu, ne 0–7. (2) Znížiť počet mailov v sérii — z aktuálnych X (treba zistiť v UI) na max 3. (3) Hard cap: ak posledných 14 dní subscriber dostal &gt; 3 maily, suppress.</div>
+        <div class="data"><strong>Dáta:</strong> SK Reaktivácia nákup ID 9951, lifetime triggered 28 270, send count ~84 692 (3 sendov per trigger v priemere = 3-mail séria). Vek pipeline ~2,3 roka.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar warn"></div>
+      <div class="content">
+        <h4>5 nezávislých overlap kombinácií bez explicitných exit conditions <span class="badge badge-warning">Cleanup</span></h4>
+        <p>Bez exit/suppression rules môže jeden zákazník dostať: (1) Browse abandonment mail po prezeraní, (2) Cart abandonment ak pridal do košíka, (3) Ďakovačka po nákupe, (4) Reaktivácia nákup ak nedokončí ďalší nákup, (5) broadcast — všetko v 7–10 dňovom okne. To je 5 mailov len z dynamiky 1 nákupnej cesty, plus pravidelné kampaňové broadcasty.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Definovať priority order pre flows (Welcome &gt; Cart &gt; Browse &gt; Reaktivácia &gt; Anniversary) a hard suppression okná (Ďakovačka okno 7d = no other flows, Welcome okno 7d = no broadcasts).</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar warn"></div>
+      <div class="content">
+        <h4>VIP segment chodí mesačne / kontinuálne — Zuzana navrhuje kvartálne <span class="badge badge-warning">Redesign</span></h4>
+        <p>VIP SK/CZ/EN/DE/ESP flows fire-ujú kontinuálne ako trigger-based pipeline. Pre top zákazníkov to znamená 0,5–0,9 mailov/sub/rok z VIP flow + bežné broadcasty + ostatné automaty. VIP by mal byť „výjazdový" kontakt — vzácny, exkluzívny.</p>
+        <div class="rec"><strong>Odporúčanie (per Zuzana):</strong> VIP re-design na 4 kampane ročne (kvartálne), s exkluzívnym contentom (early access, VIP-only ponuky, named-customer feel). Hard suppression z broadcastov v 7d okolo VIP sendu.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERFORMANCE -->
+<section id="performance" class="alt">
+  <div class="container">
+    <h2>2. Performance — kampane za 30 dní (cross-market)</h2>
     <p class="section-sub">Hromadné kampane za posledných 30 dní (28. 4. – 27. 5. 2026). Pozn.: revenue je v lokálnej mene listu (SK = €, CZ = Kč, EN/DE/ESP/SI/FR = mix €). Pre cross-market porovnanie sa pozri na per-recipient revenue, nie absolútne čísla.</p>
 
     <div class="methodology-box">
@@ -643,9 +786,9 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 </section>
 
 <!-- AUTOMATIONS / FLOWS -->
-<section id="flows" class="alt">
+<section id="flows">
   <div class="container">
-    <h2>2. Automatizácie — 67 aktívnych pipelines, 13 flow typov</h2>
+    <h2>3. Automatizácie — 67 aktívnych pipelines, 13 flow typov</h2>
     <p class="section-sub">Komplexný audit všetkých automatizácií v Ecomaile. Lifetime stats od spustenia (najstarší flow z 6/2023, najmladší z 5/2026). Zoradené podľa generovaného obratu.</p>
 
     <div class="methodology-box">
@@ -756,9 +899,9 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 </section>
 
 <!-- CROSS-MARKET COMPARISON -->
-<section id="markets">
+<section id="markets" class="alt">
   <div class="container">
-    <h2>3. Cross-market porovnanie</h2>
+    <h2>4. Cross-market porovnanie</h2>
     <p class="section-sub">Per-trh pohľad — kde je výkonnosť silná, kde je priestor. Fokus SK + CZ, ostatné v scorecard.</p>
 
     <div class="metrics-grid" style="margin-bottom: 28px;">
@@ -841,9 +984,9 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 </section>
 
 <!-- DATABASE -->
-<section id="database" class="alt">
+<section id="database">
   <div class="container">
-    <h2>4. Databáza a štruktúra B2C lists</h2>
+    <h2>5. Databáza a štruktúra B2C lists</h2>
     <p class="section-sub">5 hlavných B2C newsletter lists naprieč trhmi + Shapen_ALL spojený zoznam. Audit veľkosti, custom_fields a double-opt-in setup.</p>
 
     <div class="methodology-box">
@@ -909,9 +1052,9 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
 </section>
 
 <!-- SEGMENTS -->
-<section id="segments">
+<section id="segments" class="alt">
   <div class="container">
-    <h2>5. Segmenty — 140+ aktívnych queries naprieč markets</h2>
+    <h2>6. Segmenty — 140+ aktívnych queries naprieč markets</h2>
     <p class="section-sub">Súčet segmentov: SK 40, CZ 33, EN 48, DE 12, ESP 7. Mnohé z nich sú duplikáty, test-segmenty alebo dlhodobo nepoužívané kampaňové výberky.</p>
 
     <div class="metrics-grid" style="margin-bottom: 24px;">
@@ -991,50 +1134,50 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
     <div class="rec-timeline">
       <div class="rec-step">
         <div class="step-label">Týždeň 1 · 27.–31. 5. 2026</div>
-        <h3>Diagnostika SK trhu + segment inventory</h3>
-        <p>Pochopiť prečo SK má 40 % CZ obratu pri rovnocenných kvantitách. Stiahnuť všetky SK + EN segmenty s last_used metaúdajmi.</p>
+        <h3>Frequency audit + overlap mapa + cap proposal</h3>
+        <p>Detailný audit 67 pipelines v Ecomail UI — počet mailov v sérii, časové rozostupy, exit conditions. Identifikácia konfliktných zón. Príprava cap pravidiel na schválenie s Anastasiou.</p>
         <ul>
-          <li>SK list health audit (bounce, sub source, engagement scoring)</li>
-          <li>Inventarizácia 40 SK + 48 EN segmentov</li>
-          <li>Plán archivácie nepoužívaných segmentov</li>
+          <li>Per-pipeline frequency detail (UI walk-through)</li>
+          <li>Overlap matrix per trigger event (Site visit / Cart / Purchase / No-purchase / Anniversary)</li>
+          <li>Cap proposal: max 1 mail/deň, max 4/týždeň, hard suppression rules</li>
         </ul>
-        <div class="step-impact">Deliverable: SK diagnostický report + cleanup plán</div>
+        <div class="step-impact">Deliverable: Frequency report + overlap mapa + cap proposal</div>
       </div>
 
       <div class="rec-step">
         <div class="step-label">Týždeň 2 · 1.–7. 6. 2026</div>
-        <h3>SK A/B kampaň + Reaktivácia SK clone</h3>
-        <p>Najsilnejšia páka — replikovať proven CZ template do SK + spustiť Reaktivácia nákup SK v štýle CZ verzie (1,33 M lifetime).</p>
+        <h3>Reaktivácia trim + Pre-VIP off + suppression rules</h3>
+        <p>Implementácia najväčších cut-ov. Reaktivácia nákup znížiť počet mailov v sérii a sprísniť trigger. Pre-VIP zastaviť na všetkých 5 markets. Suppression rules medzi prelínajúcimi sa flows.</p>
         <ul>
-          <li>SK broadcast A/B (priamy preklad CZ vs SK-tone adaptácia)</li>
-          <li>Reaktivácia nákup SK — clone CZ template, live launch</li>
-          <li>Pre-VIP flow rozhodnutie (deprekovať alebo prepísať)</li>
+          <li>Reaktivácia nákup: trigger 14d delay, séria max 3 maily (z aktuálnych X)</li>
+          <li>Pre-VIP off — všetkých 5 pipelines stop, triggers do VIP redirect</li>
+          <li>Suppression: Welcome okno blokuje broadcasts, Ďakovačka blokuje Reaktivácia 14d</li>
         </ul>
-        <div class="step-impact">Deliverable: SK kampaň odoslaná · Reaktivácia SK live · Pre-VIP rozh. hotové</div>
+        <div class="step-impact">Deliverable: Reaktivácia trim · Pre-VIP off · 3 suppression rules live</div>
       </div>
 
       <div class="rec-step">
         <div class="step-label">Týždeň 3–4 · 8.–21. 6. 2026</div>
-        <h3>Top-pattern replikácia DE + ESP</h3>
-        <p>Po SK fixe spraviť to isté cvičenie pre DE a ESP. Cieľ: per-flow benchmark + tier 2/3 markets na úroveň CZ pre 4 top flow typy.</p>
+        <h3>VIP kvartálny redesign + KPI tracking</h3>
+        <p>Per Zuzanin návrh: VIP segment redesign na 4×/rok kampaňový model. Setup pre-/post-fix KPI tracking — priemerná frekvencia, unsubscribe rate, spam complaints.</p>
         <ul>
-          <li>Cross-market benchmark spreadsheet (Browse / Welcome / Cart / Reaktivácia)</li>
-          <li>Identifikácia 3 najslabších verzií + remediation plán</li>
-          <li>Copy refresh Výročie nákupu + Po vrátení tovaru (slabé CR)</li>
+          <li>VIP redesign: kvartálne kampane, exkluzívny content, hard suppression v 7d okolo VIP</li>
+          <li>KPI dashboard: mailov/sub/mes (cieľ ~4), unsubscribe rate (cieľ &lt; 0,5%), spam complaints</li>
+          <li>Copy refresh slabých flows (Výročie nákupu, Po vrátení tovaru)</li>
         </ul>
-        <div class="step-impact">Deliverable: per-flow benchmark · 3 flow templates remediated</div>
+        <div class="step-impact">Deliverable: VIP nový calendar · KPI tracking live · 2 flows refreshed</div>
       </div>
 
       <div class="rec-step">
         <div class="step-label">Týždeň 5–6 · 22.–30. 6. 2026</div>
-        <h3>Wrap-up + Q3 príprava</h3>
-        <p>Záverečná konsolidácia juna + plánovanie Q3 iniciatív, ktoré sú mimo tohto sprintu.</p>
+        <h3>Klientsky re-pitch + Q3 príprava</h3>
+        <p>Vyjsť k Anastasii s before/after čísel a Q3 plánom. Demonstrovať reálny pokles frekvencie + zachovanie obratu.</p>
         <ul>
-          <li>Final segment count audit (cieľ: SK 40 → 15, EN 48 → 20)</li>
-          <li>Custom_fields fill rate report</li>
-          <li>RFM unification proposal pre Q3 (cross-market matrix)</li>
+          <li>Before/after report: priemer mailov/sub/mes 4/2026 vs 6/2026</li>
+          <li>Q3 plan: SK content adaptácia, segment cleanup, RFM unifikácia</li>
+          <li>Klientsky meeting s Anastasiou — re-establish trust</li>
         </ul>
-        <div class="step-impact">Deliverable: jún wrap-up report + Q3 RFM proposal</div>
+        <div class="step-impact">Deliverable: jún wrap-up report + klientsky meeting + Q3 plan</div>
       </div>
     </div>
   </div>
@@ -1046,34 +1189,34 @@ section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: va
     <div class="summary-box">
       <div class="circle-dec c1"></div>
       <div class="circle-dec c2"></div>
-      <h2>Zhrnutie: čo funguje, čo zlepšiť</h2>
-      <p>Shapen má jeden z najdospelších emailových programov medzi Dexfinity klientmi. Príležitosti nie sú v stavaní zo zelenej lúky, ale v cross-market vyrovnaní a čistení dlhových položiek.</p>
+      <h2>Zhrnutie: trim frekvencie, zachovať obrat</h2>
+      <p>Shapen má dospelý emailový setup s 10,5 M lifetime obratu z automatov — ale priemerný subscriber dostáva ~6 mailov/mes, čo Anastasia oprávnene vníma ako spam. Tento sprint má za cieľ znížiť frekvenciu na ~4 mailov/mes pri zachovaní obratu, deduplikovať overlap zóny a re-designovať VIP na kvartálnu kampaň.</p>
 
       <div class="summary-grid">
         <div class="summary-item">
+          <div class="val">~6 → ~4</div>
+          <div class="label-title">Mailov / sub / mes</div>
+          <div class="desc">cieľ jún 2026</div>
+        </div>
+        <div class="summary-item">
+          <div class="val">5</div>
+          <div class="label-title">Overlap zón</div>
+          <div class="desc">suppression rules</div>
+        </div>
+        <div class="summary-item">
+          <div class="val">5 → 0</div>
+          <div class="label-title">Pre-VIP flows off</div>
+          <div class="desc">366 € lifetime, deprekovať</div>
+        </div>
+        <div class="summary-item">
+          <div class="val">VIP 1/mes → 4/rok</div>
+          <div class="label-title">Per Zuzana</div>
+          <div class="desc">kvartálny re-design</div>
+        </div>
+        <div class="summary-item">
           <div class="val">67</div>
-          <div class="label-title">Aktívnych flows</div>
-          <div class="desc">13 flow typov × 5 trhov</div>
-        </div>
-        <div class="summary-item">
-          <div class="val">10,5 M</div>
-          <div class="label-title">Lifetime auto obrat</div>
-          <div class="desc">naprieč všetkými flows</div>
-        </div>
-        <div class="summary-item">
-          <div class="val">18,1 k</div>
-          <div class="label-title">B2C odberateľov</div>
-          <div class="desc">5 newsletter trhov</div>
-        </div>
-        <div class="summary-item">
-          <div class="val">66 %</div>
-          <div class="label-title">VIP EN open rate</div>
-          <div class="desc">world-class benchmark</div>
-        </div>
-        <div class="summary-item">
-          <div class="val">40 %</div>
-          <div class="label-title">SK obrat vs CZ</div>
-          <div class="desc">priestor na 2,5× rast</div>
+          <div class="label-title">Pipelines</div>
+          <div class="desc">audit + cap implementácia</div>
         </div>
       </div>
     </div>
