@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shapen — Ecomail audit | Dexfinity</title>
+<meta name="description" content="Audit emailingu Shapen Barefoot v Ecomaile — performance, 67 automatizácií, cross-market porovnanie, databáza, segmenty. Pripravil Dexfinity. Go Beyond.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Questrial&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dex-blue: #0065F7;
+  --dex-navy: #05024E;
+  --dex-white: #ffffff;
+  --dex-light-bg: #F4F6FC;
+  --dex-blue-light: #E8F0FE;
+  --dex-blue-10: rgba(0, 101, 247, 0.1);
+  --dex-blue-20: rgba(0, 101, 247, 0.2);
+  --dex-navy-light: #0A0A6E;
+  --dex-text: #1A1A2E;
+  --dex-muted: #6B7280;
+  --dex-border: #E5E7EB;
+  --dex-teal: #16AB8B;
+  --dex-orange: #ff7f00;
+  --font-primary: 'Questrial', Arial, sans-serif;
+  --font-secondary: 'Poppins', Arial, sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow: 0 2px 8px rgba(0, 101, 247, 0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-secondary);
+  color: var(--dex-text);
+  line-height: 1.6;
+  background: var(--dex-white);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-family: var(--font-primary); }
+
+.urgency {
+  background: var(--dex-blue);
+  color: var(--dex-white);
+  text-align: center;
+  padding: 12px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-secondary);
+  letter-spacing: 0.5px;
+}
+
+/* Nav */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--dex-border);
+  padding: 10px 0;
+}
+.nav .container { display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { height: 48px; }
+.nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+.nav-links a {
+  color: var(--dex-muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-secondary);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--dex-blue); }
+.nav-links .cta { color: var(--dex-blue); font-weight: 600; }
+
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1000; position: relative; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--dex-navy); margin: 5px 0; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Hero */
+.hero { background: var(--dex-navy); color: var(--dex-white); padding: 80px 40px 100px; position: relative; overflow: hidden; }
+.hero .container { position: relative; z-index: 2; }
+.hero .circle-1 { position: absolute; width: 500px; height: 500px; border: 2px solid var(--dex-blue); border-radius: 50%; opacity: 0.12; top: -200px; right: -100px; }
+.hero .circle-2 { position: absolute; width: 300px; height: 300px; border: 2px solid var(--dex-blue); border-radius: 50%; opacity: 0.08; bottom: -100px; left: -80px; }
+.hero .circle-3 { position: absolute; width: 180px; height: 180px; background: var(--dex-blue); border-radius: 50%; opacity: 0.06; top: 60px; right: 200px; }
+.hero-badge { display: inline-block; background: var(--dex-blue-20); border: 1px solid rgba(0,101,247,0.3); border-radius: 50px; padding: 6px 18px; font-size: 12px; font-weight: 500; font-family: var(--font-secondary); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 24px; }
+.hero .tagline { font-family: var(--font-secondary); font-size: 14px; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--dex-blue); margin-bottom: 16px; }
+.hero h1 { font-size: 44px; font-weight: 400; line-height: 1.15; max-width: 880px; }
+.hero h1 span { color: var(--dex-blue); }
+.hero .sub { font-size: 16px; opacity: 0.7; margin-top: 20px; max-width: 720px; font-weight: 300; }
+.hero-stats { display: flex; gap: 48px; flex-wrap: wrap; margin-top: 48px; }
+.hero-stat .num { font-size: 36px; font-weight: 700; font-family: var(--font-secondary); color: var(--dex-white); }
+.hero-stat .num .unit { font-size: 18px; opacity: 0.6; margin-left: 4px; }
+.hero-stat .label { font-size: 11px; font-weight: 500; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+section { padding: 56px 0; }
+section.alt { background: var(--dex-light-bg); }
+section h2 { font-size: 28px; font-weight: 400; color: var(--dex-navy); margin-bottom: 6px; }
+section .section-sub { color: var(--dex-muted); font-size: 14px; font-family: var(--font-secondary); margin-bottom: 32px; }
+
+/* Exec card */
+.exec-card { background: var(--dex-white); border-radius: var(--radius-lg); box-shadow: 0 20px 60px rgba(5, 2, 78, 0.14); padding: 40px 44px; margin: -48px auto 48px; max-width: 1060px; position: relative; z-index: 5; border: 1px solid var(--dex-border); }
+.exec-card h2 { font-size: 22px; color: var(--dex-navy); margin-bottom: 8px; }
+.exec-card p.exec-sub { color: var(--dex-muted); font-size: 13px; margin-bottom: 24px; }
+
+.opp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 8px; }
+.opp-card { position: relative; padding: 26px 26px 22px 26px; background: var(--dex-light-bg); border-radius: var(--radius-md); border-top: 4px solid var(--dex-blue); display: flex; flex-direction: column; }
+.opp-card:nth-child(1) { border-top-color: var(--dex-orange); }
+.opp-card:nth-child(2) { border-top-color: var(--dex-teal); }
+.opp-card:nth-child(3) { border-top-color: var(--dex-blue); }
+.opp-card:nth-child(4) { border-top-color: var(--dex-navy); }
+.opp-num { position: absolute; top: 14px; right: 18px; font-size: 40px; font-weight: 700; color: var(--dex-navy); opacity: 0.10; letter-spacing: -1px; font-family: 'Questrial', sans-serif; }
+.opp-tag { display: inline-block; font-size: 11px; font-weight: 600; color: var(--dex-blue); text-transform: uppercase; letter-spacing: 0.9px; margin-bottom: 10px; }
+.opp-card h3 { font-size: 17px; font-weight: 700; color: var(--dex-navy); margin: 0 0 14px 0; padding-right: 56px; line-height: 1.35; }
+.opp-metric { font-size: 34px; font-weight: 700; color: var(--dex-navy); line-height: 1; margin-bottom: 12px; font-family: 'Questrial', sans-serif; }
+.opp-metric .opp-unit { font-size: 13px; font-weight: 500; color: var(--dex-muted); letter-spacing: 0; }
+.opp-card p.opp-desc { font-size: 13px; color: var(--dex-muted); line-height: 1.55; margin: 0 0 14px 0; flex: 1; }
+.opp-action { font-size: 13px; font-weight: 600; color: var(--dex-blue); padding-top: 12px; border-top: 1px solid var(--dex-border); }
+.opp-meta { font-size: 12px; color: var(--dex-muted); text-align: center; margin-top: 24px; font-style: italic; }
+
+.quick-wins { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 24px; }
+.qwin { display: flex; gap: 16px; align-items: flex-start; padding: 14px 18px; background: var(--dex-light-bg); border-radius: var(--radius-md); border-left: 4px solid var(--dex-blue); }
+.qwin .qnum { width: 32px; height: 32px; border-radius: 50%; background: var(--dex-blue); color: var(--dex-white); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+.qwin.warn { border-left-color: var(--dex-orange); }
+.qwin.warn .qnum { background: var(--dex-orange); }
+.qwin.pos { border-left-color: var(--dex-teal); }
+.qwin.pos .qnum { background: var(--dex-teal); }
+.qwin h4 { font-size: 14px; font-weight: 600; color: var(--dex-navy); margin-bottom: 4px; }
+.qwin p { font-size: 13px; color: var(--dex-muted); line-height: 1.5; }
+
+/* Highlight box */
+.highlight-box { background: var(--dex-navy); color: var(--dex-white); border-radius: var(--radius-lg); padding: 48px; margin: 40px 0; position: relative; overflow: hidden; }
+.highlight-box .h-circle { position: absolute; border: 2px solid var(--dex-blue); border-radius: 50%; opacity: 0.1; }
+.highlight-box .h-c1 { width: 260px; height: 260px; top: -100px; right: -60px; }
+.highlight-box .h-c2 { width: 180px; height: 180px; bottom: -80px; left: 20%; }
+.highlight-box h3 { font-size: 22px; color: var(--dex-white); margin-bottom: 12px; position: relative; z-index: 2; }
+.highlight-box .formula { font-size: 20px; font-weight: 500; color: var(--dex-blue); letter-spacing: 1.2px; margin: 20px 0 28px; font-family: var(--font-primary); position: relative; z-index: 2; }
+.highlight-box > p { position: relative; z-index: 2; }
+.highlight-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; position: relative; z-index: 2; }
+.highlight-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); padding: 18px; }
+.highlight-card .hv { font-size: 22px; font-weight: 700; color: var(--dex-blue); font-family: var(--font-secondary); }
+.highlight-card .hl { font-size: 12px; opacity: 0.7; margin-top: 4px; }
+
+/* Metric cards */
+.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.metric-card { background: var(--dex-white); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow); border-left: 4px solid var(--dex-blue); }
+.metric-card h3 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--dex-muted); margin-bottom: 8px; }
+.metric-card .value { font-size: 28px; font-weight: 700; color: var(--dex-navy); font-family: var(--font-secondary); }
+.metric-card .desc { font-size: 13px; color: var(--dex-muted); margin-top: 4px; }
+.metric-card.pos { border-left-color: var(--dex-teal); }
+.metric-card.warn { border-left-color: var(--dex-orange); }
+.metric-card.pos .value { color: var(--dex-teal); }
+.metric-card.warn .value { color: var(--dex-orange); }
+.metric-card.pain { border-left-color: var(--dex-navy); background: var(--dex-navy); color: var(--dex-white); }
+.metric-card.pain h3 { color: rgba(255,255,255,0.7); }
+.metric-card.pain .value { font-size: 15px; font-weight: 500; font-style: italic; color: var(--dex-white); line-height: 1.4; }
+.metric-card.pain .desc { color: rgba(255,255,255,0.6); }
+.metric-card .trend { font-size: 12px; font-weight: 600; margin-top: 6px; }
+.metric-card .trend.up { color: var(--dex-teal); }
+.metric-card .trend.down { color: var(--dex-orange); }
+.metric-card .trend.flat { color: var(--dex-muted); }
+
+/* Audit table */
+.audit-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--dex-border); margin-top: 16px; }
+.audit-table th { background: var(--dex-navy); color: var(--dex-white); padding: 14px 18px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; text-align: left; }
+.audit-table td { padding: 14px 18px; font-size: 14px; border-bottom: 1px solid var(--dex-border); background: var(--dex-white); color: var(--dex-text); }
+.audit-table tr:last-child td { border-bottom: none; }
+.audit-table tr:hover td { background: var(--dex-light-bg); }
+.audit-table td strong { color: var(--dex-navy); }
+.table-scroll { overflow-x: auto; }
+.audit-table td.num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+.audit-table td.pos { color: var(--dex-teal); font-weight: 600; }
+.audit-table td.neg { color: var(--dex-orange); font-weight: 600; }
+.audit-table tr.warn-row td { background: rgba(255, 127, 0, 0.04); }
+.audit-table tr.crit-row td { background: rgba(5, 2, 78, 0.04); }
+
+/* Bar */
+.bar-wrap { display: flex; align-items: center; gap: 10px; }
+.bar-bg { flex: 1; height: 10px; background: var(--dex-blue-10); border-radius: 20px; overflow: hidden; position: relative; min-width: 120px; }
+.bar-fill { height: 100%; background: linear-gradient(90deg, var(--dex-blue), var(--dex-navy)); border-radius: 20px; }
+.bar-fill.teal { background: linear-gradient(90deg, var(--dex-teal), #0a7a64); }
+.bar-fill.orange { background: linear-gradient(90deg, var(--dex-orange), #e06600); }
+.bar-val { font-size: 12px; color: var(--dex-navy); font-weight: 600; min-width: 60px; text-align: right; }
+
+/* Badges */
+.badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.3px; }
+.badge-critical { background: var(--dex-navy); color: var(--dex-white); }
+.badge-warning { background: rgba(255, 127, 0, 0.12); color: var(--dex-orange); }
+.badge-info { background: var(--dex-blue-light); color: var(--dex-blue); }
+.badge-ok { background: var(--dex-light-bg); color: var(--dex-navy); }
+.badge-positive { background: var(--dex-teal); color: var(--dex-white); }
+
+/* Findings */
+.finding { display: grid; grid-template-columns: 4px 1fr; margin-bottom: 14px; border-radius: var(--radius-md); overflow: hidden; background: var(--dex-white); box-shadow: var(--shadow); border: 1px solid var(--dex-border); }
+.finding .bar { min-height: 100%; }
+.finding .bar.high { background: var(--dex-navy); }
+.finding .bar.med { background: var(--dex-blue); }
+.finding .bar.low { background: rgba(0,101,247,0.3); }
+.finding .bar.pos { background: var(--dex-teal); }
+.finding .bar.warn { background: var(--dex-orange); }
+.finding .content { padding: 20px 24px; }
+.finding .content h4 { font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 10px; color: var(--dex-navy); margin-bottom: 8px; flex-wrap: wrap; }
+.finding .content p { font-size: 13px; color: var(--dex-muted); line-height: 1.7; }
+.finding .content .rec { margin-top: 12px; padding: 12px 16px; background: var(--dex-blue-10); border-radius: var(--radius-sm); font-size: 13px; color: var(--dex-navy); border-left: 3px solid var(--dex-blue); }
+.finding .content .rec strong { color: var(--dex-blue); }
+.finding .content .data { margin-top: 10px; padding: 10px 14px; background: var(--dex-light-bg); border-radius: var(--radius-sm); font-size: 12px; color: var(--dex-muted); font-family: 'Poppins', monospace; }
+.finding .content .data strong { color: var(--dex-navy); }
+
+/* RFM segment block */
+.rfm-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 16px; }
+.rfm-card { padding: 18px; background: var(--dex-white); border-radius: var(--radius-md); border: 1px solid var(--dex-border); border-left: 4px solid var(--dex-muted); }
+.rfm-card .seg-name { font-size: 12px; font-weight: 700; color: var(--dex-muted); text-transform: uppercase; letter-spacing: 0.6px; }
+.rfm-card .seg-val { font-size: 28px; font-weight: 700; color: var(--dex-navy); font-family: var(--font-secondary); margin-top: 4px; }
+.rfm-card .seg-pct { font-size: 13px; color: var(--dex-muted); margin-top: 2px; }
+.rfm-card .seg-rev { font-size: 12px; color: var(--dex-blue); font-weight: 600; margin-top: 8px; }
+.rfm-card .seg-trend { font-size: 11px; font-weight: 600; margin-top: 4px; }
+.rfm-card.zero { border-left-color: var(--dex-orange); background: rgba(255, 127, 0, 0.03); }
+.rfm-card.zero .seg-val { color: var(--dex-orange); }
+.rfm-card.large { border-left-color: var(--dex-navy); }
+.rfm-card.large .seg-val { color: var(--dex-navy); }
+.rfm-card.hib { border-left-color: var(--dex-orange); background: rgba(255, 127, 0, 0.03); }
+.rfm-card.hib .seg-val { color: var(--dex-orange); }
+.rfm-card.pos { border-left-color: var(--dex-teal); }
+
+/* Summary box */
+.summary-box { background: var(--dex-navy); color: var(--dex-white); border-radius: var(--radius-lg); padding: 48px; margin: 48px 0; position: relative; overflow: hidden; }
+.summary-box .circle-dec { position: absolute; border: 2px solid var(--dex-blue); border-radius: 50%; opacity: 0.1; }
+.summary-box .circle-dec.c1 { width: 300px; height: 300px; top: -120px; right: -60px; }
+.summary-box .circle-dec.c2 { width: 200px; height: 200px; bottom: -80px; left: -40px; }
+.summary-box h2 { color: var(--dex-white) !important; margin-bottom: 24px; position: relative; z-index: 2; }
+.summary-box > p { opacity: 0.7; margin-bottom: 24px; font-size: 14px; position: relative; z-index: 2; }
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; position: relative; z-index: 2; }
+.summary-item { text-align: center; padding: 24px 16px; background: rgba(255,255,255,0.06); border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.1); }
+.summary-item .val { font-size: 32px; font-weight: 700; color: var(--dex-blue); font-family: var(--font-secondary); }
+.summary-item .label-title { font-size: 14px; font-weight: 600; margin-top: 4px; }
+.summary-item .desc { font-size: 12px; opacity: 0.6; margin-top: 4px; line-height: 1.5; }
+
+/* Rec timeline */
+.rec-timeline { position: relative; padding-left: 36px; margin-top: 16px; }
+.rec-timeline::before { content: ''; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--dex-blue), var(--dex-navy)); }
+.rec-step { position: relative; margin-bottom: 36px; }
+.rec-step::before { content: ''; position: absolute; left: -36px; top: 4px; width: 24px; height: 24px; border-radius: 50%; background: var(--dex-blue); border: 3px solid var(--dex-white); box-shadow: 0 0 0 2px var(--dex-blue); }
+.rec-step .step-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--dex-blue); margin-bottom: 6px; }
+.rec-step h3 { font-size: 18px; color: var(--dex-navy); margin-bottom: 8px; }
+.rec-step > p { font-size: 14px; color: var(--dex-muted); margin-bottom: 10px; }
+.rec-step ul { list-style: none; padding-left: 0; margin-top: 8px; }
+.rec-step ul li { font-size: 14px; color: var(--dex-text); margin-bottom: 8px; padding-left: 20px; position: relative; }
+.rec-step ul li::before { content: '→'; position: absolute; left: 0; color: var(--dex-blue); font-weight: 700; }
+.rec-step .step-impact { font-size: 12px; color: var(--dex-teal); font-weight: 600; margin-top: 10px; padding: 6px 12px; background: rgba(22, 171, 139, 0.08); border-radius: var(--radius-sm); display: inline-block; }
+
+/* Campaign calendar */
+.cal-month { margin-bottom: 28px; }
+.cal-month-header { display: flex; align-items: baseline; gap: 12px; padding: 14px 18px; background: var(--dex-blue-10); border-radius: var(--radius-md); margin-bottom: 14px; border-left: 4px solid var(--dex-blue); font-family: var(--font-primary); }
+.cal-month-header .cal-month-name { font-size: 18px; color: var(--dex-navy); font-weight: 400; }
+.cal-month-header .cal-month-tag { font-size: 12px; color: var(--dex-muted); font-family: var(--font-secondary); font-weight: 500; }
+.cal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.cal-campaign { padding: 16px 18px; background: var(--dex-white); border-radius: var(--radius-md); border: 1px solid var(--dex-border); border-left: 4px solid var(--dex-blue); box-shadow: var(--shadow); }
+.cal-campaign.flow { border-left-color: var(--dex-teal); }
+.cal-campaign.seasonal { border-left-color: var(--dex-orange); }
+.cal-meta { display: flex; gap: 10px; font-size: 11px; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; align-items: center; flex-wrap: wrap; }
+.cal-week { color: var(--dex-blue); }
+.cal-type { padding: 2px 8px; border-radius: 10px; background: var(--dex-blue-10); color: var(--dex-blue); }
+.cal-type.flow { background: rgba(22, 171, 139, 0.12); color: var(--dex-teal); }
+.cal-type.seasonal { background: rgba(255, 127, 0, 0.12); color: var(--dex-orange); }
+.cal-campaign h4 { font-size: 14px; font-weight: 700; color: var(--dex-navy); margin-bottom: 6px; line-height: 1.3; font-family: var(--font-secondary); }
+.cal-campaign .cal-aud { font-size: 12px; color: var(--dex-muted); margin-bottom: 6px; }
+.cal-campaign .cal-aud strong { color: var(--dex-navy); font-weight: 600; }
+.cal-campaign .cal-desc { font-size: 12px; color: var(--dex-muted); line-height: 1.55; }
+.cal-legend { display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap; font-size: 12px; color: var(--dex-muted); }
+.cal-legend .lg { display: flex; align-items: center; gap: 6px; }
+.cal-legend .lg-dot { width: 10px; height: 3px; border-radius: 2px; }
+.cal-legend .lg-dot.broadcast { background: var(--dex-blue); }
+.cal-legend .lg-dot.flow { background: var(--dex-teal); }
+.cal-legend .lg-dot.seasonal { background: var(--dex-orange); }
+
+/* Flow audit table */
+.flow-status { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+.flow-status.missing { background: rgba(255, 127, 0, 0.12); color: var(--dex-orange); }
+.flow-status.exists { background: rgba(22, 171, 139, 0.12); color: var(--dex-teal); }
+.flow-status.partial { background: rgba(0, 101, 247, 0.12); color: var(--dex-blue); }
+
+/* Methodology */
+.methodology-box { background: var(--dex-blue-10); border-radius: var(--radius-md); padding: 16px 20px; margin-bottom: 24px; border-left: 3px solid var(--dex-blue); }
+.methodology-box p { font-size: 12px; color: var(--dex-muted); line-height: 1.7; margin: 0; }
+.methodology-box strong { color: var(--dex-navy); }
+
+/* Footer */
+.footer { background: var(--dex-navy); color: var(--dex-white); padding: 56px 40px; text-align: center; position: relative; overflow: hidden; }
+.footer .circle-f { position: absolute; border: 1px solid var(--dex-blue); border-radius: 50%; opacity: 0.08; }
+.footer .circle-f.f1 { width: 260px; height: 260px; top: -80px; left: -40px; }
+.footer .circle-f.f2 { width: 180px; height: 180px; bottom: -60px; right: -40px; }
+.footer-logo { height: 64px; margin-bottom: 20px; position: relative; z-index: 2; }
+.footer p { opacity: 0.5; font-size: 13px; position: relative; z-index: 2; }
+.footer .footer-links { margin-top: 16px; opacity: 0.7; font-size: 13px; position: relative; z-index: 2; }
+.footer .footer-links a { color: var(--dex-blue); text-decoration: none; }
+.footer .go-beyond { font-size: 12px; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--dex-blue); margin-top: 20px; position: relative; z-index: 2; }
+
+@media (max-width: 860px) {
+  .quick-wins, .opp-grid, .highlight-grid, .rfm-grid { grid-template-columns: 1fr; }
+  .highlight-box, .summary-box { padding: 32px 24px; }
+  .hero h1 { font-size: 32px; }
+  .exec-card { padding: 28px 24px; }
+}
+@media (max-width: 768px) {
+  .hamburger { display: block; }
+  .nav-links { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--dex-white); flex-direction: column; align-items: center; justify-content: center; gap: 0; z-index: 999; padding: 80px 40px 40px; }
+  .nav-links.open { display: flex !important; }
+  .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid var(--dex-border); list-style: none; }
+  .nav-links li a { display: block; padding: 18px 0; font-size: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="urgency">Interný audit emailingu · zber dát 27. 5. 2026 · zdroj: Ecomail API (lists, pipelines, campaigns, stats)</div>
+
+<nav class="nav">
+  <div class="container">
+    <a href="#top"><img src="https://www.dexfinity.com/wp-content/uploads/2021/03/Logo-Small-Light-Landscape@2x.png" alt="Dexfinity" class="nav-logo"></a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#performance">Performance</a></li>
+      <li><a href="#flows">Automatizácie</a></li>
+      <li><a href="#markets">Markety</a></li>
+      <li><a href="#database">Databáza</a></li>
+      <li><a href="#segments">Segmenty</a></li>
+      <li><a href="#recs" class="cta">Next steps</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="circle-1"></div>
+  <div class="circle-2"></div>
+  <div class="circle-3"></div>
+  <div class="container">
+    <div class="hero-badge">Ecomail audit · interný</div>
+    <div class="tagline">Go Beyond</div>
+    <h1>Shapen — emailing beží na <span>10,5 mil. lifetime obrate z automatizácií</span>, ale 7 trhov pýta inú údržbu.</h1>
+    <p class="sub">Hĺbkový audit Ecomail účtu pre Shapen Barefoot (barefoot obuv, SK + CZ + EN + DE + ESP + SI + FR). Pokrýva výkonnosť kampaní, 67 aktívnych automatizácií, cross-market porovnanie, databázu a segmentové štruktúry. Dáta zbierané 27. 5. 2026 priamo z Ecomail REST API.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">67</div><div class="label">Aktívnych automatizácií</div></div>
+      <div class="hero-stat"><div class="num">18,1<span class="unit">k</span></div><div class="label">B2C odberateľov · 5 trhov</div></div>
+      <div class="hero-stat"><div class="num">35</div><div class="label">Kampaní za posledných 30 dní</div></div>
+      <div class="hero-stat"><div class="num">1,3<span class="unit">M</span></div><div class="label">Obrat z kampaní 30d (mix mien)</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="exec-card">
+    <h2>4 hlavné príležitosti — kde dnes dospelý setup necháva peniaze na stole</h2>
+    <p class="exec-sub">Shapen má jeden z najdospelších e-mailových programov medzi Dexfinity klientmi — 67 aktívnych pipelines naprieč 5 trhmi, špičkové open raty (Welcome EN 54 %, VIP EN 66 %). Audit preto nie je o stavaní zo zelenej lúky, ale o optimalizácii, gap analysis a cross-market vyrovnaní.</p>
+
+    <div class="opp-grid">
+      <div class="opp-card">
+        <div class="opp-num">01</div>
+        <div class="opp-tag">Priorita · 0–2 týždne</div>
+        <h3>SK trh výrazne underperformuje vs CZ/EN</h3>
+        <div class="opp-metric">4,7<span class="opp-unit"> tis. € · 30d kampane (SK)</span></div>
+        <p class="opp-desc">SK má 1 681 odberateľov a posledných 30 dní generoval len 4,7 k € z broadcastov — pri CZ s 2 675 odberateľmi to bolo 185 k Kč (~7,4 k €). Per-subscriber je SK na ~40 % CZ čísla. Cadence aj segmentácia sú podobné, takže problém je kvalita zoznamu alebo content fit pre SK trh.</p>
+        <div class="opp-action">→ SK list health audit + content A/B test (SK vs CZ template adaptácia)</div>
+      </div>
+
+      <div class="opp-card">
+        <div class="opp-num">02</div>
+        <div class="opp-tag">Priorita · 0–4 týždne</div>
+        <h3>Reaktivácia po nákupe je top revenue driver</h3>
+        <div class="opp-metric">2,48<span class="opp-unit"> M lifetime obrat</span></div>
+        <p class="opp-desc">5 reaktivačných flows (po nákupe) priniesli 2,48 M v lifetime obrate — druhá najsilnejšia kategória. EN verzia má 939 k obratu z 102 k triggerov, CZ verzia až 1,33 M z 28 k. SK verzia výrazne zaostáva. Replikovať úspešný CZ template do SK + DE + ESP.</p>
+        <div class="opp-action">→ Audit CZ Reaktivácia nákup šablóny + clone pre SK/DE/ESP</div>
+      </div>
+
+      <div class="opp-card">
+        <div class="opp-num">03</div>
+        <div class="opp-tag">Priorita · 2–6 týždňov</div>
+        <h3>40 SK segmentov — clean-up + dokumentácia</h3>
+        <div class="opp-metric">40<span class="opp-unit"> SK segmentov (33 CZ, 48 EN)</span></div>
+        <p class="opp-desc">SK newsletter má 40 segmentov, EN dokonca 48. Veľká časť z nich sú „Segment A", „Segment A (copy)", „DEX TEST", „Test", „zdroje test", duplikáty Black Friday segmentov z 2024. Bez clean-upu hrozí, že tím cieli nesprávne audience. Treba auditovať, čo sa reálne používa, a archivovať mŕtve.</p>
+        <div class="opp-action">→ Inventarizácia segmentov + archivácia nepoužívaných (40 → ~15)</div>
+      </div>
+
+      <div class="opp-card">
+        <div class="opp-num">04</div>
+        <div class="opp-tag">Priorita · 4–8 týždňov</div>
+        <h3>Cross-market consistency v automatizáciách</h3>
+        <div class="opp-metric">5<span class="opp-unit"> trhov · 13 flow typov · variabilita</span></div>
+        <p class="opp-desc">Niektoré flows majú silnú EN/CZ verziu, ale slabú SK/DE/ESP. Napr. Browse abandonment EN robí 1,56 M obratu, ale ESP len ~7 k. Treba spraviť cross-market benchmark per flow a doladiť tie verzie, kde výkonnosť je signifikantne pod priemerom.</p>
+        <div class="opp-action">→ Per-flow benchmark + remediate underperformerov (top 3 flows × 5 markets)</div>
+      </div>
+    </div>
+
+    <div class="quick-wins">
+      <div class="qwin pos"><div class="qnum">✓</div><div><h4>Welcome EN: 54 % open rate, 8,5 % CR</h4><p>1 284 konverzií z 15 067 triggerov za lifetime. Toto je world-class welcome flow — replikovať jeho template a tone na ostatné trhy.</p></div></div>
+      <div class="qwin pos"><div class="qnum">✓</div><div><h4>VIP EN: 66 % open rate</h4><p>Najvyšší open rate v celom účte. 472 konverzií z 5 235 triggerov, 466 k obrat. VIP loyalty layer funguje veľmi dobre — gold standard pre ostatné trhy.</p></div></div>
+      <div class="qwin warn"><div class="qnum">!</div><div><h4>SK len 1 broadcast za 30 dní</h4><p>SK trh má 1 681 odberateľov, ale za posledných 30 dní odišla len 1 detegovaná SK-specific kampaň. CZ má 4–5/mes. Príčina pravdepodobne v SK content workflow, nie v Ecomaile.</p></div></div>
+      <div class="qwin"><div class="qnum">i</div><div><h4>EN newsletter = 47,7 % B2C bázy</h4><p>EN newsletter má 8 660 odberateľov z celkových 18 146 B2C — takmer polovica. Dáva zmysel, lebo Shapen exportuje globálne, ale aj zvyšuje váhu EN trhu na výsledky.</p></div></div>
+      <div class="qwin warn"><div class="qnum">!</div><div><h4>Pre-VIP flows generujú 366 €</h4><p>5 pre-VIP pipelines za lifetime priniesli len 366 € pri 4 493 triggeroch. Buď zlý timing, slabý copy, alebo cieľová audience. Audit alebo deprekovať.</p></div></div>
+      <div class="qwin pos"><div class="qnum">✓</div><div><h4>Browse abandonment = 3,08 M obrat</h4><p>Najsilnejšia kategória automatizácií. 5 verzií, 234 k triggerov, 3 003 konverzií. EN verzia robí 1,56 M sama.</p></div></div>
+    </div>
+
+    <div class="opp-meta">Nižšie 5 dátových sekcií, z ktorých tieto príležitosti vychádzajú — vrátane konkrétnych čísel priamo z Ecomail API.</div>
+  </div>
+
+  <!-- THIS WEEK & NEXT WEEK — TACTICAL BREAKDOWN -->
+  <div style="background: var(--dex-navy); border-radius: var(--radius-lg); box-shadow: 0 16px 48px rgba(5, 2, 78, 0.22); padding: 36px 44px; margin: 0 auto 24px; max-width: 1060px; color: white; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; border-radius: 50%; background: rgba(0, 101, 247, 0.15);"></div>
+    <div style="position: absolute; bottom: -60px; left: 20%; width: 150px; height: 150px; border-radius: 50%; background: rgba(22, 171, 139, 0.12);"></div>
+
+    <div style="position: relative; z-index: 2;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px;">
+        <span style="display: inline-block; padding: 5px 12px; background: white; color: var(--dex-navy); font-size: 11px; font-weight: 700; letter-spacing: 0.05em; border-radius: 4px; font-family: var(--font-secondary);">NEXT STEPS — KONKRÉTNE</span>
+        <span style="font-size: 12px; color: rgba(255,255,255,0.7); font-family: var(--font-secondary);">27. 5. – 7. 6. 2026 · 2 týždne dopredu</span>
+      </div>
+      <h2 style="font-size: 24px; color: white; margin-bottom: 8px; font-family: var(--font-secondary); font-weight: 400;">Čo robíme tento a budúci týždeň</h2>
+      <p style="color: rgba(255,255,255,0.78); font-size: 14px; margin-bottom: 28px; line-height: 1.55;">Tri paralelné prúdy práce. Bez externých nástrojov — všetko v Ecomaile + interný workflow.</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px;">
+        <div style="background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: var(--radius-md); padding: 22px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+            <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--dex-orange);"></div>
+            <span style="font-size: 11px; font-weight: 700; color: var(--dex-orange); letter-spacing: 0.08em; font-family: var(--font-secondary);">TENTO TÝŽDEŇ · 27. 5. – 31. 5.</span>
+          </div>
+          <h3 style="font-size: 17px; color: white; margin-bottom: 14px; font-family: var(--font-secondary); font-weight: 500;">Diagnóza SK trhu + inventory segmentov</h3>
+
+          <div style="margin-bottom: 14px;">
+            <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 6px;">
+              <span style="font-family: var(--font-secondary); font-size: 14px; font-weight: 700; color: var(--dex-orange);">①</span>
+              <strong style="font-size: 14px; color: white;">SK list health audit</strong>
+            </div>
+            <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0 0 0 24px;">Otvoríme SK newsletter (1 681 odberateľov), pozrieme bounce rate, sub source distribution, engagement scoring za posledných 90 dní. Cieľ: pochopiť prečo SK robí 40 % CZ obratu pri podobnej veľkosti.</p>
+          </div>
+
+          <div>
+            <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 6px;">
+              <span style="font-family: var(--font-secondary); font-size: 14px; font-weight: 700; color: var(--dex-orange);">②</span>
+              <strong style="font-size: 14px; color: white;">Inventory 40 SK + 48 EN segmentov</strong>
+            </div>
+            <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0 0 0 24px;">Cez Ecomail API stiahneme všetky segmenty s last_used dátumom. Tie, čo neboli použité &gt; 6 mesiacov, ideme archivovať. Cieľ: zo 40 → ~15 SK segmentov, z 48 → ~20 EN.</p>
+          </div>
+
+          <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.12); font-size: 12px; color: rgba(255,255,255,0.6); font-family: var(--font-secondary);">
+            <strong style="color: white;">Deliverable do piatku 31. 5.:</strong> SK diagnostický report + cleanup plán segmentov
+          </div>
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: var(--radius-md); padding: 22px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+            <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--dex-teal);"></div>
+            <span style="font-size: 11px; font-weight: 700; color: var(--dex-teal); letter-spacing: 0.08em; font-family: var(--font-secondary);">BUDÚCI TÝŽDEŇ · 1. 6. – 7. 6.</span>
+          </div>
+          <h3 style="font-size: 17px; color: white; margin-bottom: 14px; font-family: var(--font-secondary); font-weight: 500;">SK kampaň + flow optimalizácia</h3>
+
+          <div style="margin-bottom: 14px;">
+            <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 6px;">
+              <span style="font-family: var(--font-secondary); font-size: 14px; font-weight: 700; color: var(--dex-teal);">③</span>
+              <strong style="font-size: 14px; color: white;">SK broadcast: A/B test SK content adaptácie</strong>
+            </div>
+            <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0 0 0 24px;">Vezmeme top CZ kampaň (Jarní výprodej, OR 40,5 %) a urobíme dve SK verzie: A = priamy preklad, B = SK-tone adaptácia s lokálnymi referenciami. Send streda 3. 6.</p>
+          </div>
+
+          <div style="margin-bottom: 14px;">
+            <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 6px;">
+              <span style="font-family: var(--font-secondary); font-size: 14px; font-weight: 700; color: var(--dex-teal);">④</span>
+              <strong style="font-size: 14px; color: white;">Reaktivácia nákup SK — clone CZ template</strong>
+            </div>
+            <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0 0 0 24px;">CZ verzia tohto flow robí 1,33 M obrat. Skopírujeme jej štruktúru, timing a subject patterns do SK pipeline, prepneme do live.</p>
+          </div>
+
+          <div>
+            <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 6px;">
+              <span style="font-family: var(--font-secondary); font-size: 14px; font-weight: 700; color: var(--dex-teal);">⑤</span>
+              <strong style="font-size: 14px; color: white;">Pre-VIP flow audit (5 markets)</strong>
+            </div>
+            <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin: 0 0 0 24px;">Pre-VIP flows generujú dohromady len 366 € — buď deprekovať, alebo prepojiť so silnejším VIP flow. Rozhodnutie do piatku.</p>
+          </div>
+
+          <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.12); font-size: 12px; color: rgba(255,255,255,0.6); font-family: var(--font-secondary);">
+            <strong style="color: white;">Deliverable do piatku 5. 6.:</strong> SK A/B kampaň poslaná · Reaktivácia nákup SK live · Pre-VIP rozhodnutie
+          </div>
+        </div>
+      </div>
+
+      <div style="background: rgba(0, 101, 247, 0.18); border: 1px solid rgba(0, 101, 247, 0.35); border-radius: var(--radius-md); padding: 18px 22px;">
+        <div style="font-family: var(--font-secondary); font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.85); letter-spacing: 0.06em; margin-bottom: 10px;">3 PARALELNÉ PRÚDY PRÁCE</div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; font-size: 13px; color: rgba(255,255,255,0.88); line-height: 1.5;">
+          <div>
+            <strong style="display: block; color: white; font-size: 13px; margin-bottom: 4px;">1. SK trh fix</strong>
+            <span style="color: rgba(255,255,255,0.7); font-size: 12px;">Diagnóza + A/B test SK content</span>
+          </div>
+          <div>
+            <strong style="display: block; color: white; font-size: 13px; margin-bottom: 4px;">2. Segmenty cleanup</strong>
+            <span style="color: rgba(255,255,255,0.7); font-size: 12px;">40 SK + 48 EN → archivácia mŕtvych</span>
+          </div>
+          <div>
+            <strong style="display: block; color: white; font-size: 13px; margin-bottom: 4px;">3. Flow optimalizácia</strong>
+            <span style="color: rgba(255,255,255,0.7); font-size: 12px;">Reaktivácia SK clone + Pre-VIP rozhodnutie</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONTHLY ZOOM OUT -->
+  <div style="background: var(--dex-white); border-radius: var(--radius-lg); box-shadow: 0 12px 36px rgba(5, 2, 78, 0.08); padding: 36px 44px; margin: 0 auto 48px; max-width: 1060px; border: 1px solid var(--dex-border); border-top: 5px solid var(--dex-orange);">
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px;">
+      <span style="display: inline-block; padding: 5px 12px; background: var(--dex-orange); color: white; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; border-radius: 4px; font-family: var(--font-secondary);">CELÝ MESIAC — ZOOM OUT</span>
+      <span style="font-size: 12px; color: var(--dex-muted); font-family: var(--font-secondary);">Jún 2026 · optimalizácia dospelého setupu</span>
+    </div>
+    <h2 style="font-size: 22px; color: var(--dex-navy); margin-bottom: 8px;">Plán na 4 týždne — kde majú zásahy najväčší pákový efekt</h2>
+    <p style="color: var(--dex-muted); font-size: 14px; margin-bottom: 24px; line-height: 1.55;">Pohľad na celý jún. Audit Shapen má iný charakter než greenfield setupy — fokus je na <strong style="color: var(--dex-navy);">vyrovnaní cross-market výkonnosti</strong>, čistení dlhových položiek (mŕtve segmenty, slabé flows) a <strong style="color: var(--dex-navy);">replikácii top patternov</strong> (CZ/EN) na slabšie trhy (SK, DE, ESP).</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px;">
+      <div style="background: linear-gradient(135deg, rgba(255, 127, 0, 0.06), rgba(255, 127, 0, 0.02)); border: 1px solid rgba(255, 127, 0, 0.25); border-radius: var(--radius-md); padding: 22px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+          <span style="font-family: var(--font-secondary); font-size: 28px; font-weight: 700; color: var(--dex-orange); line-height: 1;">1</span>
+          <span style="font-size: 11px; font-weight: 700; color: var(--dex-orange); letter-spacing: 0.05em; font-family: var(--font-secondary);">TÝŽDEŇ 1–2 · DIAGNOSTIKA</span>
+        </div>
+        <h3 style="font-size: 16px; color: var(--dex-navy); margin-bottom: 8px; font-family: var(--font-secondary);">SK trh + segment cleanup</h3>
+        <p style="font-size: 13px; color: var(--dex-text); line-height: 1.55; margin-bottom: 0;">Pochopiť prečo SK robí 40 % CZ obratu pri rovnocenných kvantitách. Vyčistiť 40 SK + 48 EN segmentov na použiteľný set. A/B testovať SK content adaptáciu vs preklad CZ.</p>
+      </div>
+
+      <div style="background: linear-gradient(135deg, rgba(0, 101, 247, 0.05), rgba(0, 101, 247, 0.01)); border: 1px solid rgba(0, 101, 247, 0.25); border-radius: var(--radius-md); padding: 22px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+          <span style="font-family: var(--font-secondary); font-size: 28px; font-weight: 700; color: var(--dex-blue); line-height: 1;">2</span>
+          <span style="font-size: 11px; font-weight: 700; color: var(--dex-blue); letter-spacing: 0.05em; font-family: var(--font-secondary);">TÝŽDEŇ 2–3 · REPLIKÁCIA</span>
+        </div>
+        <h3 style="font-size: 16px; color: var(--dex-navy); margin-bottom: 8px; font-family: var(--font-secondary);">Top patterny do slabších trhov</h3>
+        <p style="font-size: 13px; color: var(--dex-text); line-height: 1.55; margin-bottom: 0;">Clone CZ Reaktivácia nákup template (1,33 M lifetime) do SK + DE + ESP. Welcome EN (54 % OR) ako benchmark template — porovnať s ostatnými verziami a unifikovať tone + štruktúru.</p>
+      </div>
+
+      <div style="background: linear-gradient(135deg, rgba(22, 171, 139, 0.05), rgba(22, 171, 139, 0.01)); border: 1px solid rgba(22, 171, 139, 0.25); border-radius: var(--radius-md); padding: 22px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+          <span style="font-family: var(--font-secondary); font-size: 28px; font-weight: 700; color: var(--dex-teal); line-height: 1;">3</span>
+          <span style="font-size: 11px; font-weight: 700; color: var(--dex-teal); letter-spacing: 0.05em; font-family: var(--font-secondary);">TÝŽDEŇ 3–4 · OPTIMALIZÁCIA</span>
+        </div>
+        <h3 style="font-size: 16px; color: var(--dex-navy); margin-bottom: 8px; font-family: var(--font-secondary);">Pre-VIP + dlhodobé flows</h3>
+        <p style="font-size: 13px; color: var(--dex-text); line-height: 1.55; margin-bottom: 0;">Pre-VIP flows (366 € lifetime) deprekovať alebo prepojiť so silným VIP flow. Po vrátení tovaru a Výročie nákupu prejsť copy refresh (najslabšie OR v automatizáciách). VIP EN (66 % OR) ako gold standard.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 22px; padding: 16px 20px; background: var(--dex-light-bg); border-radius: var(--radius-md); border-left: 3px solid var(--dex-muted);">
+      <div style="font-family: var(--font-secondary); font-size: 13px; font-weight: 600; color: var(--dex-navy); margin-bottom: 6px;">Mimo scope tohto sprintu (júl 2026 a ďalej)</div>
+      <p style="font-size: 13px; color: var(--dex-text); line-height: 1.55; margin: 0;">Per-market AB testovacia matica (subject lines, send times) · cross-market RFM unifikácia · post-purchase quiz na zber sizing preferences · win-back na hibernating segmenty v EN/DE/ESP · B2B partner flow optimalizácia (mimo tohto auditu).</p>
+    </div>
+  </div>
+</div>
+
+<!-- PERFORMANCE -->
+<section id="performance">
+  <div class="container">
+    <h2>1. Performance — kampane za 30 dní (cross-market)</h2>
+    <p class="section-sub">Hromadné kampane za posledných 30 dní (28. 4. – 27. 5. 2026). Pozn.: revenue je v lokálnej mene listu (SK = €, CZ = Kč, EN/DE/ESP/SI/FR = mix €). Pre cross-market porovnanie sa pozri na per-recipient revenue, nie absolútne čísla.</p>
+
+    <div class="methodology-box">
+      <p><strong>Zdroj dát:</strong> Ecomail API endpointy <code>/campaigns</code> (zoznam 50 najnovších) a <code>/campaigns/{id}/stats</code> (open/click/conversions/revenue per kampaň). Filtrované na status=sent, sent_at &ge; 2026-04-28. Market detekcia podľa subject line jazyka (heuristika ~85 % accuracy, neidentifikovaných 11 multi-language šablón).</p>
+    </div>
+
+    <div class="metrics-grid" style="margin-bottom: 28px;">
+      <div class="metric-card pos">
+        <h3>Kampane 30d</h3>
+        <div class="value">35</div>
+        <div class="desc">vrátane per-market lokalizácií</div>
+        <div class="trend up">~1,17/deň naprieč 7 trhmi</div>
+      </div>
+      <div class="metric-card">
+        <h3>Recipients 30d</h3>
+        <div class="value">80 829</div>
+        <div class="desc">súčet všetkých sendov</div>
+      </div>
+      <div class="metric-card pos">
+        <h3>Konverzie 30d</h3>
+        <div class="value">470</div>
+        <div class="desc">0,58 % per recipient</div>
+      </div>
+      <div class="metric-card pos">
+        <h3>Obrat 30d (mix mien)</h3>
+        <div class="value">~1,32 M</div>
+        <div class="desc">EN 879 k · CZ 185 k · DE 19 k · SK 4,7 k</div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 18px; color: var(--dex-navy); margin: 8px 0 16px 0; font-family: var(--font-primary); font-weight: 400;">Top 8 kampaní za 30 dní (podľa obratu)</h3>
+    <div class="table-scroll">
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>Dátum</th>
+            <th>Trh</th>
+            <th>Predmet</th>
+            <th class="num">Príj.</th>
+            <th class="num">OR</th>
+            <th class="num">Konv.</th>
+            <th class="num">Obrat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>20. 5. 2026</td><td><span class="badge badge-info">EN</span></td><td>Spring Sale 🖤 up to 30% off</td><td class="num">6 326</td><td class="num pos">53,1 %</td><td class="num">84</td><td class="num"><strong>567 301</strong></td></tr>
+          <tr><td>14. 5. 2026</td><td><span class="badge badge-info">EN</span></td><td>20 % off the wedding collection 💐</td><td class="num">6 288</td><td class="num pos">53,9 %</td><td class="num">60</td><td class="num"><strong>257 043</strong></td></tr>
+          <tr><td>20. 5. 2026</td><td><span class="badge badge-info">CZ</span></td><td>Jarní výprodej 🖤 až −30 %</td><td class="num">2 085</td><td class="num pos">40,5 %</td><td class="num">36</td><td class="num"><strong>113 134</strong></td></tr>
+          <tr><td>27. 4. 2026</td><td><span class="badge badge-ok">?</span></td><td>We won among 150 designs from 35 countries 🌟</td><td class="num">6 047</td><td class="num pos">51,9 %</td><td class="num">22</td><td class="num">105 238</td></tr>
+          <tr><td>14. 5. 2026</td><td><span class="badge badge-info">CZ</span></td><td>- 20 % na svatební kolekci 💐</td><td class="num">2 051</td><td class="num">38,1 %</td><td class="num">18</td><td class="num">71 323</td></tr>
+          <tr><td>30. 4. 2026</td><td><span class="badge badge-info">EN</span></td><td>Good news: free shipping starts 🚚</td><td class="num">6 097</td><td class="num pos">52,0 %</td><td class="num">49</td><td class="num">54 108</td></tr>
+          <tr><td>20. 5. 2026</td><td><span class="badge badge-info">DE</span></td><td>Frühlingsausverkauf 🖤 bis zu 30 %</td><td class="num">2 637</td><td class="num">43,9 %</td><td class="num">42</td><td class="num">11 143</td></tr>
+          <tr class="warn-row"><td>20. 5. 2026</td><td><span class="badge badge-warning">SK</span></td><td>Jarný výpredaj 🖤 až - 30 %</td><td class="num">1 441</td><td class="num">37,7 %</td><td class="num">12</td><td class="num">4 724 €</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="finding" style="margin-top: 28px;">
+      <div class="bar high"></div>
+      <div class="content">
+        <h4>EN trh generuje 67 % všetkého broadcast-obratu <span class="badge badge-critical">Critical</span></h4>
+        <p>Z 1,32 M obratu za 30 dní pripadá ~879 k (66,7 %) na EN trh — pri tom, že EN má 48 % bázy. Per-recipient EN robí 34,9 € obratu/kampaň, CZ 22,4 €, DE 1,79 €, SK 3,27 €. EN je ako market najsilnejšie aktivovaný + high-purchasing intent.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Použiť EN ako benchmark template knižnicu pre ostatné trhy. Spring Sale (53,1 % OR, 567 k obrat) a Wedding 20% (53,9 % OR, 257 k) sú modelové šablóny — replikovať ich štruktúru + subject formulu na SK/CZ/DE.</div>
+        <div class="data"><strong>Dáta:</strong> EN 4 kampane × ⌀ 6 301 príjemcov × 0,78 % conv rate × ⌀ 219 692 obrat. SK 1 kampaň × 1 441 príjemcov × 0,83 % conv rate × 4 724 € obrat.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar warn"></div>
+      <div class="content">
+        <h4>SK trh: 1 broadcast za 30 dní vs CZ 4 broadcasty <span class="badge badge-warning">Pozor</span></h4>
+        <p>SK newsletter má 1 681 odberateľov a posledný mesiac dostal len 1 detegovaný SK-specific broadcast (Jarný výpredaj). CZ s 2 675 odberateľmi dostal 4. Cadence asymetria + obsah pravdepodobne zaostáva za CZ workflow.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Týždeň 1: SK cadence audit — kto píše SK copy, ako prebieha schvaľovací proces, kde sa SK queue zasekáva. Cieľ: SK cadence vyrovnať na CZ úroveň (3–4 broadcasty/mesiac).</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar pos"></div>
+      <div class="content">
+        <h4>Open rates 40–54 % naprieč markets — sender reputation je špička <span class="badge badge-positive">Win</span></h4>
+        <p>EN broadcasty držia 45–54 % OR, CZ 38–41 %, DE 38–44 %, ESP 38 %, SK 38 %. Žiadny trh nepadá pod 35 %. To je vysoko nad industry median (~22 % apparel/footwear). Doručiteľnosť, kvalita list-u, sender presence — všetko funguje.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Sender reputation nie je úzkym hrdlom. Optimalizácie majú zmysel na konverzný funnel (subject → click → buy), nie na deliverability.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTOMATIONS / FLOWS -->
+<section id="flows" class="alt">
+  <div class="container">
+    <h2>2. Automatizácie — 67 aktívnych pipelines, 13 flow typov</h2>
+    <p class="section-sub">Komplexný audit všetkých automatizácií v Ecomaile. Lifetime stats od spustenia (najstarší flow z 6/2023, najmladší z 5/2026). Zoradené podľa generovaného obratu.</p>
+
+    <div class="methodology-box">
+      <p><strong>Zdroj dát:</strong> <code>/pipelines</code> (zoznam 70 pipelines) + <code>/pipelines/{id}/stats</code> (triggered/sent/open/click/conv/revenue per flow). Lifetime stats — od spustenia daného flow. Excludované: 3 čisto interné test pipelines (DEX TEST, Test mail).</p>
+    </div>
+
+    <div class="highlight-box">
+      <div class="h-circle h-c1"></div>
+      <div class="h-circle h-c2"></div>
+      <h3>Lifetime automation impact</h3>
+      <div class="formula">67 PIPELINES · 4,39 M TRIGGEROV · 12 024 KONVERZIÍ · 10,49 M OBRAT</div>
+      <p>Toto je súhrn naprieč všetkými trhmi a typmi flows. Pre kontext: priemerná konverzia na trigger je 0,27 %, priemerný obrat na konverziu 873 (mix mien).</p>
+      <div class="highlight-grid">
+        <div class="highlight-card"><div class="hv">3,08 M</div><div class="hl">Browse abandonment (5 trhov)</div></div>
+        <div class="highlight-card"><div class="hv">2,48 M</div><div class="hl">Reaktivácia po nákupe</div></div>
+        <div class="highlight-card"><div class="hv">1,96 M</div><div class="hl">Welcome (5 trhov)</div></div>
+        <div class="highlight-card"><div class="hv">1,38 M</div><div class="hl">Opustený košík</div></div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 18px; color: var(--dex-navy); margin: 32px 0 16px 0; font-family: var(--font-primary); font-weight: 400;">Roll-up podľa typu flow (lifetime)</h3>
+    <div class="table-scroll">
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>Flow typ</th>
+            <th class="num">Trhy</th>
+            <th class="num">Triggered</th>
+            <th class="num">Sent</th>
+            <th class="num">Konv.</th>
+            <th class="num">Obrat (lifetime)</th>
+            <th>Stav</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Browse abandonment</strong> (Naposledy zobrazené)</td><td class="num">5</td><td class="num">234 011</td><td class="num">179 369</td><td class="num pos">3 003</td><td class="num"><strong>3 079 825</strong></td><td><span class="flow-status exists">Top performer</span></td></tr>
+          <tr><td><strong>Reaktivácia po nákupe</strong></td><td class="num">5</td><td class="num">194 834</td><td class="num">583 689</td><td class="num pos">2 827</td><td class="num"><strong>2 482 046</strong></td><td><span class="flow-status exists">Top performer</span></td></tr>
+          <tr><td><strong>Welcome</strong></td><td class="num">5</td><td class="num">24 680</td><td class="num">22 592</td><td class="num pos">2 446</td><td class="num"><strong>1 957 820</strong></td><td><span class="flow-status exists">Top performer</span></td></tr>
+          <tr><td><strong>Opustený košík</strong></td><td class="num">5</td><td class="num">75 185</td><td class="num">41 686</td><td class="num pos">2 049</td><td class="num"><strong>1 375 053</strong></td><td><span class="flow-status exists">Top performer</span></td></tr>
+          <tr><td><strong>VIP</strong></td><td class="num">5</td><td class="num">10 106</td><td class="num">24 719</td><td class="num">868</td><td class="num">893 075</td><td><span class="flow-status exists">Funguje</span></td></tr>
+          <tr><td>Meniny</td><td class="num">2</td><td class="num">18 518</td><td class="num">17 781</td><td class="num">136</td><td class="num">247 165</td><td><span class="flow-status exists">SK + CZ only</span></td></tr>
+          <tr><td>Reaktivácia (bez nákupu)</td><td class="num">5</td><td class="num">20 951</td><td class="num">49 396</td><td class="num">244</td><td class="num">202 687</td><td><span class="flow-status exists">Funguje</span></td></tr>
+          <tr><td>Ďakovačka (post-purchase)</td><td class="num">5</td><td class="num">44 766</td><td class="num">21 374</td><td class="num">360</td><td class="num">179 590</td><td><span class="flow-status partial">Slabší ROI</span></td></tr>
+          <tr><td>Po vrátení tovaru</td><td class="num">5</td><td class="num">12 499</td><td class="num">12 473</td><td class="num">57</td><td class="num">55 353</td><td><span class="flow-status partial">Slabé conv</span></td></tr>
+          <tr><td>Výročie nákupu</td><td class="num">10</td><td class="num">7 298</td><td class="num">7 283</td><td class="num">31</td><td class="num">20 927</td><td><span class="flow-status partial">Slabé conv</span></td></tr>
+          <tr class="warn-row"><td>Pre-VIP</td><td class="num">5</td><td class="num">4 493</td><td class="num">4 483</td><td class="num">3</td><td class="num">366</td><td><span class="flow-status missing">Deprekovať</span></td></tr>
+          <tr><td>Odobratie štítku reactivation_failed</td><td class="num">5</td><td class="num">3 739 891</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td><span class="flow-status partial">Servisný flow</span></td></tr>
+          <tr><td>Unsubscribe neaktívne</td><td class="num">5</td><td class="num">3 957</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td><span class="flow-status partial">Hygiene flow</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size: 18px; color: var(--dex-navy); margin: 32px 0 16px 0; font-family: var(--font-primary); font-weight: 400;">Top 10 jednotlivých pipelines (lifetime)</h3>
+    <div class="table-scroll">
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>Pipeline</th>
+            <th>Trh</th>
+            <th class="num">Trig.</th>
+            <th class="num">OR</th>
+            <th class="num">Konv.</th>
+            <th class="num">Obrat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Naposledy zobrazené produkty EN</strong></td><td><span class="badge badge-info">EN</span></td><td class="num">137 693</td><td class="num pos">47,4 %</td><td class="num pos">1 825</td><td class="num"><strong>1 561 966</strong></td></tr>
+          <tr><td><strong>Reaktivácia nákup CZ_NEW</strong></td><td><span class="badge badge-info">CZ</span></td><td class="num">28 270</td><td class="num">34,4 %</td><td class="num">398</td><td class="num"><strong>1 326 479</strong></td></tr>
+          <tr><td><strong>Naposledy zobrazené produkty CZ</strong></td><td><span class="badge badge-info">CZ</span></td><td class="num">29 678</td><td class="num">38,1 %</td><td class="num">341</td><td class="num"><strong>1 182 705</strong></td></tr>
+          <tr><td><strong>Welcome CZ</strong></td><td><span class="badge badge-info">CZ</span></td><td class="num">3 432</td><td class="num pos">47,0 %</td><td class="num pos">283</td><td class="num">955 148</td></tr>
+          <tr><td><strong>Reaktivácia nákup EN_NEW</strong></td><td><span class="badge badge-info">EN</span></td><td class="num">102 094</td><td class="num">40,9 %</td><td class="num pos">1 631</td><td class="num">939 002</td></tr>
+          <tr><td>Opustený košík CZ</td><td><span class="badge badge-info">CZ</span></td><td class="num">9 919</td><td class="num pos">43,9 %</td><td class="num">234</td><td class="num">772 548</td></tr>
+          <tr><td><strong>Welcome EN</strong></td><td><span class="badge badge-info">EN</span></td><td class="num">15 067</td><td class="num pos">54,4 %</td><td class="num pos">1 284</td><td class="num">657 868</td></tr>
+          <tr><td><strong>VIP EN</strong></td><td><span class="badge badge-info">EN</span></td><td class="num">5 235</td><td class="num pos">66,4 %</td><td class="num">472</td><td class="num">466 483</td></tr>
+          <tr><td>Opustený košík EN</td><td><span class="badge badge-info">EN</span></td><td class="num">47 760</td><td class="num">38,1 %</td><td class="num">1 305</td><td class="num">417 105</td></tr>
+          <tr><td>VIP CZ</td><td><span class="badge badge-info">CZ</span></td><td class="num">1 548</td><td class="num pos">52,1 %</td><td class="num">116</td><td class="num">347 875</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="finding" style="margin-top: 28px;">
+      <div class="bar high"></div>
+      <div class="content">
+        <h4>EN automatizácie dominujú · CZ druhý · SK chýba v top 15 <span class="badge badge-critical">Critical</span></h4>
+        <p>V top 10 lifetime pipelines je 5× EN, 5× CZ, 0× SK/DE/ESP. CZ template patterns (Welcome, Browse abandonment, Reaktivácia) sú overené winnery — clone-ovať na SK ako prvý krok.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> V T2/3 (1.–14. 6.) vytvoriť cross-market benchmark spreadsheet pre 4 top flow typy (Browse, Welcome, Cart, Reaktivácia). Pre každý market merať OR, conv rate a rev/trigger. Cieľ: SK + DE + ESP zaostávajú &lt; 20 % vs CZ — fix na úroveň CZ.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar warn"></div>
+      <div class="content">
+        <h4>Pre-VIP flows: 5 pipelines, 366 € lifetime <span class="badge badge-warning">Deprekovať</span></h4>
+        <p>Pre-VIP CZ/SK/EN/DE/ESP dohromady poslali 4 483 mailov a vygenerovali 3 konverzie za 366 €. Konverzný pomer 0,07 %. Buď cieľová audience je zle definovaná (nedostatočne kvalifikovaní zákazníci), alebo timing/copy nesedí. Náklad na údržbu (5 trhov × pipeline upkeep) je vyšší než prínos.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Rozhodnúť do 5. 6.: (a) Deprekovať a triggers presmerovať priamo do VIP flow s upraveným prahom, alebo (b) prepísať s novými kritériami + dotykmi. Default = deprekovať.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar warn"></div>
+      <div class="content">
+        <h4>Výročie nákupu + Po vrátení tovaru: slabé konverzné pomery <span class="badge badge-warning">Copy refresh</span></h4>
+        <p>Výročie nákupu (10 pipelines) za lifetime: 7 298 triggerov, 31 konverzií, 20 927 obrat — 0,42 % CR. Po vrátení tovaru: 12 499 triggerov, 57 konverzií, 55 353 obrat — 0,46 % CR. Oba flows majú slušné OR, ale slabé click-through a konverzný stupeň.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Copy refresh — pravdepodobne ide o emotívne flows, ktoré sa otvárajú zo zvedavosti, ale nemajú silnú akciu. Pridať konkrétny offer (5 % vernostný kód, free shipping) namiesto všeobecnej pripomienky.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CROSS-MARKET COMPARISON -->
+<section id="markets">
+  <div class="container">
+    <h2>3. Cross-market porovnanie</h2>
+    <p class="section-sub">Per-trh pohľad — kde je výkonnosť silná, kde je priestor. Fokus SK + CZ, ostatné v scorecard.</p>
+
+    <div class="metrics-grid" style="margin-bottom: 28px;">
+      <div class="metric-card pos">
+        <h3>EN</h3>
+        <div class="value">8 660</div>
+        <div class="desc">odberateľov · 47,7 % B2C bázy</div>
+        <div class="trend up">Top revenue driver</div>
+      </div>
+      <div class="metric-card">
+        <h3>CZ</h3>
+        <div class="value">2 675</div>
+        <div class="desc">odberateľov · 14,7 % bázy</div>
+        <div class="trend flat">Stabilný 2. pilier</div>
+      </div>
+      <div class="metric-card warn">
+        <h3>SK</h3>
+        <div class="value">1 681</div>
+        <div class="desc">odberateľov · 9,3 % bázy</div>
+        <div class="trend down">Underutilized</div>
+      </div>
+      <div class="metric-card">
+        <h3>DE</h3>
+        <div class="value">2 659</div>
+        <div class="desc">odberateľov · 14,7 % bázy</div>
+      </div>
+      <div class="metric-card">
+        <h3>ESP</h3>
+        <div class="value">2 471</div>
+        <div class="desc">odberateľov · 13,6 % bázy</div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 18px; color: var(--dex-navy); margin: 8px 0 16px 0; font-family: var(--font-primary); font-weight: 400;">Per-market kampaňový scorecard (30d)</h3>
+    <div class="table-scroll">
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>Trh</th>
+            <th class="num">Kampane</th>
+            <th class="num">Recipients</th>
+            <th class="num">OR</th>
+            <th class="num">CTR</th>
+            <th class="num">Konverzie</th>
+            <th class="num">Obrat 30d</th>
+            <th class="num">⌀ Obrat / kampaň</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>EN</strong></td><td class="num">4</td><td class="num">25 204</td><td class="num pos">45,8 %</td><td class="num pos">15,5 %</td><td class="num pos">197</td><td class="num"><strong>878 770</strong></td><td class="num">219 692</td></tr>
+          <tr><td><strong>CZ</strong></td><td class="num">4</td><td class="num">8 274</td><td class="num">34,2 %</td><td class="num">13,0 %</td><td class="num">56</td><td class="num"><strong>185 235</strong></td><td class="num">46 309</td></tr>
+          <tr><td><strong>DE</strong></td><td class="num">4</td><td class="num">10 452</td><td class="num">38,4 %</td><td class="num pos">16,2 %</td><td class="num">83</td><td class="num">18 751</td><td class="num">4 688</td></tr>
+          <tr class="warn-row"><td><strong>SK</strong></td><td class="num">1</td><td class="num">1 441</td><td class="num">37,7 %</td><td class="num pos">33,9 %</td><td class="num">12</td><td class="num">4 724 €</td><td class="num">4 724 €</td></tr>
+          <tr><td>ESP</td><td class="num">4</td><td class="num">10 197</td><td class="num">37,9 %</td><td class="num">11,2 %</td><td class="num">24</td><td class="num">3 504</td><td class="num">876</td></tr>
+          <tr><td>SI (slovinský)</td><td class="num">3</td><td class="num">2 098</td><td class="num">40,8 %</td><td class="num">21,4 %</td><td class="num">23</td><td class="num">2 893</td><td class="num">964</td></tr>
+          <tr><td>FR (francúzsky)</td><td class="num">4</td><td class="num">2 265</td><td class="num">41,2 %</td><td class="num">13,2 %</td><td class="num">10</td><td class="num">1 105</td><td class="num">276</td></tr>
+          <tr><td>Nedetegované (multi-lang)</td><td class="num">11</td><td class="num">20 898</td><td class="num">44,4 %</td><td class="num">6,5 %</td><td class="num">65</td><td class="num">222 092</td><td class="num">20 190</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="finding" style="margin-top: 24px;">
+      <div class="bar warn"></div>
+      <div class="content">
+        <h4>SK má najvyšší CTR (33,9 %) — engagement je tam, ale cadence chýba <span class="badge badge-warning">Pozor</span></h4>
+        <p>Pri tej jednej SK kampani (Jarný výpredaj) bol CTR z otvorení 33,9 % — výrazne nad CZ (13 %) a EN (15,5 %). Odberateľky reagujú, ale dostávajú výrazne menej príležitostí. Cadence asymetria je hlavná páka.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Cieľ jún: 4 SK broadcasty (vs 1 v máji). Replikovať Jarní výprodej CZ + Wedding 20% CZ + Free shipping CZ + 1 SK-natívny koncept.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar med"></div>
+      <div class="content">
+        <h4>DE: solídny CTR (16,2 %), ale obrat per kampaň 6× nižší než CZ <span class="badge badge-info">Investigovať</span></h4>
+        <p>DE má 2 659 odberateľov (1,5× viac ako SK), OR 38,4 %, CTR 16,2 % — všetko OK. Ale obrat per kampaň 4 688 vs CZ 46 309. Problém je v konverzii z clicku na nákup — AOV alebo cenová citlivosť, alebo brand awareness na DE trhu.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Cross-check s Shopify dátami (DE conversion rate na webe vs SK/CZ). Možno ide o web/checkout problém, nie email.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATABASE -->
+<section id="database" class="alt">
+  <div class="container">
+    <h2>4. Databáza a štruktúra B2C lists</h2>
+    <p class="section-sub">5 hlavných B2C newsletter lists naprieč trhmi + Shapen_ALL spojený zoznam. Audit veľkosti, custom_fields a double-opt-in setup.</p>
+
+    <div class="methodology-box">
+      <p><strong>Zdroj dát:</strong> <code>/lists</code> (16 lists total) + <code>/lists/{id}/subscribers?page=1</code> (total field). B2B 3 lists vynechané z auditu (mimo scope).</p>
+    </div>
+
+    <div class="rfm-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="rfm-card large">
+        <div class="seg-name">Newsletter EN</div>
+        <div class="seg-val">8 660</div>
+        <div class="seg-pct">47,7 % B2C bázy</div>
+        <div class="seg-rev">Top revenue driver</div>
+      </div>
+      <div class="rfm-card">
+        <div class="seg-name">Newsletter CZ</div>
+        <div class="seg-val">2 675</div>
+        <div class="seg-pct">14,7 % bázy</div>
+        <div class="seg-rev">Best practice template market</div>
+      </div>
+      <div class="rfm-card">
+        <div class="seg-name">Newsletter DE</div>
+        <div class="seg-val">2 659</div>
+        <div class="seg-pct">14,7 % bázy</div>
+        <div class="seg-rev">Aktívny, ale slabší obrat</div>
+      </div>
+      <div class="rfm-card">
+        <div class="seg-name">Newsletter ESP</div>
+        <div class="seg-val">2 471</div>
+        <div class="seg-pct">13,6 % bázy</div>
+        <div class="seg-rev">Rastúci trh</div>
+      </div>
+      <div class="rfm-card hib">
+        <div class="seg-name">Newsletter SK</div>
+        <div class="seg-val">1 681</div>
+        <div class="seg-pct">9,3 % bázy</div>
+        <div class="seg-rev">Underutilized (1 kampaň/30d)</div>
+      </div>
+      <div class="rfm-card pos">
+        <div class="seg-name">Shapen_ALL (zlúčený)</div>
+        <div class="seg-val">5 041</div>
+        <div class="seg-pct">Cross-market list</div>
+        <div class="seg-rev">SI + FR + ostatné jazyky</div>
+      </div>
+    </div>
+
+    <div class="finding" style="margin-top: 28px;">
+      <div class="bar pos"></div>
+      <div class="content">
+        <h4>Double-opt-in zapnutý na 5 hlavných newsletteroch <span class="badge badge-positive">Win</span></h4>
+        <p>Newsletter SK/CZ/EN/DE/ESP majú <code>double_optin = true</code>. To je dobré pre kvalitu listu a deliverability — zabraňuje to fake/typo emailom + zlepšuje engagement metrics dlhodobo. B2B listy + Shapen_ALL majú DOI off (zámerne, pre wholesale a multi-source data import).</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar med"></div>
+      <div class="content">
+        <h4>Custom fields: SK 10+, EN 10+ — bohatý dataset pre personalizáciu</h4>
+        <p>SK list má custom_fields: ln (lastname), AMOUNT (lifetime value), Groups, krajina, Location, koncovka (suffix). Tieto polia umožňujú cielenú personalizáciu (napr. lifetime value &gt; X) a market-within-market segmentáciu. Pre audit budeme musieť zistiť, ktoré sa reálne plnia.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Audit custom_fields fill rate — sample 200 odberateľov z každého listu, zistiť ktoré polia majú &lt; 50 % naplnenie. Tie buď zrušiť alebo doplniť scraping/onboarding flow.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEGMENTS -->
+<section id="segments">
+  <div class="container">
+    <h2>5. Segmenty — 140+ aktívnych queries naprieč markets</h2>
+    <p class="section-sub">Súčet segmentov: SK 40, CZ 33, EN 48, DE 12, ESP 7. Mnohé z nich sú duplikáty, test-segmenty alebo dlhodobo nepoužívané kampaňové výberky.</p>
+
+    <div class="metrics-grid" style="margin-bottom: 24px;">
+      <div class="metric-card warn">
+        <h3>SK segmenty</h3>
+        <div class="value">40</div>
+        <div class="desc">vrátane „Segment A", „DEX TEST", duplikátov</div>
+      </div>
+      <div class="metric-card">
+        <h3>CZ segmenty</h3>
+        <div class="value">33</div>
+        <div class="desc">tiež s nepoužívanými ad-hoc výberkami</div>
+      </div>
+      <div class="metric-card warn">
+        <h3>EN segmenty</h3>
+        <div class="value">48</div>
+        <div class="desc">najväčšia kategória — najväčší cleanup</div>
+      </div>
+      <div class="metric-card pos">
+        <h3>DE + ESP</h3>
+        <div class="value">19</div>
+        <div class="desc">DE 12, ESP 7 — primerané</div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 16px; color: var(--dex-navy); margin: 16px 0 12px 0; font-family: var(--font-primary); font-weight: 400;">Príklad SK segmentov — kde je dlh</h3>
+    <div class="table-scroll">
+      <table class="audit-table">
+        <thead>
+          <tr><th>Segment</th><th>Charakter</th><th>Stav</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Zakupili novu kolekciu SK</td><td>Tracking-based (campaign 6662)</td><td><span class="flow-status exists">Aktívny</span></td></tr>
+          <tr><td>NEzakupili novu kolekciu SK</td><td>Tracking-based inverz</td><td><span class="flow-status exists">Aktívny</span></td></tr>
+          <tr><td>VIP</td><td>Loyalty výber</td><td><span class="flow-status exists">Aktívny</span></td></tr>
+          <tr><td>pre-VIP</td><td>Pre-loyalty</td><td><span class="flow-status partial">Slabý ROI flow</span></td></tr>
+          <tr><td>ne-VIP</td><td>Inverz VIP</td><td><span class="flow-status exists">Aktívny</span></td></tr>
+          <tr class="warn-row"><td>Segment A</td><td>Email starts with a–m</td><td><span class="flow-status missing">Test, archivovať</span></td></tr>
+          <tr class="warn-row"><td>Segment A (copy)</td><td>Duplikát</td><td><span class="flow-status missing">Mŕtvy, archivovať</span></td></tr>
+          <tr class="warn-row"><td>DEX TEST</td><td>Interný test</td><td><span class="flow-status missing">Mŕtvy, archivovať</span></td></tr>
+          <tr class="warn-row"><td>Test</td><td>Interný test</td><td><span class="flow-status missing">Mŕtvy, archivovať</span></td></tr>
+          <tr class="warn-row"><td>Dexfinity Zuzka Testovací</td><td>Personalny test segment</td><td><span class="flow-status missing">Mŕtvy, archivovať</span></td></tr>
+          <tr class="warn-row"><td>Barefoot friday Kick-off NEOTVORILI</td><td>BF 2024 ad-hoc</td><td><span class="flow-status missing">Historický, archivovať</span></td></tr>
+          <tr class="warn-row"><td>Odpočet - nenakúpili počas BF</td><td>BF 2024 ad-hoc</td><td><span class="flow-status missing">Historický, archivovať</span></td></tr>
+          <tr class="warn-row"><td>Zimný výpredaj 27.2 / 29.2 — nenakúpili od 25. 1. 2024</td><td>Z 1/2024</td><td><span class="flow-status missing">Historický, archivovať</span></td></tr>
+          <tr class="warn-row"><td>Nenakúpili z BF 1 SK</td><td>BF 2024</td><td><span class="flow-status missing">Historický, archivovať</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="finding" style="margin-top: 28px;">
+      <div class="bar warn"></div>
+      <div class="content">
+        <h4>~15 SK segmentov je technický dlh <span class="badge badge-warning">Cleanup</span></h4>
+        <p>Po pohľade na 40 SK segmentov: 7 sú aktuálne aktívne (VIP, pre-VIP, ne-VIP, Spravili nakup, Opakovani nakupcovia, Nakup new kolekciu, Newsletter campaign SK), zvyšok sú historické BF/výpredaj ad-hoc výberky alebo testy. Riziko: zlé cielenie ak niekto použije starý segment.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Archivovať všetky segmenty bez aktivity za posledných 6 mesiacov (nie sú v žiadnom aktívnom pipeline a neboli použité v broadcaste). Cieľ: zo 40 SK na ~15.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="bar med"></div>
+      <div class="content">
+        <h4>Custom_fields-based segmentácia funguje, ale chýba RFM štruktúra <span class="badge badge-info">Príležitosť</span></h4>
+        <p>Shapen segmentuje primárne podľa nákupnej histórie (tracking events) a custom_fields (AMOUNT, krajina). To je pokročilé. Ale chýba štandardizovaný RFM model (Champions / Loyal / At Risk / Hibernating) ako prierezový framework. „VIP" a „pre-VIP" sú per-market a manuálne definované.</p>
+        <div class="rec"><strong>Odporúčanie:</strong> Q3 2026 (mimo tohto sprintu): definovať RFM matrix s prahmi pre 5 trhov + automatický tag assignment. Cieľ: 1 unifikovaný framework namiesto 5 paralelných manuálnych setupov.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECOMMENDATIONS / SUMMARY -->
+<section id="recs" class="alt">
+  <div class="container">
+    <h2>Zhrnutie a roadmapa</h2>
+    <p class="section-sub">Konsolidovaný akčný plán z auditu. Priority v ďalších týždňoch sú vyššie v reporte (Next Steps box).</p>
+
+    <div class="rec-timeline">
+      <div class="rec-step">
+        <div class="step-label">Týždeň 1 · 27.–31. 5. 2026</div>
+        <h3>Diagnostika SK trhu + segment inventory</h3>
+        <p>Pochopiť prečo SK má 40 % CZ obratu pri rovnocenných kvantitách. Stiahnuť všetky SK + EN segmenty s last_used metaúdajmi.</p>
+        <ul>
+          <li>SK list health audit (bounce, sub source, engagement scoring)</li>
+          <li>Inventarizácia 40 SK + 48 EN segmentov</li>
+          <li>Plán archivácie nepoužívaných segmentov</li>
+        </ul>
+        <div class="step-impact">Deliverable: SK diagnostický report + cleanup plán</div>
+      </div>
+
+      <div class="rec-step">
+        <div class="step-label">Týždeň 2 · 1.–7. 6. 2026</div>
+        <h3>SK A/B kampaň + Reaktivácia SK clone</h3>
+        <p>Najsilnejšia páka — replikovať proven CZ template do SK + spustiť Reaktivácia nákup SK v štýle CZ verzie (1,33 M lifetime).</p>
+        <ul>
+          <li>SK broadcast A/B (priamy preklad CZ vs SK-tone adaptácia)</li>
+          <li>Reaktivácia nákup SK — clone CZ template, live launch</li>
+          <li>Pre-VIP flow rozhodnutie (deprekovať alebo prepísať)</li>
+        </ul>
+        <div class="step-impact">Deliverable: SK kampaň odoslaná · Reaktivácia SK live · Pre-VIP rozh. hotové</div>
+      </div>
+
+      <div class="rec-step">
+        <div class="step-label">Týždeň 3–4 · 8.–21. 6. 2026</div>
+        <h3>Top-pattern replikácia DE + ESP</h3>
+        <p>Po SK fixe spraviť to isté cvičenie pre DE a ESP. Cieľ: per-flow benchmark + tier 2/3 markets na úroveň CZ pre 4 top flow typy.</p>
+        <ul>
+          <li>Cross-market benchmark spreadsheet (Browse / Welcome / Cart / Reaktivácia)</li>
+          <li>Identifikácia 3 najslabších verzií + remediation plán</li>
+          <li>Copy refresh Výročie nákupu + Po vrátení tovaru (slabé CR)</li>
+        </ul>
+        <div class="step-impact">Deliverable: per-flow benchmark · 3 flow templates remediated</div>
+      </div>
+
+      <div class="rec-step">
+        <div class="step-label">Týždeň 5–6 · 22.–30. 6. 2026</div>
+        <h3>Wrap-up + Q3 príprava</h3>
+        <p>Záverečná konsolidácia juna + plánovanie Q3 iniciatív, ktoré sú mimo tohto sprintu.</p>
+        <ul>
+          <li>Final segment count audit (cieľ: SK 40 → 15, EN 48 → 20)</li>
+          <li>Custom_fields fill rate report</li>
+          <li>RFM unification proposal pre Q3 (cross-market matrix)</li>
+        </ul>
+        <div class="step-impact">Deliverable: jún wrap-up report + Q3 RFM proposal</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL SUMMARY BOX -->
+<section>
+  <div class="container">
+    <div class="summary-box">
+      <div class="circle-dec c1"></div>
+      <div class="circle-dec c2"></div>
+      <h2>Zhrnutie: čo funguje, čo zlepšiť</h2>
+      <p>Shapen má jeden z najdospelších emailových programov medzi Dexfinity klientmi. Príležitosti nie sú v stavaní zo zelenej lúky, ale v cross-market vyrovnaní a čistení dlhových položiek.</p>
+
+      <div class="summary-grid">
+        <div class="summary-item">
+          <div class="val">67</div>
+          <div class="label-title">Aktívnych flows</div>
+          <div class="desc">13 flow typov × 5 trhov</div>
+        </div>
+        <div class="summary-item">
+          <div class="val">10,5 M</div>
+          <div class="label-title">Lifetime auto obrat</div>
+          <div class="desc">naprieč všetkými flows</div>
+        </div>
+        <div class="summary-item">
+          <div class="val">18,1 k</div>
+          <div class="label-title">B2C odberateľov</div>
+          <div class="desc">5 newsletter trhov</div>
+        </div>
+        <div class="summary-item">
+          <div class="val">66 %</div>
+          <div class="label-title">VIP EN open rate</div>
+          <div class="desc">world-class benchmark</div>
+        </div>
+        <div class="summary-item">
+          <div class="val">40 %</div>
+          <div class="label-title">SK obrat vs CZ</div>
+          <div class="desc">priestor na 2,5× rast</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="circle-f f1"></div>
+  <div class="circle-f f2"></div>
+  <img src="https://www.dexfinity.com/wp-content/uploads/2021/03/Logo-Small-Dark-Landscape@2x.png" alt="Dexfinity" class="footer-logo">
+  <p>Audit pripravil Dexfinity · CreAI oddelenie · pre interné použitie Shapen tímu.</p>
+  <p class="footer-links">Dáta: <a href="https://shapen.ecomailapp.cz" target="_blank">shapen.ecomailapp.cz</a> · 27. 5. 2026</p>
+  <div class="go-beyond">Go Beyond</div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.querySelector('.hamburger').classList.toggle('active');
+  document.getElementById('navLinks').classList.toggle('open');
+}
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.hamburger').classList.remove('active');
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
