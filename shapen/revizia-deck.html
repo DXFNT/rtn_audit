@@ -101,6 +101,14 @@
   .nav{position:fixed;right:26px;bottom:20px;display:flex;gap:10px;align-items:center;z-index:50;color:#8888aa;font-size:14px}
   .nav button{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:8px;width:38px;height:34px;font-size:16px;cursor:pointer}
   .nav button:hover{background:rgba(0,101,247,.4)}
+  /* Compact density — pre dátovo husté slidy (napr. tabuľka frekvencie) */
+  .slide.compact{padding-top:44px;padding-bottom:44px}
+  .slide.compact h1{font-size:52px;margin-bottom:8px}
+  .slide.compact .punchline{font-size:22px;margin-bottom:10px!important}
+  .slide.compact th{padding:8px 14px}
+  .slide.compact td{padding:8px 14px;font-size:18px}
+  .slide.compact td .s{font-size:13px}
+  .slide.compact .band{padding:16px 30px;font-size:20px;margin-top:14px!important;margin-bottom:0}
   @media print{
     @page{size:1920px 1080px;margin:0}
     html,body{overflow:visible;background:#05024E}
@@ -124,7 +132,7 @@
   <div class="cover-content">
     <div class="cover-eyebrow">Shapen × Dexfinity</div>
     <div class="cover-title">Revízia<br>emailingu &amp; <em>plán úprav</em></div>
-    <div class="cover-sub">Stav účtu, porovnanie s odvetvím a <b>štvortýždňový plán</b> úprav frekvencie, prekryvov a VIP segmentu. Detailný report v prílohe.</div>
+    <div class="cover-sub">Stav účtu, porovnanie s odvetvím a <b>päťtýždňový plán</b> úprav frekvencie, prekryvov a VIP segmentu. Detailný report v prílohe.</div>
     <div class="cover-cred">Tri časti: stav emailingu · konkrétne úpravy · harmonogram</div>
   </div>
   <footer><span>shapenbarefoot.com</span><span class="tag">GO BEYOND</span></footer>
@@ -136,25 +144,25 @@
   <header><img class="logo" src="https://www.dexfinity.com/wp-content/uploads/2021/03/Logo-Small-Dark-Landscape@2x.png"><div class="meta">02 · <b>Stav emailingu · 1/3</b></div></header>
   <div class="eyebrow t">Stav účtu</div>
   <h1>Tri ukazovatele, ktoré hovoria o kondícii</h1>
-  <div class="punchline" style="margin-bottom:30px">Po prejdení 964 845 e-mailov za celé fungovanie 67 automatizácií je technický stav Shapen účtu <b class="t">zdravý</b>. Optimalizujeme cielene, nie plošne.</div>
+  <div class="punchline" style="margin-bottom:30px">Za celý čas fungovania účet odoslal 964 845 e-mailov cez 67 automatizácií — a jeho technický stav je <b class="t">zdravý</b>. Optimalizujeme cielene, nie plošne.</div>
   <div class="metrics">
     <div class="metric">
       <div class="big t">0,0064 %</div>
       <h3>Sťažnosti na nevyžiadanú poštu</h3>
-      <p>62 sťažností z 964 845 e-mailov. Google bulk sender requirements odporúčajú cieľ pod 0,1 % — sme <b style="color:#fff">15× pod hranicou</b>.</p>
+      <p>62 sťažností z 964 845 e-mailov. Google odporúča pre hromadných odosielateľov cieľ pod 0,1 % — sme <b style="color:#fff">15× pod hranicou</b>.</p>
     </div>
     <div class="metric">
       <div class="big t">40,8 %</div>
       <h3>Otvárateľnosť (priemer)</h3>
-      <p>Automatizácie 40,8 %, hromadné kampane 43,1 %. Klaviyo 2025 priemer pre e-shopy je 37,9 % — <b style="color:#fff">sme nad odvetvím</b>.</p>
+      <p>Automatizácie 40,8 %, hromadné kampane 43,1 %. Priemer Klaviyo 2025 pre e-shopy je 37,9 % — <b style="color:#fff">sme nad odvetvím</b>.</p>
     </div>
     <div class="metric">
       <div class="big o">~6/mes</div>
       <h3>Priemerná frekvencia / odberateľ</h3>
-      <p>1–3 e-maily/týždeň je odporúčaný rozsah pre e-shopy (Shopify 2025). Sme na <b style="color:#fff">~1,5/týždeň</b> — v rámci, ale prekryvy zvyšujú špičky.</p>
+      <p>1–3 e-maily/týždeň je odporúčaný rozsah pre e-shopy (Shopify 2025). Sme na <b style="color:#fff">~1,5/týždeň</b> — v norme, ale prekryvy vytvárajú špičky.</p>
     </div>
   </div>
-  <div class="band">Nie sme spamový sender. <b>Žiadna z metrík neukazuje fatigue na úrovni účtu.</b> Optimalizovať treba jeden konkrétny scenár (Reaktivácia po nákupe) a prekryvy medzi scenármi — nie plošne znižovať frekvenciu všetkého.</div>
+  <div class="band">Nie sme spamový odosielateľ. <b>Žiadna z metrík nenaznačuje únavu publika na úrovni účtu.</b> Optimalizovať treba jeden konkrétny scenár (Reaktivácia po nákupe) a prekryvy medzi scenármi — nie plošne znižovať frekvenciu všetkého.</div>
   <footer><span>Shapen × Dexfinity · stav emailingu</span><span class="tag">GO BEYOND</span></footer>
 </section>
 
@@ -170,39 +178,39 @@
     <tbody>
       <tr><td>Sťažnosti na nevyžiadanú poštu</td><td>cieľ &lt; 0,1 %</td><td>0,0064 %</td><td class="yes">15× pod cieľom</td></tr>
       <tr><td>Otvárateľnosť (e-shopy)</td><td>priemer 37,9 %</td><td>40,8 % automaty · 43,1 % kampane</td><td class="yes">Nad priemerom</td></tr>
-      <tr><td>Otvárateľnosť (top v móde)</td><td>54,2 %</td><td>54,9 % uvítacie · 62,3 % VIP</td><td class="yes">Špička</td></tr>
-      <tr><td>Miera odhlásenia / kampaň</td><td>silné &lt; 0,3 %</td><td>0,46 % hromadné</td><td class="no">Mierne nad pásmom</td></tr>
+      <tr><td>Otvárateľnosť (najlepšie v móde)</td><td>54,2 %</td><td>54,9 % uvítacie · 62,3 % VIP</td><td class="yes">Špička</td></tr>
+      <tr><td>Miera odhlásenia / kampaň</td><td>veľmi dobré &lt; 0,3 %</td><td>0,46 % hromadné</td><td class="no">Mierne nad pásmom</td></tr>
       <tr><td>Frekvencia (e-shopy)</td><td>1–3/týž · optimum 2/týž</td><td>~1,5/týž</td><td class="yes">V odporúčanom pásme</td></tr>
     </tbody>
   </table>
-  <div class="band" style="margin-top:30px">Zhrnutie: <b>otvárateľnosť, sťažnosti a frekvencia sú v zdravom pásme.</b> Miera odhlásenia je mierne nad „silným" pásmom — a 88 % všetkých odhlásení pochádza z jedného typu scenára (Reaktivácia po nákupe). Tam je úprava najdôležitejšia.</div>
+  <div class="band" style="margin-top:30px">Zhrnutie: <b>otvárateľnosť, sťažnosti a frekvencia sú v zdravom pásme.</b> Miera odhlásenia je mierne nad cieľovým pásmom — a 88 % všetkých odhlásení pochádza z jediného typu scenára (Reaktivácia po nákupe). Tam je úprava najdôležitejšia.</div>
   <footer><span>Zdroje: Klaviyo 2025 · Google bulk sender req. · Shopify 2025 · MailerLite 2026</span><span class="tag">GO BEYOND</span></footer>
 </section>
 
 <!-- 4 STAV — FREKVENCIA PER SCENAR -->
-<section class="slide">
+<section class="slide compact">
   <div class="brick b1"></div><div class="brick b2"></div>
   <header><img class="logo" src="https://www.dexfinity.com/wp-content/uploads/2021/03/Logo-Small-Dark-Landscape@2x.png"><div class="meta">04 · <b>Stav emailingu · 3/3</b></div></header>
-  <div class="eyebrow t">Frekvencia per scenár</div>
+  <div class="eyebrow t">Frekvencia podľa scenára</div>
   <h1>Reaktivácia po nákupe — najsilnejší zdroj záťaže</h1>
-  <div class="punchline" style="margin-bottom:18px">Priemer e-mailov ročne na 1 odberateľa z každého scenára (za 5 trhov). Reaktivácia po nákupe drvivo prevyšuje všetko ostatné.</div>
+  <div class="punchline" style="margin-bottom:18px">Priemer e-mailov ročne na 1 odberateľa z každého scenára (naprieč 5 trhmi). Reaktivácia po nákupe drvivo prevyšuje všetko ostatné.</div>
   <table>
     <thead><tr><th>Scenár</th><th>SK</th><th>CZ</th><th>EN</th><th>DE</th><th>ESP</th></tr></thead>
     <tbody>
       <tr><td style="color:var(--orange)"><b>Reaktivácia po nákupe</b></td><td class="no">21,8</td><td>15,6</td><td>17,4</td><td>16,6</td><td>16,8</td></tr>
-      <tr><td>Naposledy zobrazené (browse)</td><td>5,4</td><td>3,2</td><td>4,4</td><td>3,9</td><td>4,2</td></tr>
+      <tr><td>Naposledy zobrazené</td><td>5,4</td><td>3,2</td><td>4,4</td><td>3,9</td><td>4,2</td></tr>
       <tr><td>Reaktivácia (bez nákupu)</td><td>1,2</td><td>1,8</td><td>1,0</td><td>0,8</td><td>0,8</td></tr>
       <tr><td>Opustený košík</td><td>1,3</td><td>0,7</td><td>1,2</td><td>0,4</td><td>0,4</td></tr>
       <tr><td>VIP</td><td>0,5</td><td>0,5</td><td>0,5</td><td>0,9</td><td>0,8</td></tr>
-      <tr><td>Uvítacia séria (Welcome)</td><td>0,7</td><td>0,3</td><td>0,6</td><td>0,4</td><td>0,6</td></tr>
-      <tr><td>Pre-VIP <span class="s">(deprekovať)</span></td><td>0,2</td><td>0,2</td><td>0,2</td><td>0,2</td><td>0,2</td></tr>
+      <tr><td>Uvítacia séria</td><td>0,7</td><td>0,3</td><td>0,6</td><td>0,4</td><td>0,6</td></tr>
+      <tr><td>Pre-VIP <span class="s">(ukončiť)</span></td><td>0,2</td><td>0,2</td><td>0,2</td><td>0,2</td><td>0,2</td></tr>
       <tr style="background:rgba(255,127,0,.08)"><td style="color:var(--orange)"><b>SPOLU automaty / rok</b></td><td><b>~32,6</b></td><td><b>~23,6</b></td><td><b>~26,3</b></td><td><b>~24,3</b></td><td><b>~24,3</b></td></tr>
       <tr><td style="color:var(--blue2)">+ hromadné kampane / rok</td><td>~12</td><td>~48</td><td>~48</td><td>~48</td><td>~48</td></tr>
-      <tr style="background:rgba(0,101,247,.12)"><td style="color:var(--blue)"><b>⌀ MAILOV / MES per odberateľ</b></td><td><b>~3,8</b></td><td><b>~6,0</b></td><td><b>~6,2</b></td><td><b>~6,0</b></td><td><b>~6,0</b></td></tr>
+      <tr style="background:rgba(0,101,247,.12)"><td style="color:var(--blue)"><b>PRIEMER E-MAILOV / MES NA ODBERATEĽA</b></td><td><b>~3,8</b></td><td><b>~6,0</b></td><td><b>~6,2</b></td><td><b>~6,0</b></td><td><b>~6,0</b></td></tr>
     </tbody>
   </table>
-  <div class="band o">88 % všetkých odhlásení z automatizácií pochádza z Reaktivácie po nákupe — 9 196 z 10 458. <b>Skrátenie série a sprísnenie spúšťačov rieši hlavnú časť problému naraz</b> a obrat z ostatných scenárov sa nedotkne.</div>
-  <footer><span>Lifetime priemer · zdroj: Ecomail API</span><span class="tag">GO BEYOND</span></footer>
+  <div class="band o">88 % všetkých odhlásení z automatizácií pochádza z Reaktivácie po nákupe — 9 196 z 10 458. <b>Skrátenie série a sprísnenie spúšťačov rieši hlavnú časť problému naraz</b> a obrat z ostatných scenárov ostáva nedotknutý.</div>
+  <footer><span>Priemer za celé fungovanie · zdroj: Ecomail API</span><span class="tag">GO BEYOND</span></footer>
 </section>
 
 <!-- 5 PREKRYVY MEDZI SCENARMI -->
@@ -215,14 +223,14 @@
   <table>
     <thead><tr><th>Spúšťač</th><th>Možné scenáre</th><th>Riziko</th><th>Riešenie</th></tr></thead>
     <tbody>
-      <tr><td>Návšteva produktu</td><td>Naposledy zobrazené + Opustený košík (po pridaní)</td><td class="no">2 e-maily / 24 h</td><td class="yes">Browse 24h odklad, Cart má prioritu</td></tr>
+      <tr><td>Návšteva produktu</td><td>Naposledy zobrazené + Opustený košík (po pridaní)</td><td class="no">2 e-maily / 24 h</td><td class="yes">Prezeranie s 24h odkladom, košík má prioritu</td></tr>
       <tr><td>Nákup spravený</td><td>Ďakovačka + Reaktivácia po nákupe (následne)</td><td class="no">Okno 7–30 dní</td><td class="yes">Reaktivácia čaká 14 dní po Ďakovačke</td></tr>
-      <tr><td>Bez nákupu 30/60/90 dní</td><td>Reaktivácia + Pre-VIP + Odobratie štítku</td><td class="no">3 paralelné série</td><td class="yes">Pre-VIP off; hierarchia Reaktivácia vs Odobratie</td></tr>
-      <tr><td>Nový odberateľ + kampaň</td><td>Uvítacia séria (7 dní) + bežná kampaň</td><td class="no">Welcome 7d okno</td><td class="yes">Welcome okno blokuje kampane</td></tr>
-      <tr><td>Vrátenie tovaru</td><td>Po vrátení + môže overlap s Reaktiváciou</td><td>Hraničný prípad</td><td class="yes">Po vrátení 14d pauza zo všetkých</td></tr>
+      <tr><td>Bez nákupu 30/60/90 dní</td><td>Reaktivácia + Pre-VIP + Odobratie štítku</td><td class="no">3 paralelné série</td><td class="yes">Pre-VIP vypnúť; hierarchia Reaktivácia vs Odobratie</td></tr>
+      <tr><td>Nový odberateľ + kampaň</td><td>Uvítacia séria (7 dní) + bežná kampaň</td><td class="no">Uvítacie 7d okno</td><td class="yes">Uvítacie okno blokuje kampane</td></tr>
+      <tr><td>Vrátenie tovaru</td><td>Po vrátení sa môže prekrývať s Reaktiváciou</td><td>Hraničný prípad</td><td class="yes">Po vrátení 14d pauza od ostatných</td></tr>
     </tbody>
   </table>
-  <div class="band" style="margin-top:30px">Pravidlá blokovania v Ecomaile sú jednorazové nastavenie. <b>Žiadny scenár nevypíname, len ich oddeľujeme v čase</b> — high-engagement odberateľ z 8–10 e-mailov v 2 týždňoch klesne na ~4–5.</div>
+  <div class="band" style="margin-top:30px">Pravidlá blokovania v Ecomaile sú jednorazové nastavenie. <b>Žiadny scenár nevypíname, len ich oddeľujeme v čase</b> — veľmi aktívny odberateľ z 8–10 e-mailov za 2 týždne klesne na ~4–5.</div>
   <footer><span>Shapen × Dexfinity · mapa prekryvov</span><span class="tag">GO BEYOND</span></footer>
 </section>
 
@@ -236,12 +244,12 @@
     <div class="panel o">
       <h3>1. Reaktivácia po nákupe — skrátenie</h3>
       <div class="val">Najsilnejší zdroj odhlásení · T2</div>
-      <p>Skrátenie série na max 3 e-maily, sprísnenie spúšťača na 14+ dní od posledného nákupu, 7-dňové rozostupy. Aplikované na všetkých 5 trhoch.</p>
+      <p>Skrátenie série na max 3 e-maily, sprísnenie spúšťača na 14+ dní od posledného nákupu, 7-dňové rozostupy. Platí pre všetkých 5 trhov.</p>
     </div>
     <div class="panel">
       <h3>2. Pravidlá blokovania</h3>
       <div class="val">5 prekrývajúcich sa zón · T2</div>
-      <p>Uvítacie okno (7d) blokuje kampane, Ďakovačka (14d) blokuje Reaktiváciu, Po vrátení (14d) blokuje ostatné, Cart prioritný pred Browse.</p>
+      <p>Uvítacie okno (7d) blokuje kampane, Ďakovačka (14d) blokuje Reaktiváciu, Po vrátení (14d) blokuje ostatné, košík má prioritu pred prezeraním.</p>
     </div>
     <div class="panel o">
       <h3>3. Pre-VIP — ukončiť</h3>
@@ -251,7 +259,7 @@
     <div class="panel t">
       <h3>4. VIP — štvrťročný model</h3>
       <div class="val">4×/rok · exkluzívne · T3–4</div>
-      <p>Preklopiť kontinuálny scenár na štvrťročný kampaňový model. Exkluzívny obsah (predčasný prístup, VIP-only ponuky), blokovanie z kampaní v 7d okne.</p>
+      <p>Preklopiť kontinuálny scenár na štvrťročný kampaňový model. Exkluzívny obsah (predčasný prístup, ponuky len pre VIP), blokovanie z kampaní v 7d okne.</p>
     </div>
   </div>
   <div class="band" style="margin-top:14px;font-size:23px"><b>Cieľ:</b> priemer e-mailov / odberateľ / mesiac z <b>~6 na ~4</b>, miera odhlásenia z <b>0,46 % pod 0,30 %</b>, obrat <b>zachovaný na 95 %+</b> aktuálnej úrovne.</div>
@@ -267,13 +275,13 @@
   <div class="cols2" style="grid-template-columns:560px 1fr;gap:60px;align-items:start;margin-top:8px">
     <div class="mock">
       <div class="mtitle" style="margin-bottom:4px">Reaktivácia po nákupe</div>
-      <div class="msub" style="margin-bottom:18px">Séria mailov po dokončenom nákupe</div>
+      <div class="msub" style="margin-bottom:18px">Séria e-mailov po dokončenom nákupe</div>
       <div class="mailrow strike"><span>D+3 · Pripomienka kategórie</span><span class="sm">odstrániť</span></div>
-      <div class="mailrow"><span>D+14 · „Nezabudli ste?"</span><span class="new">posunúť spúšťač</span></div>
+      <div class="mailrow"><span>D+14 · „Nezabudli ste?“</span><span class="new">posunúť spúšťač</span></div>
       <div class="mailrow"><span>D+28 · Personalizovaný výber</span><span class="new">ponechať</span></div>
       <div class="mailrow"><span>D+45 · Špeciálna ponuka</span><span class="new">ponechať</span></div>
       <div class="mailrow strike"><span>D+60 · Posledná pripomienka</span><span class="sm">odstrániť</span></div>
-      <div style="font-size:14px;color:#6B7280;margin-top:14px">Z 5-mailovej série na max 3 maily · spúšťač min 14d od posledného nákupu</div>
+      <div style="font-size:14px;color:#6B7280;margin-top:14px">Z piatich e-mailov v sérii na max tri · spúšťač min. 14 dní od posledného nákupu</div>
     </div>
     <div>
       <div class="lab">Čo upravujeme</div>
@@ -283,7 +291,7 @@
       <div class="ex o"><b>Očakávaný dopad:</b> Miera odhlásenia scenára z <b>1,45 % na ~0,5 %</b>, obrat zachovaný na <b>~80 %</b> (skrátenie odstraňuje neproduktívne dotyky, kľúčové ponechávame).</div>
     </div>
   </div>
-  <footer><span>Úprava 1 zo 4 · cieľ: -88 % odhlásení odstrániť</span><span class="tag">GO BEYOND</span></footer>
+  <footer><span>Úprava 1 zo 4 · rieši 88 % odhlásení z automatov</span><span class="tag">GO BEYOND</span></footer>
 </section>
 
 <!-- 8 UPRAVA 2: PRAVIDLA BLOKOVANIA -->
@@ -297,17 +305,17 @@
       <div class="mtitle" style="margin-bottom:4px">Hierarchia scenárov</div>
       <div class="msub" style="margin-bottom:18px">Nastavenie v Ecomaile · jednorazovo</div>
       <div class="mailrow"><span style="display:flex;align-items:center;gap:10px"><span style="width:24px;height:24px;border-radius:50%;background:var(--teal);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;font-weight:700">1</span>Uvítacia séria (7 dní)</span><span class="sm">blokuje kampane</span></div>
-      <div class="mailrow"><span style="display:flex;align-items:center;gap:10px"><span style="width:24px;height:24px;border-radius:50%;background:var(--teal);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;font-weight:700">2</span>Opustený košík</span><span class="sm">prioritný pred Browse</span></div>
+      <div class="mailrow"><span style="display:flex;align-items:center;gap:10px"><span style="width:24px;height:24px;border-radius:50%;background:var(--teal);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;font-weight:700">2</span>Opustený košík</span><span class="sm">prioritný pred prezeraním</span></div>
       <div class="mailrow"><span style="display:flex;align-items:center;gap:10px"><span style="width:24px;height:24px;border-radius:50%;background:var(--teal);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;font-weight:700">3</span>Ďakovačka (14 dní)</span><span class="sm">blokuje Reaktiváciu</span></div>
       <div class="mailrow"><span style="display:flex;align-items:center;gap:10px"><span style="width:24px;height:24px;border-radius:50%;background:var(--teal);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;font-weight:700">4</span>Po vrátení tovaru (14 dní)</span><span class="sm">blokuje všetky ostatné</span></div>
       <div class="mailrow"><span style="display:flex;align-items:center;gap:10px"><span style="width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;font-weight:700">5</span>Globálny limit</span><span class="sm">max 1/deň, 4/týž</span></div>
     </div>
     <div>
       <div class="lab">Čo upravujeme</div>
-      <p class="when" style="margin-bottom:24px">Definujeme jasnú hierarchiu medzi scenármi a okná, počas ktorých sa nižšie scenáre blokujú. Plus globálny limit max <b style="color:#fff">1 e-mail / deň</b> a max <b style="color:#fff">4 e-maily / týždeň</b> na odberateľa naprieč všetkými automatmi + kampaňami.</p>
+      <p class="when" style="margin-bottom:24px">Definujeme jasnú hierarchiu medzi scenármi a okná, počas ktorých sa nižšie scenáre blokujú. Plus globálny limit max <b style="color:#fff">1 e-mail / deň</b> a max <b style="color:#fff">4 e-maily / týždeň</b> na odberateľa naprieč všetkými automatmi aj kampaňami.</p>
       <div class="lab">Prečo</div>
-      <p class="when" style="margin-bottom:24px">Bez týchto pravidiel môže jeden odberateľ dostať v 7–10 dňovom okne kombináciu z 5 scenárov. To je hlavná príčina vnímania „spamovania" — nie absolútne číslo e-mailov, ale klastrovanie v krátkom okne.</p>
-      <div class="ex"><b>Očakávaný dopad:</b> Worst-case e-mailov za 2 týždne pre high-engagement odberateľa <b>z 8–10 na ~4–5</b>. Bez zníženia obratu — len rozloženie v čase.</div>
+      <p class="when" style="margin-bottom:24px">Bez týchto pravidiel môže jeden odberateľ dostať v 7–10 dňovom okne kombináciu z 5 scenárov. To je hlavná príčina vnímania „spamovania“ — nie absolútne číslo e-mailov, ale ich nahromadenie v krátkom okne.</p>
+      <div class="ex"><b>Očakávaný dopad:</b> V najhoršom prípade počet e-mailov za 2 týždne pre veľmi aktívneho odberateľa <b>z 8–10 na ~4–5</b>. Bez zníženia obratu — len rozloženie v čase.</div>
     </div>
   </div>
   <footer><span>Úprava 2 zo 4 · jednorazové nastavenie pravidiel</span><span class="tag">GO BEYOND</span></footer>
@@ -331,13 +339,13 @@
     </div>
     <div>
       <div class="lab">Čo upravujeme</div>
-      <p class="when" style="margin-bottom:24px">Vypnutie všetkých 5 pre-VIP scenárov. Odberatelia, ktorí spĺňajú pôvodný spúšťač, sa dostanú priamo do hlavného VIP scenára s prísnejším prahom (napr. namiesto „&gt; 2 nákupov" budeme vyžadovať „&gt; 4 nákupy" alebo „&gt; 300 € objem").</p>
+      <p class="when" style="margin-bottom:24px">Vypnutie všetkých 5 pre-VIP scenárov. Odberatelia, ktorí spĺňajú pôvodný spúšťač, sa dostanú priamo do hlavného VIP scenára s prísnejším prahom (napr. namiesto „&gt; 2 nákupov“ budeme vyžadovať „&gt; 4 nákupy“ alebo „&gt; 300 € objem“).</p>
       <div class="lab">Prečo</div>
       <p class="when" style="margin-bottom:24px">Pre-VIP scenáre za celé fungovanie vygenerovali <b style="color:#fff">3 konverzie a 366 € obrat z 4 483 odoslaných e-mailov</b> (návratnosť 0,07 %). Pridávajú frekvenciu bez merateľnej hodnoty. Sú to mŕtve scenáre, ktoré nikto neudržiava.</p>
-      <div class="ex o"><b>Očakávaný dopad:</b> <b>4 483 menej e-mailov za rok</b> z účtu, bez straty obratu. Údržba 5 menej scenárov pre tím.</div>
+      <div class="ex o"><b>Očakávaný dopad:</b> <b>~4 483 e-mailov menej</b> z účtu, bez straty obratu. O 5 scenárov menej na údržbu pre tím.</div>
     </div>
   </div>
-  <footer><span>Úprava 3 zo 4 · cleanup mŕtvych scenárov</span><span class="tag">GO BEYOND</span></footer>
+  <footer><span>Úprava 3 zo 4 · vyčistenie mŕtvych scenárov</span><span class="tag">GO BEYOND</span></footer>
 </section>
 
 <!-- 10 UPRAVA 4: VIP -->
@@ -355,22 +363,22 @@
         <div style="font-size:16px;color:#C9D4F5;margin-top:8px">4 exkluzívne kampane / rok</div>
       </div>
       <div style="padding:26px 30px;color:var(--navy)">
-        <div class="mailrow"><span><b>Q1</b> · Nová kolekcia · 7 dní pred verejným launchom</span></div>
-        <div class="mailrow"><span><b>Q2</b> · Letná predpredaj · klubová cena</span></div>
+        <div class="mailrow"><span><b>Q1</b> · Nová kolekcia · 7 dní pred verejným uvedením</span></div>
+        <div class="mailrow"><span><b>Q2</b> · Letný predpredaj · klubová cena</span></div>
         <div class="mailrow"><span><b>Q3</b> · Jesenné novinky · prvý prístup</span></div>
         <div class="mailrow"><span><b>Q4</b> · Black Friday · skorší prístup + dodatočná zľava</span></div>
-        <div style="font-size:14px;color:#6B7280;margin-top:14px">Kontinuálny scenár → štvrťročné kampane + suppression z bežných kampaní v okolí</div>
+        <div style="font-size:14px;color:#6B7280;margin-top:14px">Kontinuálny scenár → štvrťročné kampane + vylúčenie z bežných kampaní v okolí</div>
       </div>
     </div>
     <div>
       <div class="lab">Čo upravujeme</div>
-      <p class="when" style="margin-bottom:24px">Preklopiť kontinuálny VIP scenár na <b style="color:#fff">štyri kuratované kampane ročne</b> s exkluzívnym obsahom (predčasný prístup, VIP-only ponuky, osobnejší tón). Plus blokovanie z bežných kampaní v 7-dňovom okne okolo VIP odoslania.</p>
+      <p class="when" style="margin-bottom:24px">Preklopiť kontinuálny VIP scenár na <b style="color:#fff">štyri starostlivo pripravené kampane ročne</b> s exkluzívnym obsahom (predčasný prístup, ponuky len pre VIP, osobnejší tón). Plus blokovanie z bežných kampaní v 7-dňovom okne okolo VIP odoslania.</p>
       <div class="lab">Prečo</div>
-      <p class="when" style="margin-bottom:24px">VIP status sa stráca pri pravidelnosti. Aktuálne <b style="color:#fff">62,3 % otvárateľnosť</b> je vysoká, ale exkluzivita ju môže posunúť ešte vyššie. Klient (Zuzana) navrhol presne tento model — súhlasí s naším pohľadom.</p>
+      <p class="when" style="margin-bottom:24px">VIP status sa stráca pri pravidelnosti. Aktuálna otvárateľnosť <b style="color:#fff">62,3 %</b> je vysoká, ale exkluzivita ju môže posunúť ešte vyššie. Tento model navrhol aj náš reportingový tím — zhoduje sa s naším odporúčaním.</p>
       <div class="ex"><b>Očakávaný dopad:</b> Otvárateľnosť VIP <b>z 62 % na ~70+ %</b>, silnejšia vernosť a vnímaná hodnota. Frekvencia pre VIP odberateľov klesá — ale obrat z VIP rastie.</div>
     </div>
   </div>
-  <footer><span>Úprava 4 zo 4 · per Zuzanin návrh</span><span class="tag">GO BEYOND</span></footer>
+  <footer><span>Úprava 4 zo 4 · štvrťročný VIP model</span><span class="tag">GO BEYOND</span></footer>
 </section>
 
 <!-- 11 HARMONOGRAM -->
@@ -378,15 +386,15 @@
   <div class="brick b1"></div><div class="brick b2"></div>
   <header><img class="logo" src="https://www.dexfinity.com/wp-content/uploads/2021/03/Logo-Small-Dark-Landscape@2x.png"><div class="meta">11 · <b>Harmonogram</b></div></header>
   <div class="eyebrow">Harmonogram</div>
-  <h1>Štyri týždne v júni 2026</h1>
+  <h1>Päť týždňov do konca júna 2026</h1>
   <div class="punchline" style="margin-bottom:24px">Postupne, merateľne, bez prerušenia obratu. Každý týždeň konkrétny výstup.</div>
   <div class="tline">
-    <div class="tstep o"><div class="tg">T1 · 27.–31. 5.</div><h4>Revízia &amp; návrh limitov</h4><p>Manuálny prechod 67 scenárov v Ecomaile. Mapa prekryvov per spúšťač. Návrh limitov a pravidiel blokovania na schválenie.</p></div>
-    <div class="tstep"><div class="tg">T2 · 1.–7. 6.</div><h4>Implementácia úprav</h4><p>Reaktivácia po nákupe — kratšia séria, sprísnený spúšťač. Pre-VIP off (5 scenárov). 3 pravidlá blokovania nastavené.</p></div>
-    <div class="tstep t"><div class="tg">T3–4 · 8.–21. 6.</div><h4>VIP redesign + meranie</h4><p>VIP preklopiť na štvrťročný model, Q3 kalendár pripravený. Revízia textov uvítacej série. Nastavenie sledovania KPI.</p></div>
+    <div class="tstep o"><div class="tg">T1 · 27.–31. 5.</div><h4>Revízia &amp; návrh limitov</h4><p>Manuálny prechod 67 scenárov v Ecomaile. Mapa prekryvov pre každý spúšťač. Návrh limitov a pravidiel blokovania na schválenie.</p></div>
+    <div class="tstep"><div class="tg">T2 · 1.–7. 6.</div><h4>Implementácia úprav</h4><p>Reaktivácia po nákupe — kratšia séria, sprísnený spúšťač. Pre-VIP vypnúť (5 scenárov). 3 pravidlá blokovania nastavené.</p></div>
+    <div class="tstep t"><div class="tg">T3–4 · 8.–21. 6.</div><h4>Nový VIP model + meranie</h4><p>VIP preklopiť na štvrťročný model, kalendár Q3 pripravený. Revízia textov uvítacej série. Nastavenie sledovania KPI.</p></div>
     <div class="tstep n"><div class="tg">T5 · 22.–30. 6.</div><h4>Vyhodnotenie</h4><p>Prehľad pred / po: frekvencia, miera odhlásenia, sťažnosti. Identifikácia ďalších oblastí. Plán na Q3.</p></div>
   </div>
-  <div class="band" style="margin-top:30px"><b>Spoločné vyhodnotenie</b> so Shapen tímom na konci júna · porovnanie ukazovateľov apríl 2026 vs jún 2026 · plán na Q3.</div>
+  <div class="band" style="margin-top:30px"><b>Spoločné vyhodnotenie</b> s tímom Shapen na konci júna · porovnanie ukazovateľov apríl 2026 vs jún 2026 · plán na Q3.</div>
   <footer><span>Shapen × Dexfinity · harmonogram júna</span><span class="tag">GO BEYOND</span></footer>
 </section>
 
@@ -396,12 +404,12 @@
   <header><img class="logo" src="https://www.dexfinity.com/wp-content/uploads/2021/03/Logo-Small-Dark-Landscape@2x.png"><div class="meta">12 · <b>Ciele pred / po</b></div></header>
   <div class="eyebrow t">Ciele</div>
   <h1>Štyri merateľné výstupy do 30. júna</h1>
-  <div class="punchline" style="margin-bottom:30px">Toto vyhodnotíme so Shapen tímom — pred a po. Cieľ je udržateľná rovnováha medzi obratom a vnímanou frekvenciou.</div>
+  <div class="punchline" style="margin-bottom:30px">Toto vyhodnotíme s tímom Shapen — pred a po. Cieľ je udržateľná rovnováha medzi obratom a vnímanou frekvenciou.</div>
   <div class="cols4">
     <div class="panel t" style="text-align:center"><div class="lab t">Frekvencia</div><div style="font-family:Questrial;font-size:48px;color:var(--teal);letter-spacing:-1px;margin:14px 0 4px">~6 → ~4</div><div style="font-size:16px;color:#cdcde6;font-weight:300">e-mailov / odberateľ / mes</div></div>
     <div class="panel t" style="text-align:center"><div class="lab t">Miera odhlásenia</div><div style="font-family:Questrial;font-size:48px;color:var(--teal);letter-spacing:-1px;margin:14px 0 4px">0,46 → 0,30 %</div><div style="font-size:16px;color:#cdcde6;font-weight:300">z hromadných kampaní</div></div>
     <div class="panel t" style="text-align:center"><div class="lab t">Sťažnosti</div><div style="font-family:Questrial;font-size:48px;color:var(--teal);letter-spacing:-1px;margin:14px 0 4px">&lt; 0,01 %</div><div style="font-size:16px;color:#cdcde6;font-weight:300">udržať aktuálnu úroveň</div></div>
-    <div class="panel" style="text-align:center"><div class="lab">Obrat</div><div style="font-family:Questrial;font-size:48px;color:var(--blue2);letter-spacing:-1px;margin:14px 0 4px">≥ 95 %</div><div style="font-size:16px;color:#cdcde6;font-weight:300">aktuálnej úrovne zachovať</div></div>
+    <div class="panel" style="text-align:center"><div class="lab">Obrat</div><div style="font-family:Questrial;font-size:48px;color:var(--blue2);letter-spacing:-1px;margin:14px 0 4px">≥ 95 %</div><div style="font-size:16px;color:#cdcde6;font-weight:300">zachovať aktuálnu úroveň</div></div>
   </div>
   <div class="band" style="margin-top:36px;font-size:23px"><b>Dôvera klientskej databázy je naším najcennejším aktívom.</b> Tieto úpravy ju nielen chránia — robia ju silnejšou. Menej dotykov v správnom čase prináša viac otvorení, viac preklikov, viac nákupov.</div>
   <footer><span>Shapen × Dexfinity · ciele do konca júna 2026</span><span class="tag">GO BEYOND</span></footer>
@@ -413,19 +421,19 @@
   <header><img class="logo" src="https://www.dexfinity.com/wp-content/uploads/2021/03/Logo-Small-Dark-Landscape@2x.png"><div class="meta">13 · <b>Príloha</b></div></header>
   <div class="eyebrow">Príloha</div>
   <h1>Detailný report — dve verzie</h1>
-  <div class="punchline" style="margin-bottom:30px">Pre hlbší pohľad za každú oblasť — výkonnosť kampaní, automatizácie, porovnanie trhov, databázu, segmenty a zdroje.</div>
+  <div class="punchline" style="margin-bottom:30px">Pre hlbší pohľad do každej oblasti — výkonnosť kampaní, automatizácie, porovnanie trhov, databázu, segmenty a zdroje.</div>
   <div class="cols2" style="margin-top:6px">
     <div class="panel t">
       <div class="lab t">A · Krátka verzia</div>
       <h3>Revízia emailingu — zhrnutie</h3>
-      <div class="val">~10 min čítanie · 47 KB</div>
-      <p style="margin-bottom:14px">Akčný plán hore, stav emailingu, porovnanie s odvetvím, konkrétne úpravy a harmonogram. Vhodné pre rýchly prehľad celého tímu.</p>
+      <div class="val">~10 min čítania · 47 KB</div>
+      <p style="margin-bottom:14px">Akčný plán navrchu, stav emailingu, porovnanie s odvetvím, konkrétne úpravy a harmonogram. Vhodné pre rýchly prehľad celého tímu.</p>
       <div style="background:rgba(22,171,139,.12);border:1px solid rgba(22,171,139,.35);border-radius:14px;padding:14px 18px;font-size:16px;line-height:1.4;color:#e8e8f6;font-family:monospace;word-break:break-all">dxfnt.github.io/rtn_audit/shapen/emailing-revizia.html</div>
     </div>
     <div class="panel">
       <div class="lab">B · Plná verzia</div>
       <h3>Revízia emailingu — komplet</h3>
-      <div class="val">~25 min čítanie · 97 KB</div>
+      <div class="val">~25 min čítania · 97 KB</div>
       <p style="margin-bottom:14px">Všetky sekcie: frekvencia, výkonnosť kampaní (top 8), všetkých 67 automatizácií, porovnanie trhov SK/CZ/EN/DE/ESP, databáza, segmenty (140+), použité zdroje.</p>
       <div style="background:rgba(0,101,247,.12);border:1px solid rgba(0,101,247,.35);border-radius:14px;padding:14px 18px;font-size:16px;line-height:1.4;color:#e8e8f6;font-family:monospace;word-break:break-all">dxfnt.github.io/rtn_audit/shapen/emailing-revizia-full.html</div>
     </div>
