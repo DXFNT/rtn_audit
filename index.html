@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dexfinity · Retention Audits</title>
-<meta name="description" content="Live Leadhub audity pre Dexfinity klientov — retencia, RFM, automatizácie, kalendár kampaní.">
+<title>Dexfinity · Retention &amp; emailing audity</title>
+<meta name="description" content="Live audity retencie a emailingu pre Dexfinity klientov — Leadhub, Ecomail a ďalšie nástroje.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Questrial&display=swap" rel="stylesheet">
@@ -36,7 +36,7 @@ body {
   min-height: 100vh;
 }
 h1, h2, h3, h4 { font-family: var(--font-primary); }
-.container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+.container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
 .hero {
   background: var(--dex-navy);
@@ -51,9 +51,12 @@ h1, h2, h3, h4 { font-family: var(--font-primary); }
 .hero .container { position: relative; z-index: 2; }
 .hero-logo { height: 56px; margin-bottom: 32px; }
 .hero .tagline { font-family: var(--font-secondary); font-size: 14px; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--dex-blue); margin-bottom: 16px; }
-.hero h1 { font-size: 44px; font-weight: 400; line-height: 1.15; max-width: 700px; }
+.hero h1 { font-size: 44px; font-weight: 400; line-height: 1.15; max-width: 760px; }
 .hero h1 span { color: var(--dex-blue); }
-.hero .sub { font-size: 16px; opacity: 0.7; margin-top: 20px; max-width: 620px; font-weight: 300; }
+.hero .sub { font-size: 16px; opacity: 0.7; margin-top: 20px; max-width: 700px; font-weight: 300; }
+.hero-meta { margin-top: 32px; display: flex; gap: 28px; flex-wrap: wrap; }
+.hero-meta .item { display: flex; align-items: baseline; gap: 8px; font-size: 13px; opacity: 0.7; }
+.hero-meta .item b { color: var(--dex-blue); font-weight: 600; font-size: 18px; }
 
 .reports {
   background: var(--dex-light-bg);
@@ -64,11 +67,11 @@ h1, h2, h3, h4 { font-family: var(--font-primary); }
 .section-title { font-size: 28px; font-weight: 400; color: var(--dex-navy); margin-bottom: 8px; }
 .section-sub { color: var(--dex-muted); font-size: 14px; margin-bottom: 32px; }
 
-.report-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 20px; }
+.report-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
 .report-card {
   background: var(--dex-white);
   border-radius: var(--radius-lg);
-  padding: 32px;
+  padding: 28px;
   text-decoration: none;
   color: inherit;
   display: flex;
@@ -79,8 +82,10 @@ h1, h2, h3, h4 { font-family: var(--font-primary); }
   box-shadow: 0 2px 8px rgba(0, 101, 247, 0.06);
 }
 .report-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(5, 2, 78, 0.12); }
-.report-card.scanquilt { border-top-color: var(--dex-teal); }
-.report-card.liliana { border-top-color: var(--dex-orange); }
+.report-card.accent-teal { border-top-color: var(--dex-teal); }
+.report-card.accent-orange { border-top-color: var(--dex-orange); }
+.report-card.accent-blue { border-top-color: var(--dex-blue); }
+.report-card.accent-navy { border-top-color: var(--dex-navy); }
 .report-card .client-tag {
   font-size: 11px;
   font-weight: 600;
@@ -89,30 +94,77 @@ h1, h2, h3, h4 { font-family: var(--font-primary); }
   letter-spacing: 0.8px;
   margin-bottom: 12px;
 }
-.report-card h3 { font-size: 22px; color: var(--dex-navy); margin-bottom: 14px; line-height: 1.3; }
-.report-card .summary { font-size: 14px; color: var(--dex-muted); margin-bottom: 20px; flex: 1; }
+.report-card .tool-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  margin-left: 8px;
+  background: var(--dex-blue-10);
+  color: var(--dex-blue);
+}
+.report-card .tool-badge.ecomail { background: rgba(22, 171, 139, 0.12); color: var(--dex-teal); }
+.report-card .tool-badge.leadhub { background: rgba(255, 127, 0, 0.12); color: var(--dex-orange); }
+.report-card h3 { font-size: 20px; color: var(--dex-navy); margin-bottom: 12px; line-height: 1.3; }
+.report-card .summary { font-size: 13px; color: var(--dex-muted); margin-bottom: 20px; flex: 1; line-height: 1.55; }
 .report-card .stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  margin-bottom: 24px;
-  padding: 16px 0;
+  margin-bottom: 18px;
+  padding: 14px 0;
   border-top: 1px solid var(--dex-border);
   border-bottom: 1px solid var(--dex-border);
 }
-.report-card .stat .num { font-size: 22px; font-weight: 700; color: var(--dex-navy); font-family: var(--font-secondary); }
-.report-card .stat .label { font-size: 11px; color: var(--dex-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
-.report-card .cta {
-  font-size: 14px;
+.report-card .stat .num { font-size: 18px; font-weight: 700; color: var(--dex-navy); font-family: var(--font-secondary); }
+.report-card .stat .label { font-size: 10px; color: var(--dex-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+.report-card .meta-row { font-size: 11px; color: var(--dex-muted); margin-bottom: 14px; }
+.report-card .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+.report-card .link-pill {
+  font-size: 12px;
   font-weight: 600;
   color: var(--dex-blue);
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  background: var(--dex-blue-10);
+  padding: 6px 12px;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: background 0.2s;
 }
-.report-card .cta::after { content: '→'; transition: transform 0.2s; }
-.report-card:hover .cta::after { transform: translateX(4px); }
-.report-card .meta-row { font-size: 12px; color: var(--dex-muted); margin-bottom: 8px; }
+.report-card .link-pill:hover { background: var(--dex-blue); color: white; }
+.report-card .link-pill.primary { background: var(--dex-blue); color: white; }
+.report-card .link-pill.primary:hover { background: var(--dex-navy); }
+.report-card .link-pill.internal { background: var(--dex-light-bg); color: var(--dex-muted); }
+
+.how-to {
+  background: var(--dex-white);
+  padding: 64px 0 80px;
+}
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 24px; }
+.step {
+  background: var(--dex-light-bg);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  border-left: 4px solid var(--dex-blue);
+}
+.step .num {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--dex-blue);
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  line-height: 28px;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.step h4 { font-size: 16px; color: var(--dex-navy); margin-bottom: 6px; font-family: var(--font-secondary); font-weight: 600; }
+.step p { font-size: 13px; color: var(--dex-muted); line-height: 1.55; }
+.step code { font-family: 'Menlo', monospace; background: white; padding: 2px 6px; border-radius: 4px; font-size: 12px; color: var(--dex-navy); }
 
 .footer {
   background: var(--dex-navy);
@@ -121,7 +173,7 @@ h1, h2, h3, h4 { font-family: var(--font-primary); }
   text-align: center;
 }
 .footer .footer-logo { height: 48px; margin-bottom: 16px; opacity: 0.6; }
-.footer p { opacity: 0.5; font-size: 13px; }
+.footer p { opacity: 0.5; font-size: 13px; margin-bottom: 4px; }
 .footer .go-beyond { font-size: 12px; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--dex-blue); margin-top: 16px; }
 .footer a { color: var(--dex-blue); text-decoration: none; }
 
@@ -139,8 +191,9 @@ h1, h2, h3, h4 { font-family: var(--font-primary); }
   <div class="container">
     <img src="https://www.dexfinity.com/wp-content/uploads/2021/03/Logo-Small-Dark-Landscape@2x.png" alt="Dexfinity" class="hero-logo">
     <div class="tagline">Go Beyond</div>
-    <h1>Retention <span>audits</span> pre Dexfinity klientov</h1>
-    <p class="sub">Live audity Leadhub účtov — výkonnosť, RFM segmenty, retenčné kohorty, databáza, návštevnosť webu a nasadené automatizácie. Každý audit obsahuje konkrétne odporúčania a 8-mesačný kalendár kampaní.</p>
+    <h1>Retention &amp; emailing <span>audity</span> pre Dexfinity klientov</h1>
+    <p class="sub">Live audity účtov klientov — výkonnosť, RFM segmenty, retenčné kohorty, databáza, automatizácie a kalendár kampaní. Dáta priamo z používaných nástrojov (Leadhub, Ecomail, ďalšie). Každý audit obsahuje konkrétne odporúčania, harmonogram a porovnanie s odvetvovými štandardmi.</p>
+    <div class="hero-meta" id="heroMeta"></div>
   </div>
 </header>
 
@@ -148,36 +201,39 @@ h1, h2, h3, h4 { font-family: var(--font-primary); }
   <div class="container">
     <div class="section-label">Aktívne audity</div>
     <h2 class="section-title">Klientske reporty</h2>
-    <p class="section-sub">Vyberte si klienta a prezrite si detailný audit.</p>
+    <p class="section-sub">Vyberte klienta a prezrite si detailný audit. Pri Shapenovi sú dostupné aj klientske verzie a deck.</p>
 
-    <div class="report-grid">
-      <a href="./liliana/" class="report-card liliana">
-        <div class="client-tag">Liliana.sk · Spodná bielizeň a plavky</div>
-        <h3>80 % zákazníčok nakúpi raz a nevráti sa</h3>
-        <div class="summary">Funkčný Leadhub setup s 35 % attribution, ale chýba celá vrstva vernosti. 56 % bázy je v segmente New Customers, Champions = 1.</div>
-        <div class="stats">
-          <div class="stat"><div class="num">35,1 %</div><div class="label">Leadhub attribution</div></div>
-          <div class="stat"><div class="num">19,1 %</div><div class="label">Miera návratu</div></div>
-          <div class="stat"><div class="num">4 538</div><div class="label">Zákazníkov (12 m)</div></div>
-          <div class="stat"><div class="num">8</div><div class="label">Nasadených automatizácií</div></div>
-        </div>
-        <div class="meta-row">Zber dát: 21. 5. 2026</div>
-        <div class="cta">Otvoriť audit</div>
-      </a>
+    <div class="report-grid" id="reportGrid"></div>
+  </div>
+</section>
 
-      <a href="./scanquilt/" class="report-card scanquilt">
-        <div class="client-tag">SCANquilt.sk · Domáce textílie</div>
-        <h3>Tržby +178 % YoY, ale len 3,7 % zber e-mailov</h3>
-        <div class="summary">Akvizícia v skvelej forme, retencia 42,8 % nadpriemerná. 21 automatizácií v Leadhube, ale niektoré bežia s 0 obratom a 5 retenčných šablón čaká neaktívnych.</div>
-        <div class="stats">
-          <div class="stat"><div class="num">54,6 %</div><div class="label">Leadhub attribution</div></div>
-          <div class="stat"><div class="num">42,8 %</div><div class="label">Miera návratu</div></div>
-          <div class="stat"><div class="num">908</div><div class="label">Zákazníkov (12 m)</div></div>
-          <div class="stat"><div class="num">21</div><div class="label">Nasadených automatizácií</div></div>
-        </div>
-        <div class="meta-row">Zber dát: 20. 5. 2026</div>
-        <div class="cta">Otvoriť audit</div>
-      </a>
+<section class="how-to">
+  <div class="container">
+    <div class="section-label">Workflow</div>
+    <h2 class="section-title">Ako pridať nového klienta</h2>
+    <p class="section-sub">Štyri kroky od dát po publikovanie. Detaily v <a href="https://github.com/DXFNT/rtn_audit/blob/main/README.md" style="color: var(--dex-blue); text-decoration: none;">README.md</a>.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h4>Vytvor folder</h4>
+        <p>V repe pridaj zložku s názvom klienta lowercase, napr. <code>noviclient/</code>.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h4>Pridaj report</h4>
+        <p>Hlavný report ulož ako <code>index.html</code>. Použi DXFNT brand template (Poppins+Questrial, --dex-blue/--dex-navy, Go Beyond).</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h4>Pridaj entry do landing-u</h4>
+        <p>Otvor <code>index.html</code> v root-e, do <code>const CLIENTS = [...]</code> pridaj objekt s metadátami klienta.</p>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <h4>Push do main</h4>
+        <p>GitHub Pages publikuje automaticky. URL: <code>dxfnt.github.io/rtn_audit/noviclient/</code></p>
+      </div>
     </div>
   </div>
 </section>
@@ -185,10 +241,116 @@ h1, h2, h3, h4 { font-family: var(--font-primary); }
 <footer class="footer">
   <div class="container">
     <img src="https://www.dexfinity.com/wp-content/uploads/2021/03/Logo-Small-Dark-Landscape@2x.png" alt="Dexfinity" class="footer-logo">
-    <p>Dexfinity · Retention audits powered by Leadhub data</p>
-    <p>Otázky? <a href="mailto:hello@dexfinity.com">hello@dexfinity.com</a></p>
+    <p>Dexfinity · Retention &amp; emailing audity</p>
+    <p>Otázky? <a href="mailto:hello@dexfinity.com">hello@dexfinity.com</a> · <a href="https://github.com/DXFNT/rtn_audit">GitHub repo</a></p>
     <div class="go-beyond">Go Beyond</div>
   </div>
 </footer>
+
+<script>
+// === Pridanie nového klienta ===
+// Skopíruj jeden z objektov nižšie a uprav hodnoty. Polia:
+//   slug:       URL slug (bez lomítok, lowercase)
+//   client:     Display name klienta
+//   industry:   Stručný popis odvetvia
+//   tool:       Nástroj odkiaľ sú dáta ("leadhub" | "ecomail" | ďalšie)
+//   accent:     Farba akcentu ("blue" | "teal" | "orange" | "navy")
+//   headline:   Hlavný headline auditu
+//   summary:    1–2 vety popisu
+//   stats:      Pole 4 metrík { num, label }
+//   collected:  Dátum zberu dát
+//   links:      Pole odkazov { href, label, kind }
+//                kind: "primary" (zvýraznený), "" (default), "internal" (sivý — interný materiál)
+const CLIENTS = [
+  {
+    slug: "liliana",
+    client: "Liliana.sk",
+    industry: "Spodná bielizeň a plavky",
+    tool: "leadhub",
+    accent: "orange",
+    headline: "80 % zákazníčok nakúpi raz a nevráti sa",
+    summary: "Funkčný Leadhub setup s 35 % attribution, ale chýba celá vrstva vernosti. 56 % bázy je v segmente New Customers, Champions = 1.",
+    stats: [
+      { num: "35,1 %", label: "Leadhub attribution" },
+      { num: "19,1 %", label: "Miera návratu" },
+      { num: "4 538",  label: "Zákazníkov (12 m)" },
+      { num: "8",       label: "Automatizácií" }
+    ],
+    collected: "21. 5. 2026",
+    links: [
+      { href: "./liliana/", label: "Otvoriť audit", kind: "primary" }
+    ]
+  },
+  {
+    slug: "scanquilt",
+    client: "SCANquilt.sk",
+    industry: "Domáce textílie",
+    tool: "leadhub",
+    accent: "teal",
+    headline: "Tržby +178 % YoY, ale len 3,7 % zber e-mailov",
+    summary: "Akvizícia v skvelej forme, retencia 42,8 % nadpriemerná. 21 automatizácií v Leadhube, niektoré bežia s 0 obratom, 5 šablón čaká.",
+    stats: [
+      { num: "54,6 %", label: "Leadhub attribution" },
+      { num: "42,8 %", label: "Miera návratu" },
+      { num: "908",     label: "Zákazníkov (12 m)" },
+      { num: "21",      label: "Automatizácií" }
+    ],
+    collected: "20. 5. 2026",
+    links: [
+      { href: "./scanquilt/", label: "Otvoriť audit", kind: "primary" }
+    ]
+  },
+  {
+    slug: "shapen",
+    client: "Shapen Barefoot",
+    industry: "Barefoot obuv · 7 trhov",
+    tool: "ecomail",
+    accent: "blue",
+    headline: "Revízia frekvencie + plán úprav",
+    summary: "67 automatizácií, ~6 e-mailov/mes priemer. Cielený plán: kratšia Reaktivácia, pravidlá blokovania, VIP štvrťročne. Cieľ ~4 e-maily/mes pri zachovaní obratu.",
+    stats: [
+      { num: "40,8 %", label: "Otvárateľnosť" },
+      { num: "0,0064 %", label: "Sťažnosti (spam)" },
+      { num: "18 146", label: "B2C odberateľov" },
+      { num: "67",     label: "Automatizácií" }
+    ],
+    collected: "27. 5. 2026",
+    links: [
+      { href: "./shapen/emailing-revizia.html", label: "Klientska revízia (krátka)", kind: "primary" },
+      { href: "./shapen/emailing-revizia-full.html", label: "Klientska revízia (plná)", kind: "" },
+      { href: "./shapen/revizia-deck.html", label: "Deck", kind: "" },
+      { href: "./shapen/index.html", label: "Interný audit", kind: "internal" }
+    ]
+  }
+];
+
+// === Render ===
+const grid = document.getElementById("reportGrid");
+CLIENTS.forEach(c => {
+  const card = document.createElement("div");
+  card.className = `report-card accent-${c.accent}`;
+  const stats = c.stats.map(s => `<div class="stat"><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`).join("");
+  const links = c.links.map(l => `<a href="${l.href}" class="link-pill ${l.kind || ''}">${l.label}</a>`).join("");
+  const toolBadge = c.tool ? `<span class="tool-badge ${c.tool}">${c.tool}</span>` : "";
+  card.innerHTML = `
+    <div class="client-tag">${c.client} · ${c.industry}${toolBadge}</div>
+    <h3>${c.headline}</h3>
+    <div class="summary">${c.summary}</div>
+    <div class="stats">${stats}</div>
+    <div class="meta-row">Zber dát: ${c.collected}</div>
+    <div class="links">${links}</div>
+  `;
+  grid.appendChild(card);
+});
+
+// Hero meta — auto-count clients
+const meta = document.getElementById("heroMeta");
+const tools = new Set(CLIENTS.map(c => c.tool));
+meta.innerHTML = `
+  <div class="item"><b>${CLIENTS.length}</b> klientov</div>
+  <div class="item"><b>${tools.size}</b> nástroje (${[...tools].join(", ")})</div>
+  <div class="item">live na <b>dxfnt.github.io/rtn_audit</b></div>
+`;
+</script>
 </body>
 </html>
